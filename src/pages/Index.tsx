@@ -6,6 +6,8 @@ import Roadmap from "@/components/Roadmap";
 import Manifesto from "@/components/Manifesto";
 import Creator from "@/components/Creator";
 import Footer from "@/components/Footer";
+import CodeShowCase from "@/CodeShowCase";
+import SecurityCodeShowcase from "@/SecurityCodeShowcase";
 
 const Index = () => {
   return (
@@ -13,6 +15,8 @@ const Index = () => {
       <Navbar />
       <main>
         <Hero />
+        <CodeShowCase />
+        <SecurityCodeShowcase />
         <History />
         <Features />
         <Roadmap />

@@ -6,6 +6,9 @@ import OrionCoreTypes from "@/components/docs/OrionCoreTypes";
 import LibCollections from "@/components/docs/libCollections";
 import LibDatetime from "@/components/docs/LibDatetime";
 import LibIoEngine from "@/components/docs/LibIoEngine";
+import LibMath from "@/components/docs/LibMath";
+import LibRandom from "@/components/docs/LibRandom";
+import LibStrings from "@/components/docs/LibStrings";
 
 const Docs = () => {
   return (
@@ -34,6 +37,9 @@ const Docs = () => {
             <LibCollections />
             <LibDatetime />
             <LibIoEngine />
+            <LibMath />
+            <LibRandom />
+            <LibStrings />
           </div>
         </div>
       </main>
