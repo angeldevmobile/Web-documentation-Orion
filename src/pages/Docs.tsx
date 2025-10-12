@@ -3,6 +3,9 @@ import Footer from "@/components/Footer";
 import ErrorsModule from "@/components/docs/ErrorsModule";
 import { Book } from "lucide-react";
 import OrionCoreTypes from "@/components/docs/OrionCoreTypes";
+import LibCollections from "@/components/docs/libCollections";
+import LibDatetime from "@/components/docs/LibDatetime";
+import LibIoEngine from "@/components/docs/LibIoEngine";
 
 const Docs = () => {
   return (
@@ -28,6 +31,9 @@ const Docs = () => {
           <div className="space-y-8">
             <ErrorsModule />
             <OrionCoreTypes />
+            <LibCollections />
+            <LibDatetime />
+            <LibIoEngine />
           </div>
         </div>
       </main>
