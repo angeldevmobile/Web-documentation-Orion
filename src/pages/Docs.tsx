@@ -9,6 +9,7 @@ import LibIoEngine from "@/components/docs/LibIoEngine";
 import LibMath from "@/components/docs/LibMath";
 import LibRandom from "@/components/docs/LibRandom";
 import LibStrings from "@/components/docs/LibStrings";
+import ModulesFs from "@/components/docs/ModulesFs";
 
 const Docs = () => {
   return (
@@ -40,6 +41,7 @@ const Docs = () => {
             <LibMath />
             <LibRandom />
             <LibStrings />
+            <ModulesFs />
           </div>
         </div>
       </main>
