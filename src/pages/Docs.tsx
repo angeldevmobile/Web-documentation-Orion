@@ -2,6 +2,7 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import ErrorsModule from "@/components/docs/ErrorsModule";
 import { Book } from "lucide-react";
+import OrionCoreTypes from "@/components/docs/OrionCoreTypes";
 
 const Docs = () => {
   return (
@@ -26,6 +27,7 @@ const Docs = () => {
           {/* Content */}
           <div className="space-y-8">
             <ErrorsModule />
+            <OrionCoreTypes />
           </div>
         </div>
       </main>
