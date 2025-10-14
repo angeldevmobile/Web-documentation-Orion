@@ -10,6 +10,7 @@ import LibMath from "@/components/docs/LibMath";
 import LibRandom from "@/components/docs/LibRandom";
 import LibStrings from "@/components/docs/LibStrings";
 import ModulesFs from "@/components/docs/ModulesFs";
+import ModulesJson from "@/components/docs/ModulesJson";
 
 const Docs = () => {
   return (
@@ -42,6 +43,7 @@ const Docs = () => {
             <LibRandom />
             <LibStrings />
             <ModulesFs />
+            <ModulesJson />
           </div>
         </div>
       </main>
