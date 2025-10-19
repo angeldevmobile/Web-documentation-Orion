@@ -14,6 +14,8 @@ import LibCollections from "@/components/docs/LibCollections";
 import StdlibInsight from "@/components/docs/StdlibInsight";
 import StdlibMatrix from "@/components/docs/StdlibMatrix";
 import StdlibQuantum from "@/components/docs/StdlibQuantum";
+import StdlibTimewarp from "@/components/docs/StdlibTimewarp";
+import StdlibVision from "@/components/docs/StdlibVision";
 
 const Docs = () => {
   return (
@@ -50,6 +52,8 @@ const Docs = () => {
             <StdlibInsight />
             <StdlibMatrix />
             <StdlibQuantum />
+            <StdlibTimewarp />
+            <StdlibVision />
           </div>
         </div>
       </main>
