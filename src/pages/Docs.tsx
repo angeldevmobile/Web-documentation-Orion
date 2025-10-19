@@ -3,7 +3,6 @@ import Footer from "@/components/Footer";
 import ErrorsModule from "@/components/docs/ErrorsModule";
 import { Book } from "lucide-react";
 import OrionCoreTypes from "@/components/docs/OrionCoreTypes";
-import LibCollections from "@/components/docs/libCollections";
 import LibDatetime from "@/components/docs/LibDatetime";
 import LibIoEngine from "@/components/docs/LibIoEngine";
 import LibMath from "@/components/docs/LibMath";
@@ -11,6 +10,10 @@ import LibRandom from "@/components/docs/LibRandom";
 import LibStrings from "@/components/docs/LibStrings";
 import ModulesFs from "@/components/docs/ModulesFs";
 import ModulesJson from "@/components/docs/ModulesJson";
+import LibCollections from "@/components/docs/LibCollections";
+import StdlibInsight from "@/components/docs/StdlibInsight";
+import StdlibMatrix from "@/components/docs/StdlibMatrix";
+import StdlibQuantum from "@/components/docs/StdlibQuantum";
 
 const Docs = () => {
   return (
@@ -44,6 +47,9 @@ const Docs = () => {
             <LibStrings />
             <ModulesFs />
             <ModulesJson />
+            <StdlibInsight />
+            <StdlibMatrix />
+            <StdlibQuantum />
           </div>
         </div>
       </main>
