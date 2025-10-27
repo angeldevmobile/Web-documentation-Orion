@@ -278,7 +278,7 @@ const StdlibVision = () => {
 					<div className="space-y-3">
 						<h4 className="text-lg font-semibold text-accent flex items-center gap-2">
 							<Palette className="w-5 h-5" />
-							🔹 Colores dominantes
+							Colores dominantes
 						</h4>
 						<p className="text-foreground/80 text-sm mb-3">
 							Detecta los colores predominantes mediante un k-means liviano.
