@@ -62,7 +62,7 @@ const StdlibMatrix = () => {
 			{/* Main Features */}
 			<Card className="glass-effect border-primary/20 p-6">
 				<h3 className="text-xl font-semibold mb-4 flex items-center gap-2">
-					<span className="text-primary">⚙️</span> Características Principales
+					<span className="text-primary"></span> Características Principales
 				</h3>
 
 				<div className="overflow-x-auto">
@@ -138,7 +138,7 @@ const StdlibMatrix = () => {
 			<Card className="glass-effect border-primary/20 p-6">
 				<h3 className="text-xl font-semibold mb-4 flex items-center gap-2">
 					<Zap className="w-5 h-5 text-primary" />
-					<span className="text-primary">▪</span> Clase Principal: SmartMatrix
+					<span className="text-primary"></span> Clase Principal: SmartMatrix
 				</h3>
 
 				<div className="space-y-4">

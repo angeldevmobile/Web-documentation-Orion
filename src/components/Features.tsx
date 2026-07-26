@@ -1,57 +1,57 @@
-import { Brain, Zap, Code2, Globe, Lock, Sparkles } from "lucide-react";
+import { Cpu, Library, Workflow, Brain, ShieldCheck, Wrench } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 
 const Features = () => {
   const features = [
     {
+      icon: Cpu,
+      title: "Native compilation",
+      description:
+        "Runs on a Rust VM and a Cranelift JIT, and builds native executables with orion build.",
+    },
+    {
+      icon: Library,
+      title: "Rich standard library",
+      description:
+        "Ready-to-use modules for files, JSON, networking, dates, cryptography, data, and more.",
+    },
+    {
+      icon: Workflow,
+      title: "Concurrency and async",
+      description:
+        "async and await, tasks on a thread pool, and native channels for real concurrency.",
+    },
+    {
       icon: Brain,
-      title: "Legibilidad primero",
-      description: "Código que parece pseudocódigo, fácil de enseñar y entender",
-      color: "text-primary",
+      title: "Built-in AI",
+      description:
+        "think and sense primitives to query language models directly from your code.",
     },
     {
-      icon: Zap,
-      title: "Rapidez real",
-      description: "Diseñado para ejecutarse con rendimiento al nivel de Go o Rust",
-      color: "text-accent",
+      icon: ShieldCheck,
+      title: "Types and diagnostics",
+      description:
+        "Optional type checking and precise compiler errors as you type.",
     },
     {
-      icon: Code2,
-      title: "Modernidad",
-      description: "Async, match, interpolación, null-safe y tipado opcional",
-      color: "text-primary",
-    },
-    {
-      icon: Globe,
-      title: "Universalidad",
-      description: "Desde scripts rápidos hasta grandes proyectos",
-      color: "text-accent",
-    },
-    {
-      icon: Lock,
-      title: "Accesible",
-      description: "Instalar, aprender y usar en minutos",
-      color: "text-primary",
-    },
-    {
-      icon: Sparkles,
-      title: "Sintaxis futurista",
-      description: "Expresiva, elegante y preparada para el futuro",
-      color: "text-accent",
+      icon: Wrench,
+      title: "Complete tooling",
+      description:
+        "VS Code extension, LSP server, REPL, formatter, test runner, and watch mode.",
     },
   ];
 
   return (
     <section id="features" className="py-20 px-4">
       <div className="container mx-auto max-w-6xl">
-        <div className="space-y-12 animate-fade-in">
+        <div className="space-y-12">
           {/* Section Header */}
           <div className="text-center space-y-4">
-            <h2 className="text-4xl md:text-5xl font-bold text-gradient">
-              Características clave
+            <h2 className="text-4xl md:text-5xl font-bold text-foreground">
+              Key features
             </h2>
             <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-              Por qué Orion se diferencia de otros lenguajes
+              What makes Orion a modern, productive language.
             </p>
           </div>
 
@@ -60,16 +60,14 @@ const Features = () => {
             {features.map((feature, index) => (
               <Card
                 key={index}
-                className="group glass-effect border-border/50 hover:border-primary/50 transition-all duration-300 hover:scale-105 overflow-hidden"
+                className="group border-border bg-card hover:border-primary/50 transition-colors duration-300"
               >
                 <CardContent className="p-6 space-y-4">
-                  <div className="flex items-start justify-between">
-                    <div className={`p-3 rounded-lg bg-primary/10 group-hover:bg-primary/20 transition-colors ${feature.color}`}>
-                      <feature.icon className="w-6 h-6" />
-                    </div>
+                  <div className="inline-flex p-3 rounded-lg bg-primary/10 text-primary">
+                    <feature.icon className="w-6 h-6" />
                   </div>
                   <div className="space-y-2">
-                    <h3 className="text-xl font-bold text-foreground group-hover:text-primary transition-colors">
+                    <h3 className="text-xl font-semibold text-foreground">
                       {feature.title}
                     </h3>
                     <p className="text-muted-foreground leading-relaxed">

@@ -26,7 +26,7 @@ const LibRandom = () => {
 			{/* Description */}
 			<Card className="glass-effect border-primary/20 p-6">
 				<h3 className="text-xl font-semibold mb-4 flex items-center gap-2">
-					<span className="text-primary">🌌</span> Descripción General
+					<span className="text-primary"></span> Descripción General
 				</h3>
 				<p className="text-foreground/80 mb-4">
 					El módulo random de Orion provee acceso a generadores de aleatoriedad
@@ -43,7 +43,7 @@ const LibRandom = () => {
 			{/* Main Functions */}
 			<Card className="glass-effect border-primary/20 p-6">
 				<h3 className="text-xl font-semibold mb-4 flex items-center gap-2">
-					<span className="text-primary">⚙️</span> Funciones Principales
+					<span className="text-primary"></span> Funciones Principales
 				</h3>
 
 				<div className="overflow-x-auto">
@@ -125,7 +125,7 @@ const LibRandom = () => {
 			{/* Usage Example */}
 			<Card className="glass-effect border-primary/20 p-6">
 				<h3 className="text-xl font-semibold mb-4 flex items-center gap-2">
-					<span className="text-primary">🧩</span> Ejemplo de Uso
+					<span className="text-primary"></span> Ejemplo de Uso
 				</h3>
 
 				<div className="space-y-3">
@@ -183,7 +183,7 @@ const LibRandom = () => {
 			<Card className="glass-effect border-primary/20 p-6">
 				<h3 className="text-xl font-semibold mb-4 flex items-center gap-2">
 					<Sparkles className="w-5 h-5 text-primary" />
-					<span className="text-primary">🌠</span> Concepto Futurista
+					<span className="text-primary"></span> Concepto Futurista
 				</h3>
 				<div className="text-center p-6 rounded-lg bg-gradient-to-r from-primary/10 to-accent/10 border border-primary/20">
 					<p className="text-foreground/80 italic text-lg">

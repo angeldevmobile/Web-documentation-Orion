@@ -1,33 +1,43 @@
 import { useState, useEffect } from "react";
-import { Menu, X, Sparkles } from "lucide-react";
+import { Menu, X, Sun, Moon } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { useNavigate, useLocation } from "react-router-dom";
 
 const Navbar = () => {
-  const [isOpen, setIsOpen] = useState(false);
+  const [isOpen, setIsOpen]       = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
+  const navigate  = useNavigate();
+  const location  = useLocation();
+  const [isDark, setIsDark] = useState<boolean>(
+    () => typeof document !== "undefined" && document.documentElement.classList.contains("dark")
+  );
+
+  const toggleTheme = () => {
+    const next = !isDark;
+    setIsDark(next);
+    document.documentElement.classList.toggle("dark", next);
+    try { localStorage.setItem("theme", next ? "dark" : "light"); } catch (e) { /* ignore */ }
+  };
 
   useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 50);
-    };
+    const handleScroll = () => setIsScrolled(window.scrollY > 50);
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  const scrollToSection = (id: string) => {
-    const element = document.getElementById(id);
-    if (element) {
-      element.scrollIntoView({ behavior: "smooth" });
-      setIsOpen(false);
+  const handleNavLink = (id: string) => {
+    setIsOpen(false);
+    if (location.pathname === "/") {
+      document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
+    } else {
+      navigate("/", { state: { scrollTo: id } });
     }
   };
 
   const navLinks = [
-    { name: "Inicio", id: "hero" },
-    { name: "Características", id: "features" },
-    { name: "Roadmap", id: "roadmap" },
-    { name: "Manifiesto", id: "manifesto" },
-    { name: "Creador", id: "creator" },
+    { name: "Home",        id: "hero" },
+    { name: "Features",    id: "features" },
+    { name: "Get started", id: "get-started" },
   ];
 
   return (
@@ -36,14 +46,17 @@ const Navbar = () => {
         isScrolled ? "glass-effect shadow-lg" : "bg-transparent"
       }`}
     >
-      <div className="container mx-auto px-4 py-4">
+      <div className="w-full px-5 md:px-8 py-3">
         <div className="flex items-center justify-between">
           <button
-            onClick={() => scrollToSection("hero")}
+            onClick={() => handleNavLink("hero")}
             className="flex items-center space-x-2 group"
           >
-            <Sparkles className="w-6 h-6 text-primary group-hover:animate-float" />
+            <img src="/orion.png" alt="Orion" className="w-12 h-12 md:w-14 md:h-14 group-hover:animate-float" />
             <span className="text-xl font-bold text-gradient">Orion</span>
+            <span className="text-[10px] font-semibold uppercase tracking-wider px-1.5 py-0.5 rounded bg-primary/10 text-primary border border-primary/20">
+              Beta
+            </span>
           </button>
 
           {/* Desktop Navigation */}
@@ -51,16 +64,30 @@ const Navbar = () => {
             {navLinks.map((link) => (
               <button
                 key={link.id}
-                onClick={() => scrollToSection(link.id)}
+                onClick={() => handleNavLink(link.id)}
                 className="text-foreground/80 hover:text-primary transition-colors duration-200 font-medium"
               >
                 {link.name}
               </button>
             ))}
+            <button
+              onClick={toggleTheme}
+              aria-label="Cambiar tema"
+              className="p-2 rounded-md text-foreground/70 hover:text-foreground hover:bg-muted/60 transition-colors"
+            >
+              {isDark ? <Sun className="w-5 h-5" /> : <Moon className="w-5 h-5" />}
+            </button>
             <Button
-              onClick={() => window.open("https://github.com/orion-lang", "_blank")}
+              onClick={() => { navigate("/playground"); setIsOpen(false); }}
+              variant="outline"
+              className="border-primary/50 text-primary hover:bg-primary/10"
+            >
+              Playground
+            </Button>
+            <Button
+              onClick={() => window.open("https://github.com/angeldevmobile/Orion", "_blank")}
               variant="default"
-              className="bg-primary text-primary-foreground hover:bg-primary/90 glow"
+              className="bg-primary text-primary-foreground hover:bg-primary/90"
             >
               GitHub
             </Button>
@@ -82,14 +109,29 @@ const Navbar = () => {
               {navLinks.map((link) => (
                 <button
                   key={link.id}
-                  onClick={() => scrollToSection(link.id)}
+                  onClick={() => handleNavLink(link.id)}
                   className="text-foreground/80 hover:text-primary transition-colors duration-200 font-medium text-left"
                 >
                   {link.name}
                 </button>
               ))}
+              <button
+                onClick={toggleTheme}
+                aria-label="Cambiar tema"
+                className="flex items-center gap-2 text-foreground/80 hover:text-foreground transition-colors font-medium text-left"
+              >
+                {isDark ? <Sun className="w-5 h-5" /> : <Moon className="w-5 h-5" />}
+                {isDark ? "Light mode" : "Dark mode"}
+              </button>
               <Button
-                onClick={() => window.open("https://github.com/orion-lang", "_blank")}
+                onClick={() => { navigate("/playground"); setIsOpen(false); }}
+                variant="outline"
+                className="border-primary/50 text-primary hover:bg-primary/10 w-full"
+              >
+                Playground
+              </Button>
+              <Button
+                onClick={() => window.open("https://github.com/angeldevmobile/Orion", "_blank")}
                 variant="default"
                 className="bg-primary text-primary-foreground hover:bg-primary/90 w-full"
               >

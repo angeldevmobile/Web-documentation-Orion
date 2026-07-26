@@ -7,9 +7,6 @@ import {
 	Settings,
 	Globe,
 	Zap,
-	RotateCcw,
-	FastForward,
-	Rewind,
 } from "lucide-react";
 
 const ModulesTimewarp = () => {
@@ -38,7 +35,7 @@ const ModulesTimewarp = () => {
 			{/* Description */}
 			<Card className="glass-effect border-primary/20 p-6">
 				<h3 className="text-xl font-semibold mb-4 flex items-center gap-2">
-					<span className="text-primary">🌌</span> Filosofía del Módulo
+					<span className="text-primary"></span> Filosofía del Módulo
 				</h3>
 				<p className="text-foreground/80 mb-4">
 					El módulo timewarp redefine la relación entre el código y el tiempo.
@@ -54,21 +51,21 @@ const ModulesTimewarp = () => {
 					<p className="text-foreground/80 italic">
 						"El código no espera el tiempo. El tiempo obedece al código."
 					</p>
-					<p className="text-muted-foreground text-sm mt-1">— Orion Core ⏰</p>
+					<p className="text-muted-foreground text-sm mt-1">— Orion Core </p>
 				</div>
 			</Card>
 
 			{/* Fundamental Concepts */}
 			<Card className="glass-effect border-primary/20 p-6">
 				<h3 className="text-xl font-semibold mb-4 flex items-center gap-2">
-					<span className="text-primary">🧩</span> Conceptos Fundamentales
+					<span className="text-primary"></span> Conceptos Fundamentales
 				</h3>
 
 				<div className="space-y-6">
 					{/* WarpClock */}
 					<div className="space-y-3">
 						<h4 className="text-lg font-semibold text-accent flex items-center gap-2">
-							<Clock className="w-5 h-5" />⏱ WarpClock — El reloj cuántico
+							<Clock className="w-5 h-5" /> WarpClock — El reloj cuántico
 						</h4>
 						<p className="text-foreground/80 text-sm mb-3">
 							La clase WarpClock ofrece un control total del flujo temporal:
@@ -170,7 +167,7 @@ const ModulesTimewarp = () => {
 			{/* Main Functions */}
 			<Card className="glass-effect border-primary/20 p-6">
 				<h3 className="text-xl font-semibold mb-4 flex items-center gap-2">
-					<span className="text-primary">⚙️</span> Métodos Principales de
+					<span className="text-primary"></span> Métodos Principales de
 					WarpClock
 				</h3>
 
@@ -255,7 +252,7 @@ const ModulesTimewarp = () => {
 			<Card className="glass-effect border-primary/20 p-6">
 				<h3 className="text-xl font-semibold mb-4 flex items-center gap-2">
 					<Zap className="w-5 h-5 text-primary" />
-					<span className="text-primary">🧠</span> Decoradores y Herramientas
+					<span className="text-primary"></span> Decoradores y Herramientas
 					Temporales
 				</h3>
 
@@ -375,7 +372,7 @@ const ModulesTimewarp = () => {
 			<Card className="glass-effect border-primary/20 p-6">
 				<h3 className="text-xl font-semibold mb-4 flex items-center gap-2">
 					<Settings className="w-5 h-5 text-primary" />
-					<span className="text-primary">🧩</span> Integración con Orion
+					<span className="text-primary"></span> Integración con Orion
 				</h3>
 				<p className="text-foreground/80 mb-4">
 					El módulo soporta expresiones del lenguaje como:
@@ -421,7 +418,7 @@ const ModulesTimewarp = () => {
 			<Card className="glass-effect border-primary/20 p-6">
 				<h3 className="text-xl font-semibold mb-4 flex items-center gap-2">
 					<Terminal className="w-5 h-5 text-primary" />
-					<span className="text-primary">⚙️</span> Función Central: timewarp()
+					<span className="text-primary"></span> Función Central: timewarp()
 				</h3>
 				<p className="text-foreground/80 mb-4">
 					Punto de entrada principal para invocar funcionalidades desde Orion:
@@ -473,7 +470,7 @@ const ModulesTimewarp = () => {
 			<Card className="glass-effect border-primary/20 p-6">
 				<h3 className="text-xl font-semibold mb-4 flex items-center gap-2">
 					<Globe className="w-5 h-5 text-primary" />
-					<span className="text-primary">🧬</span> Exportaciones Principales
+					<span className="text-primary"></span> Exportaciones Principales
 					(ALIASES)
 				</h3>
 				<p className="text-foreground/80 mb-4">
@@ -508,7 +505,7 @@ const ModulesTimewarp = () => {
 			{/* Usage Example */}
 			<Card className="glass-effect border-primary/20 p-6">
 				<h3 className="text-xl font-semibold mb-4 flex items-center gap-2">
-					<span className="text-primary">🧩</span> Ejemplo Completo
+					<span className="text-primary"></span> Ejemplo Completo
 				</h3>
 
 				<div className="space-y-3">
@@ -588,7 +585,7 @@ const ModulesTimewarp = () => {
 			<Card className="glass-effect border-primary/20 p-6">
 				<h3 className="text-xl font-semibold mb-4 flex items-center gap-2">
 					<Sparkles className="w-5 h-5 text-primary" />
-					<span className="text-primary">🚀</span> Visión del Módulo
+					<span className="text-primary"></span> Visión del Módulo
 				</h3>
 				<div className="space-y-4">
 					<p className="text-foreground/80">

@@ -27,7 +27,7 @@ const LibStrings = () => {
 			{/* Description */}
 			<Card className="glass-effect border-primary/20 p-6">
 				<h3 className="text-xl font-semibold mb-4 flex items-center gap-2">
-					<span className="text-primary">✨</span> Descripción General
+					<span className="text-primary"></span> Descripción General
 				</h3>
 				<p className="text-foreground/80 mb-4">
 					El módulo strings encapsula operaciones comunes de manipulación de
@@ -44,7 +44,7 @@ const LibStrings = () => {
 			{/* Function Categories */}
 			<div>
 				<h3 className="text-2xl font-bold mb-6 flex items-center gap-2">
-					<span className="text-primary">📚</span> Categorías de Funciones
+					<span className="text-primary"></span> Categorías de Funciones
 				</h3>
 
 				<Tabs defaultValue="basic" className="w-full">
@@ -61,7 +61,7 @@ const LibStrings = () => {
 					<TabsContent value="basic" className="space-y-4">
 						<Card className="glass-effect border-primary/20 p-6">
 							<h4 className="text-xl font-semibold mb-4 flex items-center gap-2">
-								<span className="text-primary">🔤</span> Operaciones Básicas
+								<span className="text-primary"></span> Operaciones Básicas
 							</h4>
 
 							<div className="overflow-x-auto">
@@ -133,7 +133,7 @@ const LibStrings = () => {
 					<TabsContent value="split" className="space-y-4">
 						<Card className="glass-effect border-primary/20 p-6">
 							<h4 className="text-xl font-semibold mb-4 flex items-center gap-2">
-								<span className="text-primary">🔗</span> División y Unión
+								<span className="text-primary"></span> División y Unión
 							</h4>
 
 							<div className="overflow-x-auto">
@@ -175,7 +175,7 @@ const LibStrings = () => {
 					<TabsContent value="search" className="space-y-4">
 						<Card className="glass-effect border-primary/20 p-6">
 							<h4 className="text-xl font-semibold mb-4 flex items-center gap-2">
-								<span className="text-primary">🔍</span> Búsqueda y Reemplazo
+								<span className="text-primary"></span> Búsqueda y Reemplazo
 							</h4>
 
 							<div className="overflow-x-auto">
@@ -233,7 +233,7 @@ const LibStrings = () => {
 					<TabsContent value="regex" className="space-y-4">
 						<Card className="glass-effect border-primary/20 p-6">
 							<h4 className="text-xl font-semibold mb-4 flex items-center gap-2">
-								<span className="text-primary">🔣</span> Expresiones Regulares
+								<span className="text-primary"></span> Expresiones Regulares
 							</h4>
 
 							<div className="overflow-x-auto">
@@ -284,7 +284,7 @@ const LibStrings = () => {
 						<Card className="glass-effect border-primary/20 p-6">
 							<h4 className="text-xl font-semibold mb-4 flex items-center gap-2">
 								<Zap className="w-5 h-5 text-primary" />
-								<span className="text-primary">🪐</span> Extensiones Futuristas
+								<span className="text-primary"></span> Extensiones Futuristas
 								Orion
 							</h4>
 
@@ -350,7 +350,7 @@ const LibStrings = () => {
 											</td>
 											<td className="py-2 px-3 text-sm">
 												Devuelve el texto en modo brillante, ideal para
-												interfaces visuales. Ej: "✨ORION✨".
+												interfaces visuales. Ej: "ORION".
 											</td>
 										</tr>
 									</tbody>
@@ -385,7 +385,7 @@ const LibStrings = () => {
 											<span className="text-foreground">strings.glow(msg)</span>
 											<span className="text-muted-foreground">
 												{" "}
-												# "✨ORION✨"
+												# "ORION"
 											</span>
 										</code>
 									</pre>
@@ -398,7 +398,7 @@ const LibStrings = () => {
 					<TabsContent value="encoding" className="space-y-4">
 						<Card className="glass-effect border-primary/20 p-6">
 							<h4 className="text-xl font-semibold mb-4 flex items-center gap-2">
-								<span className="text-primary">🔐</span> Codificación y
+								<span className="text-primary"></span> Codificación y
 								Decodificación
 							</h4>
 
@@ -442,7 +442,7 @@ const LibStrings = () => {
 			{/* Complete Example */}
 			<Card className="glass-effect border-primary/20 p-6">
 				<h3 className="text-xl font-semibold mb-4 flex items-center gap-2">
-					<span className="text-primary">💫</span> Ejemplo de Uso
+					<span className="text-primary"></span> Ejemplo de Uso
 				</h3>
 
 				<div className="space-y-3">
@@ -461,7 +461,7 @@ const LibStrings = () => {
 								<span className="text-accent">"orion"</span>
 								<br />
 								<span className="text-foreground">show(strings.glow(msg))</span>
-								<span className="text-muted-foreground"> # ✨ORION✨</span>
+								<span className="text-muted-foreground"> # ORION</span>
 								<br />
 								<span className="text-foreground">
 									show(strings.mirror(msg))
@@ -494,7 +494,7 @@ const LibStrings = () => {
 					<div className="bg-background/50 rounded-lg p-4 border border-primary/30">
 						<pre className="text-sm">
 							<code className="font-mono text-primary">
-								✨ORION✨
+								ORION
 								<br />
 								orionnoiro
 								<br />
@@ -513,7 +513,7 @@ const LibStrings = () => {
 			<Card className="glass-effect border-primary/20 p-6">
 				<h3 className="text-xl font-semibold mb-4 flex items-center gap-2">
 					<Sparkles className="w-5 h-5 text-primary" />
-					<span className="text-primary">🌠</span> Filosofía del Módulo
+					<span className="text-primary"></span> Filosofía del Módulo
 				</h3>
 				<div className="text-center p-6 rounded-lg bg-gradient-to-r from-primary/10 to-accent/10 border border-primary/20">
 					<p className="text-foreground/80 italic text-lg mb-2">

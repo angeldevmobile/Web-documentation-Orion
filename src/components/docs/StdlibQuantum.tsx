@@ -65,7 +65,7 @@ const StdlibQuantum = () => {
 			{/* Conceptual Core */}
 			<Card className="glass-effect border-primary/20 p-6">
 				<h3 className="text-xl font-semibold mb-4 flex items-center gap-2">
-					<span className="text-primary">🌌</span> Núcleo Conceptual
+					<span className="text-primary"></span> Núcleo Conceptual
 				</h3>
 				<div className="space-y-4">
 					<p className="text-foreground/80">
@@ -85,7 +85,7 @@ const StdlibQuantum = () => {
 			{/* Main Components */}
 			<Card className="glass-effect border-primary/20 p-6">
 				<h3 className="text-xl font-semibold mb-4 flex items-center gap-2">
-					<span className="text-primary">⚙️</span> Componentes Principales
+					<span className="text-primary"></span> Componentes Principales
 				</h3>
 
 				{/* Normalization and Tensors */}
@@ -93,7 +93,7 @@ const StdlibQuantum = () => {
 					<div className="space-y-3">
 						<h4 className="text-lg font-semibold text-accent flex items-center gap-2">
 							<Layers className="w-5 h-5" />
-							🔹 Normalización y Tensores
+							 Normalización y Tensores
 						</h4>
 						<div className="space-y-2 text-sm">
 							<div className="flex gap-2">
@@ -129,7 +129,7 @@ const StdlibQuantum = () => {
 					<div className="space-y-3">
 						<h4 className="text-lg font-semibold text-accent flex items-center gap-2">
 							<Zap className="w-5 h-5" />
-							🔹 Qubits y Puertas Básicas
+							 Qubits y Puertas Básicas
 						</h4>
 						<div className="space-y-2 text-sm">
 							<div className="flex gap-2">
@@ -170,7 +170,7 @@ const StdlibQuantum = () => {
 					<div className="space-y-3">
 						<h4 className="text-lg font-semibold text-accent flex items-center gap-2">
 							<Settings className="w-5 h-5" />
-							🔹 Manipulación Multi-Qubit
+							 Manipulación Multi-Qubit
 						</h4>
 						<div className="space-y-2 text-sm">
 							<div className="flex gap-2">
@@ -212,7 +212,7 @@ const StdlibQuantum = () => {
 			<Card className="glass-effect border-primary/20 p-6">
 				<h3 className="text-xl font-semibold mb-4 flex items-center gap-2">
 					<Code2 className="w-5 h-5 text-primary" />
-					🔹 Construcción de Circuitos
+					 Construcción de Circuitos
 				</h3>
 
 				<div className="space-y-4">
@@ -295,7 +295,7 @@ const StdlibQuantum = () => {
 			<Card className="glass-effect border-primary/20 p-6">
 				<h3 className="text-xl font-semibold mb-4 flex items-center gap-2">
 					<Sparkles className="w-5 h-5 text-primary" />
-					🔹 Estados y Entrelazamiento
+					 Estados y Entrelazamiento
 				</h3>
 
 				<div className="space-y-4">
@@ -337,7 +337,7 @@ const StdlibQuantum = () => {
 			<Card className="glass-effect border-primary/20 p-6">
 				<h3 className="text-xl font-semibold mb-4 flex items-center gap-2">
 					<Activity className="w-5 h-5 text-primary" />
-					🔹 Modelos de Ruido Cuántico
+					 Modelos de Ruido Cuántico
 				</h3>
 
 				<div className="space-y-4">
@@ -371,7 +371,7 @@ const StdlibQuantum = () => {
 			<Card className="glass-effect border-primary/20 p-6">
 				<h3 className="text-xl font-semibold mb-4 flex items-center gap-2">
 					<Target className="w-5 h-5 text-primary" />
-					🔹 Medición y Métricas
+					 Medición y Métricas
 				</h3>
 
 				<div className="space-y-4">
@@ -412,7 +412,7 @@ const StdlibQuantum = () => {
 			<Card className="glass-effect border-primary/20 p-6">
 				<h3 className="text-xl font-semibold mb-4 flex items-center gap-2">
 					<Globe className="w-5 h-5 text-primary" />
-					🔹 Punto de Entrada Universal
+					 Punto de Entrada Universal
 				</h3>
 
 				<div className="space-y-4">
@@ -541,7 +541,7 @@ const StdlibQuantum = () => {
 			<Card className="glass-effect border-primary/20 p-6">
 				<h3 className="text-xl font-semibold mb-4 flex items-center gap-2">
 					<Globe className="w-5 h-5 text-primary" />
-					🔹 Exportación Orion Runtime
+					 Exportación Orion Runtime
 				</h3>
 
 				<div className="space-y-4">
@@ -581,7 +581,7 @@ const StdlibQuantum = () => {
 			<Card className="glass-effect border-primary/20 p-6">
 				<h3 className="text-xl font-semibold mb-4 flex items-center gap-2">
 					<Sparkles className="w-5 h-5 text-primary" />
-					🧠 Filosofía Orion Quantum
+					 Filosofía Orion Quantum
 				</h3>
 				<div className="space-y-4">
 					<div className="text-center p-6 rounded-lg bg-gradient-to-r from-primary/10 to-accent/10 border border-primary/20">

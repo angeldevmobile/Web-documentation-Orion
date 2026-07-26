@@ -415,7 +415,7 @@ const StdlibInsight = () => {
 			<Card className="glass-effect border-primary/20 p-6">
 				<h3 className="text-xl font-semibold mb-4 flex items-center gap-2">
 					<Globe className="w-5 h-5 text-primary" />
-					<span className="text-primary">🔌</span> Integración con el Núcleo
+					<span className="text-primary"></span> Integración con el Núcleo
 					Orion
 				</h3>
 				<p className="text-foreground/80 mb-4">

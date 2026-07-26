@@ -38,7 +38,7 @@ const ModulesFs = () => {
 			{/* Description */}
 			<Card className="glass-effect border-primary/20 p-6">
 				<h3 className="text-xl font-semibold mb-4 flex items-center gap-2">
-					<span className="text-primary">🌌</span> Descripción General
+					<span className="text-primary"></span> Descripción General
 				</h3>
 				<p className="text-foreground/80 mb-4">
 					El módulo fs es el motor de archivos del núcleo de Orion. Forma parte
@@ -66,7 +66,7 @@ const ModulesFs = () => {
 			{/* Main Functions */}
 			<Card className="glass-effect border-primary/20 p-6">
 				<h3 className="text-xl font-semibold mb-4 flex items-center gap-2">
-					<span className="text-primary">⚙️</span> Funciones Principales
+					<span className="text-primary"></span> Funciones Principales
 				</h3>
 
 				<div className="overflow-x-auto">
@@ -204,7 +204,7 @@ const ModulesFs = () => {
 				<Card className="glass-effect border-primary/20 p-6">
 					<h3 className="text-xl font-semibold mb-4 flex items-center gap-2">
 						<Settings className="w-5 h-5 text-primary" />
-						<span className="text-primary">🧭</span> PATHS Y UTILIDADES
+						<span className="text-primary"></span> PATHS Y UTILIDADES
 					</h3>
 					<p className="text-foreground/80 text-sm mb-4">
 						Funciones que manipulan rutas y contextos del sistema de forma
@@ -245,7 +245,7 @@ const ModulesFs = () => {
 						</pre>
 					</div>
 					<p className="text-foreground/70 text-xs mt-2">
-						✨ Orion usa Pathlib internamente, garantizando portabilidad
+						 Orion usa Pathlib internamente, garantizando portabilidad
 						universal.
 					</p>
 				</Card>
@@ -254,7 +254,7 @@ const ModulesFs = () => {
 				<Card className="glass-effect border-primary/20 p-6">
 					<h3 className="text-xl font-semibold mb-4 flex items-center gap-2">
 						<FileText className="w-5 h-5 text-primary" />
-						<span className="text-primary">📂</span> ARCHIVOS
+						<span className="text-primary"></span> ARCHIVOS
 					</h3>
 					<p className="text-foreground/80 text-sm mb-4">
 						Manipulación directa de archivos — sincronizada, eficiente y segura.
@@ -277,7 +277,7 @@ const ModulesFs = () => {
 								<span className="text-foreground">fs.append(</span>
 								<span className="text-accent">"hello.txt"</span>
 								<span className="text-foreground">, </span>
-								<span className="text-accent">"\n🌠 Bienvenido a Orion"</span>
+								<span className="text-accent">"\n Bienvenido a Orion"</span>
 								<span className="text-foreground">)</span>
 								<br />
 								<span className="text-foreground">fs.copy(</span>
@@ -311,7 +311,7 @@ const ModulesFs = () => {
 				<Card className="glass-effect border-primary/20 p-6">
 					<h3 className="text-xl font-semibold mb-4 flex items-center gap-2">
 						<Copy className="w-5 h-5 text-primary" />
-						<span className="text-primary">💾</span> BACKUPS Y SNAPSHOTS
+						<span className="text-primary"></span> BACKUPS Y SNAPSHOTS
 					</h3>
 					<p className="text-foreground/80 text-sm mb-4">
 						Sistema de autobackups y snapshots con timestamp cuántico.
@@ -334,7 +334,7 @@ const ModulesFs = () => {
 						</pre>
 					</div>
 					<p className="text-foreground/70 text-xs mt-2">
-						✨ Orion mantiene un número limitado de copias, eliminando
+						 Orion mantiene un número limitado de copias, eliminando
 						automáticamente las más antiguas.
 					</p>
 				</Card>
@@ -343,7 +343,7 @@ const ModulesFs = () => {
 				<Card className="glass-effect border-primary/20 p-6">
 					<h3 className="text-xl font-semibold mb-4 flex items-center gap-2">
 						<Hash className="w-5 h-5 text-primary" />
-						<span className="text-primary">🔒</span> HASHING Y STREAMS
+						<span className="text-primary"></span> HASHING Y STREAMS
 					</h3>
 					<p className="text-foreground/80 text-sm mb-4">
 						Hashing progresivo y lectura por flujos para archivos masivos.
@@ -367,7 +367,7 @@ const ModulesFs = () => {
 						</pre>
 					</div>
 					<p className="text-foreground/70 text-xs mt-2">
-						📡 Perfecto para validar integridad de descargas o verificaciones
+						 Perfecto para validar integridad de descargas o verificaciones
 						distribuidas.
 					</p>
 				</Card>
@@ -377,7 +377,7 @@ const ModulesFs = () => {
 			<Card className="glass-effect border-primary/20 p-6">
 				<h3 className="text-xl font-semibold mb-4 flex items-center gap-2">
 					<Shield className="w-5 h-5 text-primary" />
-					<span className="text-primary">🧪</span> Funciones Futuristas
+					<span className="text-primary"></span> Funciones Futuristas
 				</h3>
 				<div className="grid grid-cols-1 md:grid-cols-2 gap-4">
 					<div className="space-y-2">
@@ -418,7 +418,7 @@ const ModulesFs = () => {
 			{/* Usage Example */}
 			<Card className="glass-effect border-primary/20 p-6">
 				<h3 className="text-xl font-semibold mb-4 flex items-center gap-2">
-					<span className="text-primary">🧩</span> Ejemplo Completo
+					<span className="text-primary"></span> Ejemplo Completo
 				</h3>
 
 				<div className="space-y-3">
@@ -489,7 +489,7 @@ const ModulesFs = () => {
 			<Card className="glass-effect border-primary/20 p-6">
 				<h3 className="text-xl font-semibold mb-4 flex items-center gap-2">
 					<Database className="w-5 h-5 text-primary" />
-					<span className="text-primary">🧩</span> Integración con el Núcleo de
+					<span className="text-primary"></span> Integración con el Núcleo de
 					Orion
 				</h3>
 				<p className="text-foreground/80 mb-4">
@@ -526,7 +526,7 @@ const ModulesFs = () => {
 			<Card className="glass-effect border-primary/20 p-6">
 				<h3 className="text-xl font-semibold mb-4 flex items-center gap-2">
 					<Sparkles className="w-5 h-5 text-primary" />
-					<span className="text-primary">🪐</span> Filosofía de Orion FileSystem
+					<span className="text-primary"></span> Filosofía de Orion FileSystem
 					Engine
 				</h3>
 				<div className="space-y-4">

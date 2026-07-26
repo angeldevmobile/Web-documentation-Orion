@@ -42,9 +42,8 @@ const History = () => {
                 </h3>
                 
                 <p className="text-lg text-foreground/80 leading-relaxed">
-                  Creado por <span className="text-primary font-semibold">Gabriel Zapata</span>, 
-                  desarrollador de software peruano de 23 años, Orion surge como un experimento 
-                  para combinar lo mejor de tres mundos:
+                  Creado por <span className="text-primary font-semibold">Gabriel Zapata</span>,
+                  Orion surge como un experimento para combinar lo mejor de tres mundos:
                 </p>
 
                 <div className="grid md:grid-cols-3 gap-6 pt-6">

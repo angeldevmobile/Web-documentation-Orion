@@ -38,7 +38,7 @@ const CollectionsModule = () => {
 				</p>
 				<div className="glass-effect rounded-lg p-4 border border-primary/10 mb-4">
 					<p className="text-center text-primary font-semibold italic">
-						"Las colecciones en Orion no se recorren… se transforman." 💫
+						"Las colecciones en Orion no se recorren… se transforman." 
 					</p>
 				</div>
 				<ul className="space-y-2 text-foreground/70 list-disc list-inside">
@@ -51,7 +51,7 @@ const CollectionsModule = () => {
 			{/* Main Categories */}
 			<div>
 				<h3 className="text-2xl font-bold mb-6 flex items-center gap-2">
-					<span className="text-primary">🌠</span> Categorías principales
+					<span className="text-primary"></span> Categorías principales
 				</h3>
 
 				<Tabs defaultValue="list" className="w-full">
@@ -83,7 +83,7 @@ const CollectionsModule = () => {
 						{/* list_new */}
 						<Card className="glass-effect border-primary/20 p-6">
 							<h4 className="text-xl font-semibold mb-3 font-mono text-primary flex items-center gap-2">
-								<span className="text-lg">🪐</span> list_new(*args)
+								<span className="text-lg"></span> list_new(*args)
 							</h4>
 							<p className="text-foreground/80 mb-4">
 								Crea una nueva lista Orion.
@@ -129,7 +129,7 @@ const CollectionsModule = () => {
 									</pre>
 								</div>
 								<p className="text-sm text-muted-foreground">
-									✨ Uso típico: inicializar colecciones rápidas sin sintaxis
+									Uso típico: inicializar colecciones rápidas sin sintaxis
 									pesada.
 								</p>
 							</div>
@@ -138,7 +138,7 @@ const CollectionsModule = () => {
 						{/* list_flat */}
 						<Card className="glass-effect border-primary/20 p-6">
 							<h4 className="text-xl font-semibold mb-3 font-mono text-primary flex items-center gap-2">
-								<span className="text-lg">⚡</span> list_flat(seq)
+								<span className="text-lg"></span> list_flat(seq)
 							</h4>
 							<p className="text-foreground/80 mb-4">
 								Aplana una lista de listas en una sola secuencia.
@@ -177,7 +177,7 @@ const CollectionsModule = () => {
 									</pre>
 								</div>
 								<p className="text-sm text-muted-foreground">
-									✨ Ideal para fusionar estructuras anidadas.
+									Ideal para fusionar estructuras anidadas.
 								</p>
 							</div>
 						</Card>
@@ -185,7 +185,7 @@ const CollectionsModule = () => {
 						{/* list_unique */}
 						<Card className="glass-effect border-primary/20 p-6">
 							<h4 className="text-xl font-semibold mb-3 font-mono text-primary flex items-center gap-2">
-								<span className="text-lg">🔁</span> list_unique(seq)
+								<span className="text-lg"></span> list_unique(seq)
 							</h4>
 							<p className="text-foreground/80 mb-4">
 								Elimina duplicados preservando el orden original.
@@ -224,7 +224,7 @@ const CollectionsModule = () => {
 									</pre>
 								</div>
 								<p className="text-sm text-muted-foreground">
-									✨ Sin sets, sin magia negra — solo orden y elegancia.
+									Sin sets, sin magia negra — solo orden y elegancia.
 								</p>
 							</div>
 						</Card>
@@ -232,7 +232,7 @@ const CollectionsModule = () => {
 						{/* list_chunk */}
 						<Card className="glass-effect border-primary/20 p-6">
 							<h4 className="text-xl font-semibold mb-3 font-mono text-primary flex items-center gap-2">
-								<span className="text-lg">🧩</span> list_chunk(seq, size)
+								<span className="text-lg"></span> list_chunk(seq, size)
 							</h4>
 							<p className="text-foreground/80 mb-4">
 								Divide una lista en bloques de tamaño fijo.
@@ -275,7 +275,7 @@ const CollectionsModule = () => {
 									</pre>
 								</div>
 								<p className="text-sm text-muted-foreground">
-									✨ Útil para paginación, buffers o procesamiento por lotes.
+									Útil para paginación, buffers o procesamiento por lotes.
 								</p>
 							</div>
 						</Card>
@@ -283,7 +283,7 @@ const CollectionsModule = () => {
 						{/* list_cycle */}
 						<Card className="glass-effect border-primary/20 p-6">
 							<h4 className="text-xl font-semibold mb-3 font-mono text-primary flex items-center gap-2">
-								<span className="text-lg">🔄</span> list_cycle(seq, n)
+								<span className="text-lg"></span> list_cycle(seq, n)
 							</h4>
 							<p className="text-foreground/80 mb-4">
 								Repite una lista n veces.
@@ -314,7 +314,7 @@ const CollectionsModule = () => {
 									</pre>
 								</div>
 								<p className="text-sm text-muted-foreground">
-									✨ Simula patrones o animaciones en ciclos.
+									Simula patrones o animaciones en ciclos.
 								</p>
 							</div>
 						</Card>
@@ -322,7 +322,7 @@ const CollectionsModule = () => {
 						{/* list_find */}
 						<Card className="glass-effect border-primary/20 p-6">
 							<h4 className="text-xl font-semibold mb-3 font-mono text-primary flex items-center gap-2">
-								<span className="text-lg">🧭</span> list_find(seq, fn)
+								<span className="text-lg"></span> list_find(seq, fn)
 							</h4>
 							<p className="text-foreground/80 mb-4">
 								Devuelve el primer elemento que cumple una condición.
@@ -369,7 +369,7 @@ const CollectionsModule = () => {
 									</pre>
 								</div>
 								<p className="text-sm text-muted-foreground">
-									✨ Detiene la búsqueda tan pronto encuentra coincidencia
+									Detiene la búsqueda tan pronto encuentra coincidencia
 									(O(n)).
 								</p>
 							</div>
@@ -388,7 +388,7 @@ const CollectionsModule = () => {
 						{/* map_new */}
 						<Card className="glass-effect border-primary/20 p-6">
 							<h4 className="text-xl font-semibold mb-3 font-mono text-primary flex items-center gap-2">
-								<span className="text-lg">⚙️</span> map_new(pairs)
+								<span className="text-lg"></span> map_new(pairs)
 							</h4>
 							<p className="text-foreground/80 mb-4">
 								Crea un diccionario desde una lista de pares clave-valor.
@@ -427,7 +427,7 @@ const CollectionsModule = () => {
 									</pre>
 								</div>
 								<p className="text-sm text-muted-foreground">
-									✨ Equivalente elegante a {`{k: v for k, v in pairs}`}.
+									Equivalente elegante a {`{k: v for k, v in pairs}`}.
 								</p>
 							</div>
 						</Card>
@@ -435,7 +435,7 @@ const CollectionsModule = () => {
 						{/* map_merge */}
 						<Card className="glass-effect border-primary/20 p-6">
 							<h4 className="text-xl font-semibold mb-3 font-mono text-primary flex items-center gap-2">
-								<span className="text-lg">🧬</span> map_merge(a, b)
+								<span className="text-lg"></span> map_merge(a, b)
 							</h4>
 							<p className="text-foreground/80 mb-4">
 								Fusiona dos diccionarios, donde b sobrescribe las claves de a.
@@ -488,7 +488,7 @@ const CollectionsModule = () => {
 									</pre>
 								</div>
 								<p className="text-sm text-muted-foreground">
-									✨ Fusiona sin mutar el original. Ideal para configuraciones.
+									Fusiona sin mutar el original. Ideal para configuraciones.
 								</p>
 							</div>
 						</Card>
@@ -496,7 +496,7 @@ const CollectionsModule = () => {
 						{/* map_invert */}
 						<Card className="glass-effect border-primary/20 p-6">
 							<h4 className="text-xl font-semibold mb-3 font-mono text-primary flex items-center gap-2">
-								<span className="text-lg">🔄</span> map_invert(d)
+								<span className="text-lg"></span> map_invert(d)
 							</h4>
 							<p className="text-foreground/80 mb-4">
 								Invierte las claves y valores de un diccionario.
@@ -535,7 +535,7 @@ const CollectionsModule = () => {
 									</pre>
 								</div>
 								<p className="text-sm text-muted-foreground">
-									✨ Útil para búsquedas inversas o transformaciones rápidas.
+									Útil para búsquedas inversas o transformaciones rápidas.
 								</p>
 							</div>
 						</Card>
@@ -554,7 +554,7 @@ const CollectionsModule = () => {
 						{/* col_map */}
 						<Card className="glass-effect border-primary/20 p-6">
 							<h4 className="text-xl font-semibold mb-3 font-mono text-primary flex items-center gap-2">
-								<span className="text-lg">🌀</span> col_map(fn, seq)
+								<span className="text-lg"></span> col_map(fn, seq)
 							</h4>
 							<p className="text-foreground/80 mb-4">
 								Aplica una función a cada elemento.
@@ -604,7 +604,7 @@ const CollectionsModule = () => {
 						{/* col_filter */}
 						<Card className="glass-effect border-primary/20 p-6">
 							<h4 className="text-xl font-semibold mb-3 font-mono text-primary flex items-center gap-2">
-								<span className="text-lg">🌿</span> col_filter(fn, seq)
+								<span className="text-lg"></span> col_filter(fn, seq)
 							</h4>
 							<p className="text-foreground/80 mb-4">
 								Filtra elementos que cumplen una condición.
@@ -654,7 +654,7 @@ const CollectionsModule = () => {
 						{/* col_reduce */}
 						<Card className="glass-effect border-primary/20 p-6">
 							<h4 className="text-xl font-semibold mb-3 font-mono text-primary flex items-center gap-2">
-								<span className="text-lg">🧩</span> col_reduce(fn, seq, init?)
+								<span className="text-lg"></span> col_reduce(fn, seq, init?)
 							</h4>
 							<p className="text-foreground/80 mb-4">
 								Reduce una lista a un único valor acumulado.
@@ -705,7 +705,7 @@ const CollectionsModule = () => {
 						{/* col_sort */}
 						<Card className="glass-effect border-primary/20 p-6">
 							<h4 className="text-xl font-semibold mb-3 font-mono text-primary flex items-center gap-2">
-								<span className="text-lg">🔢</span> col_sort(seq, key?, desc?)
+								<span className="text-lg"></span> col_sort(seq, key?, desc?)
 							</h4>
 							<p className="text-foreground/80 mb-4">
 								Ordena una secuencia con opciones personalizadas.
@@ -760,7 +760,7 @@ const CollectionsModule = () => {
 						{/* col_zip */}
 						<Card className="glass-effect border-primary/20 p-6">
 							<h4 className="text-xl font-semibold mb-3 font-mono text-primary flex items-center gap-2">
-								<span className="text-lg">⚡</span> col_zip(*seqs)
+								<span className="text-lg"></span> col_zip(*seqs)
 							</h4>
 							<p className="text-foreground/80 mb-4">
 								Combina varias listas en pares o tuplas.
@@ -817,7 +817,7 @@ const CollectionsModule = () => {
 			{/* Summary Table */}
 			<Card className="glass-effect border-primary/20 p-6">
 				<h3 className="text-xl font-semibold mb-4 flex items-center gap-2">
-					<span className="text-primary">🚀</span> Resumen del módulo
+					<span className="text-primary"></span> Resumen del módulo
 				</h3>
 				<div className="overflow-x-auto">
 					<table className="w-full border-collapse">

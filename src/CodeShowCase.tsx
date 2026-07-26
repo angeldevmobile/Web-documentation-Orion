@@ -149,10 +149,8 @@ const CodeShowcase = () => {
 								{"\n"}
 								<span className="text-primary">show</span>
 								<span className="text-foreground">(</span>
-								<span className="text-accent">"Orbit:"</span>
-								<span className="text-foreground">, orbit(texto, </span>
-								<span className="text-accent">3</span>
-								<span className="text-foreground">))</span>
+								<span className="text-accent">"Reverse:"</span>
+								<span className="text-foreground">, reverse(texto))</span>
 							</code>
 						</pre>
 

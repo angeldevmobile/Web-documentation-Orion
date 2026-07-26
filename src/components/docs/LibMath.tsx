@@ -34,7 +34,7 @@ const MathModule = () => {
 			{/* Description */}
 			<Card className="glass-effect border-primary/20 p-6">
 				<h3 className="text-xl font-semibold mb-4 flex items-center gap-2">
-					<span className="text-primary">🌌</span> Descripción General
+					<span className="text-primary"></span> Descripción General
 				</h3>
 				<p className="text-foreground/80 mb-4">
 					El módulo math de Orion expande las capacidades matemáticas
@@ -61,7 +61,7 @@ const MathModule = () => {
 			<Card className="glass-effect border-primary/20 p-6">
 				<h3 className="text-xl font-semibold mb-4 flex items-center gap-2">
 					<InfinityIcon className="w-5 h-5 text-primary" />
-					<span className="text-primary">🚀</span> Constantes Universales
+					<span className="text-primary"></span> Constantes Universales
 				</h3>
 
 				<div className="overflow-x-auto">
@@ -138,7 +138,7 @@ const MathModule = () => {
 			{/* Function Categories */}
 			<div>
 				<h3 className="text-2xl font-bold mb-6 flex items-center gap-2">
-					<span className="text-primary">📚</span> Categorías de Funciones
+					<span className="text-primary"></span> Categorías de Funciones
 				</h3>
 
 				<Tabs defaultValue="arithmetic" className="w-full">
@@ -156,7 +156,7 @@ const MathModule = () => {
 					<TabsContent value="arithmetic" className="space-y-4">
 						<Card className="glass-effect border-primary/20 p-6">
 							<h4 className="text-xl font-semibold mb-4 flex items-center gap-2">
-								<span className="text-primary">➕</span> Aritmética Básica
+								<span className="text-primary"></span> Aritmética Básica
 							</h4>
 
 							<div className="overflow-x-auto">
@@ -234,7 +234,7 @@ const MathModule = () => {
 					<TabsContent value="trigonometry" className="space-y-4">
 						<Card className="glass-effect border-primary/20 p-6">
 							<h4 className="text-xl font-semibold mb-4 flex items-center gap-2">
-								<span className="text-primary">📐</span> Trigonometría
+								<span className="text-primary"></span> Trigonometría
 							</h4>
 							<p className="text-foreground/70 mb-4">Funciones en radianes:</p>
 
@@ -305,7 +305,7 @@ const MathModule = () => {
 					<TabsContent value="hyperbolic" className="space-y-4">
 						<Card className="glass-effect border-primary/20 p-6">
 							<h4 className="text-xl font-semibold mb-4 flex items-center gap-2">
-								<span className="text-primary">🌀</span> Hiperbólicas
+								<span className="text-primary"></span> Hiperbólicas
 							</h4>
 
 							<div className="overflow-x-auto">
@@ -351,7 +351,7 @@ const MathModule = () => {
 					<TabsContent value="logarithms" className="space-y-4">
 						<Card className="glass-effect border-primary/20 p-6">
 							<h4 className="text-xl font-semibold mb-4 flex items-center gap-2">
-								<span className="text-primary">📈</span> Logaritmos y
+								<span className="text-primary"></span> Logaritmos y
 								Exponenciales
 							</h4>
 
@@ -404,7 +404,7 @@ const MathModule = () => {
 					<TabsContent value="combinatorics" className="space-y-4">
 						<Card className="glass-effect border-primary/20 p-6">
 							<h4 className="text-xl font-semibold mb-4 flex items-center gap-2">
-								<span className="text-primary">🔢</span> Combinatoria
+								<span className="text-primary"></span> Combinatoria
 							</h4>
 
 							<div className="overflow-x-auto">
@@ -452,7 +452,7 @@ const MathModule = () => {
 					<TabsContent value="geometry" className="space-y-4">
 						<Card className="glass-effect border-primary/20 p-6">
 							<h4 className="text-xl font-semibold mb-4 flex items-center gap-2">
-								<span className="text-primary">📏</span> Geometría y Distancias
+								<span className="text-primary"></span> Geometría y Distancias
 							</h4>
 
 							<div className="overflow-x-auto">
@@ -510,7 +510,7 @@ const MathModule = () => {
 					<TabsContent value="random" className="space-y-4">
 						<Card className="glass-effect border-primary/20 p-6">
 							<h4 className="text-xl font-semibold mb-4 flex items-center gap-2">
-								<span className="text-primary">🎲</span> Aleatoriedad Cósmica
+								<span className="text-primary"></span> Aleatoriedad Cósmica
 							</h4>
 
 							<div className="overflow-x-auto">
@@ -585,7 +585,7 @@ const MathModule = () => {
 			{/* Futuristic Utilities */}
 			<Card className="glass-effect border-primary/20 p-6">
 				<h3 className="text-xl font-semibold mb-4 flex items-center gap-2">
-					<span className="text-primary">🧠</span> Utilidades Futuristas
+					<span className="text-primary"></span> Utilidades Futuristas
 				</h3>
 
 				<div className="overflow-x-auto mb-6">
@@ -642,7 +642,7 @@ const MathModule = () => {
 			<Card className="glass-effect border-primary/20 p-6">
 				<h3 className="text-xl font-semibold mb-4 flex items-center gap-2">
 					<Zap className="w-5 h-5 text-primary" />
-					<span className="text-primary">⚡</span> Potencia Futurista
+					<span className="text-primary"></span> Potencia Futurista
 				</h3>
 
 				<p className="text-foreground/80 mb-4">
@@ -712,7 +712,7 @@ const MathModule = () => {
 			{/* Example Usage */}
 			<Card className="glass-effect border-primary/20 p-6">
 				<h3 className="text-xl font-semibold mb-4 flex items-center gap-2">
-					<span className="text-primary">🧩</span> Ejemplo General
+					<span className="text-primary"></span> Ejemplo General
 				</h3>
 
 				<div className="space-y-3">

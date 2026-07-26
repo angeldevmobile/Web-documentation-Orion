@@ -39,7 +39,7 @@ const ModulesJson = () => {
 			{/* Description */}
 			<Card className="glass-effect border-primary/20 p-6">
 				<h3 className="text-xl font-semibold mb-4 flex items-center gap-2">
-					<span className="text-primary">🌌</span> Descripción General
+					<span className="text-primary"></span> Descripción General
 				</h3>
 				<p className="text-foreground/80 mb-4">
 					El módulo json es el canal de energía de datos de Orion. Convierte
@@ -65,7 +65,7 @@ const ModulesJson = () => {
 			{/* Main Functions */}
 			<Card className="glass-effect border-primary/20 p-6">
 				<h3 className="text-xl font-semibold mb-4 flex items-center gap-2">
-					<span className="text-primary">⚙️</span> Funciones Principales
+					<span className="text-primary"></span> Funciones Principales
 				</h3>
 
 				<div className="overflow-x-auto">
@@ -183,7 +183,7 @@ const ModulesJson = () => {
 				<Card className="glass-effect border-primary/20 p-6">
 					<h3 className="text-xl font-semibold mb-4 flex items-center gap-2">
 						<Database className="w-5 h-5 text-primary" />
-						<span className="text-primary">🧭</span> ABSORCIÓN Y EMISIÓN
+						<span className="text-primary"></span> ABSORCIÓN Y EMISIÓN
 					</h3>
 					<p className="text-foreground/80 text-sm mb-4">
 						Transforma archivos JSON en entidades vivas de Orion o viceversa.
@@ -233,7 +233,7 @@ const ModulesJson = () => {
 				<Card className="glass-effect border-primary/20 p-6">
 					<h3 className="text-xl font-semibold mb-4 flex items-center gap-2">
 						<RefreshCw className="w-5 h-5 text-primary" />
-						<span className="text-primary">🔮</span> FUSIÓN Y TRAZABILIDAD
+						<span className="text-primary"></span> FUSIÓN Y TRAZABILIDAD
 					</h3>
 					<p className="text-foreground/80 text-sm mb-4">
 						Fusiona, navega y compara universos de datos.
@@ -286,7 +286,7 @@ const ModulesJson = () => {
 				<Card className="glass-effect border-primary/20 p-6">
 					<h3 className="text-xl font-semibold mb-4 flex items-center gap-2">
 						<Filter className="w-5 h-5 text-primary" />
-						<span className="text-primary">🧠</span> MANIPULACIÓN DINÁMICA
+						<span className="text-primary"></span> MANIPULACIÓN DINÁMICA
 					</h3>
 					<p className="text-foreground/80 text-sm mb-4">
 						Manipulación funcional, limpia y expresiva de datos.
@@ -340,7 +340,7 @@ const ModulesJson = () => {
 				<Card className="glass-effect border-primary/20 p-6">
 					<h3 className="text-xl font-semibold mb-4 flex items-center gap-2">
 						<Settings className="w-5 h-5 text-primary" />
-						<span className="text-primary">⚗️</span> OPERACIONES AVANZADAS
+						<span className="text-primary"></span> OPERACIONES AVANZADAS
 					</h3>
 					<p className="text-foreground/80 text-sm mb-4">
 						Control total sobre estructuras complejas y determinismo
@@ -388,7 +388,7 @@ const ModulesJson = () => {
 				<Card className="glass-effect border-primary/20 p-6">
 					<h3 className="text-xl font-semibold mb-4 flex items-center gap-2">
 						<Shield className="w-5 h-5 text-primary" />
-						<span className="text-primary">🚀</span> VALIDACIÓN Y ESTRUCTURAS
+						<span className="text-primary"></span> VALIDACIÓN Y ESTRUCTURAS
 						VIVAS
 					</h3>
 					<p className="text-foreground/80 text-sm mb-4">
@@ -408,9 +408,9 @@ const ModulesJson = () => {
 						</pre>
 					</div>
 					<div className="text-xs text-foreground/70 mt-2 space-y-1">
-						<p>🧬 Detección de tipos (str, int, bool, float)</p>
-						<p>🧬 Soporte para listas y objetos anidados</p>
-						<p>🧬 Reporte detallado de errores mediante trazas [DEBUG]</p>
+						<p> Detección de tipos (str, int, bool, float)</p>
+						<p> Soporte para listas y objetos anidados</p>
+						<p> Reporte detallado de errores mediante trazas [DEBUG]</p>
 					</div>
 				</Card>
 
@@ -418,7 +418,7 @@ const ModulesJson = () => {
 				<Card className="glass-effect border-primary/20 p-6">
 					<h3 className="text-xl font-semibold mb-4 flex items-center gap-2">
 						<Zap className="w-5 h-5 text-primary" />
-						<span className="text-primary">🌊</span> STREAMS Y ENCRIPTACIÓN
+						<span className="text-primary"></span> STREAMS Y ENCRIPTACIÓN
 					</h3>
 					<p className="text-foreground/80 text-sm mb-4">
 						Procesa grandes estructuras o transmite datos protegidos.
@@ -448,11 +448,11 @@ const ModulesJson = () => {
 					</div>
 					<div className="text-xs text-foreground/70 mt-2 space-y-1">
 						<p>
-							⚡ <span className="font-mono text-accent">stream_absorb()</span>{" "}
+							 <span className="font-mono text-accent">stream_absorb()</span>{" "}
 							→ lectura progresiva (chunk por chunk)
 						</p>
 						<p>
-							⚡ <span className="font-mono text-accent">encrypt()</span> /{" "}
+							 <span className="font-mono text-accent">encrypt()</span> /{" "}
 							<span className="font-mono text-accent">decrypt()</span> → cifrado
 							XOR simbólico
 						</p>
@@ -463,7 +463,7 @@ const ModulesJson = () => {
 			{/* Usage Example */}
 			<Card className="glass-effect border-primary/20 p-6">
 				<h3 className="text-xl font-semibold mb-4 flex items-center gap-2">
-					<span className="text-primary">🧩</span> Ejemplo Completo
+					<span className="text-primary"></span> Ejemplo Completo
 				</h3>
 
 				<div className="space-y-3">
@@ -539,7 +539,7 @@ const ModulesJson = () => {
 			<Card className="glass-effect border-primary/20 p-6">
 				<h3 className="text-xl font-semibold mb-4 flex items-center gap-2">
 					<Database className="w-5 h-5 text-primary" />
-					<span className="text-primary">🧩</span> Integración con el Núcleo
+					<span className="text-primary"></span> Integración con el Núcleo
 					Orion
 				</h3>
 				<p className="text-foreground/80 mb-4">
@@ -581,7 +581,7 @@ const ModulesJson = () => {
 			<Card className="glass-effect border-primary/20 p-6">
 				<h3 className="text-xl font-semibold mb-4 flex items-center gap-2">
 					<Sparkles className="w-5 h-5 text-primary" />
-					<span className="text-primary">🪐</span> Filosofía del Módulo JSON
+					<span className="text-primary"></span> Filosofía del Módulo JSON
 				</h3>
 				<div className="space-y-4">
 					<p className="text-foreground/80">

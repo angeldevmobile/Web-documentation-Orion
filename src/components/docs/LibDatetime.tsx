@@ -112,7 +112,7 @@ const DateTimeModule = () => {
 
 							<div className="mt-4 p-3 rounded-lg bg-primary/5 border border-primary/20">
 								<p className="text-sm text-primary">
-									✨ Ideal para registros de eventos, logs o trazabilidad en
+									Ideal para registros de eventos, logs o trazabilidad en
 									tiempo real.
 								</p>
 							</div>
@@ -276,7 +276,7 @@ const DateTimeModule = () => {
 					<TabsContent value="parse" className="space-y-4">
 						<Card className="glass-effect border-primary/20 p-6">
 							<h4 className="text-xl font-semibold mb-3 font-mono text-primary flex items-center gap-2">
-								<span className="text-lg">🌌</span> parse(s, fmt)
+								<span className="text-lg"></span> parse(s, fmt)
 							</h4>
 							<p className="text-foreground/80 mb-4">
 								Convierte una cadena en un objeto de fecha según el formato
