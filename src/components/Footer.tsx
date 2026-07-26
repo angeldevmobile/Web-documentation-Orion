@@ -3,7 +3,6 @@ import { Separator } from "@/components/ui/separator";
 import { Link } from "react-router-dom";
 
 const REPO_URL = "https://github.com/angeldevmobile/Orion";
-const AUTHOR_URL = "https://github.com/angeldevmobile";
 const MARKETPLACE_URL =
   "https://marketplace.visualstudio.com/items?itemName=AngelZapata.oriondev";
 
@@ -47,7 +46,6 @@ const Footer = () => {
       links: [
         { name: "How to contribute", url: REPO_URL },
         { name: "Contributors list", url: `${REPO_URL}/graphs/contributors` },
-        { name: "Angel Zapata", url: AUTHOR_URL },
       ],
     },
   ];

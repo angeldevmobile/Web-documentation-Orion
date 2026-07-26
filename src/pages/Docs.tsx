@@ -20,7 +20,12 @@ const Docs = () => {
     <div className="min-h-screen">
       <Navbar />
       <DocsLayout pages={pages} />
-      <Footer />
+      {/* La barra lateral de DocsLayout es `fixed w-64`, así que sale del flujo:
+          el footer necesita el mismo desplazamiento que su <main> o queda
+          tapado por detrás. */}
+      <div className="lg:pl-64">
+        <Footer />
+      </div>
     </div>
   );
 };
