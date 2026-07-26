@@ -1,0 +1,36 @@
+# Render Blueprint — https://render.com/docs/blueprint-spec
+#
+# Despliega la documentación de Orion como sitio estático.
+#
+# La API del Playground vive en su propio repo (angeldevmobile/PlayGround---API)
+# y se despliega como un Web Service aparte, no desde este blueprint: un
+# blueprint solo puede declarar servicios de su propio repositorio. Su URL
+# pública se conecta aquí mediante VITE_PLAYGROUND_API_URL.
+
+services:
+  - type: web
+    name: orion-docs
+    runtime: static
+    buildCommand: npm ci && npm run build
+    staticPublishPath: ./dist
+    # En Render el sitio vive en la raíz, así que VITE_BASE_PATH no se define.
+    envVars:
+      # URL pública de la API del Playground. sync:false → se rellena en el
+      # dashboard; se lee en build time, así que cambiarla exige redeploy.
+      - key: VITE_PLAYGROUND_API_URL
+        sync: false
+    # SPA: cualquier ruta desconocida la resuelve React Router.
+    routes:
+      - type: rewrite
+        source: /*
+        destination: /index.html
+    headers:
+      - path: /assets/*
+        name: Cache-Control
+        value: public, max-age=31536000, immutable
+
+# ---------------------------------------------------------------------------
+# La API del Playground se configura en su propio repo. Para referencia, su
+# servicio en Render usa: runtime Docker, dockerfilePath ./Dockerfile, sin
+# rootDir, healthCheckPath /health y PORT definido como variable de entorno.
+# ---------------------------------------------------------------------------

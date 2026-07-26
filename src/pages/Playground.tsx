@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 import { Link2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import {
@@ -13,7 +14,8 @@ import RunButton from "@/components/playground/RunButton";
 import { EXAMPLES } from "@/components/playground/examples";
 import { Sparkles } from "lucide-react";
 
-const API_URL = import.meta.env.VITE_PLAYGROUND_API_URL ?? "http://localhost:8080";
+// El puerto por defecto coincide con el de playground-api cuando corre sin PORT.
+const API_URL = import.meta.env.VITE_PLAYGROUND_API_URL ?? "http://localhost:3001";
 
 const SHARE_PARAM = "c";
 
@@ -43,6 +45,8 @@ const Playground = () => {
   const [stdout, setStdout] = useState("");
   const [stderr, setStderr] = useState("");
   const [timeMs, setTimeMs] = useState<number | null>(null);
+  const [execMs, setExecMs] = useState<number | null>(null);
+  const [ok, setOk] = useState<boolean | null>(null);
   const [isRunning, setIsRunning] = useState(false);
   const [copied, setCopied] = useState(false);
 
@@ -58,6 +62,8 @@ const Playground = () => {
     setStdout("");
     setStderr("");
     setTimeMs(null);
+    setExecMs(null);
+    setOk(null);
 
     try {
       const res = await fetch(`${API_URL}/run`, {
@@ -67,14 +73,17 @@ const Playground = () => {
       });
 
       if (res.status === 429) {
+        setOk(false);
         setStderr("Demasiadas solicitudes. Espera un momento.");
         return;
       }
       if (res.status === 413) {
+        setOk(false);
         setStderr("El código es demasiado largo (máximo 10KB).");
         return;
       }
       if (!res.ok) {
+        setOk(false);
         setStderr(`Error del servidor: ${res.status}`);
         return;
       }
@@ -83,7 +92,12 @@ const Playground = () => {
       setStdout(data.stdout ?? "");
       setStderr(data.stderr ?? "");
       setTimeMs(data.time_ms ?? null);
+      // exec_ms no viene si el programa no llegó a ejecutarse.
+      setExecMs(typeof data.exec_ms === "number" ? data.exec_ms : null);
+      // `ok` es la señal de éxito, no que stderr esté vacío.
+      setOk(data.ok ?? false);
     } catch {
+      setOk(false);
       setStderr(
         `No se pudo conectar con la API del playground.\n\nAsegúrate de que playground-api esté corriendo en ${API_URL}`
       );
@@ -103,10 +117,10 @@ const Playground = () => {
       {/* Top bar */}
       <header className="flex items-center justify-between px-4 py-2 border-b border-white/10 bg-[#12121e] shrink-0">
         <div className="flex items-center gap-3">
-          <a href="/" className="flex items-center gap-1.5 group">
+          <Link to="/" className="flex items-center gap-1.5 group">
             <Sparkles className="w-4 h-4 text-primary group-hover:animate-float" />
             <span className="text-sm font-bold text-gradient">Orion</span>
-          </a>
+          </Link>
           <span className="text-white/20 text-xs">/ Playground</span>
         </div>
 
@@ -139,6 +153,8 @@ const Playground = () => {
               stdout={stdout}
               stderr={stderr}
               timeMs={timeMs}
+              execMs={execMs}
+              ok={ok}
               isRunning={isRunning}
             />
           </ResizablePanel>

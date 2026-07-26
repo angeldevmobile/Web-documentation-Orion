@@ -77,7 +77,7 @@ const Footer = () => {
           {/* Brand */}
           <div className="col-span-2 md:col-span-3 lg:col-span-2 space-y-4">
             <div className="flex items-center gap-2">
-              <img src="/orion.png" alt="Orion" className="w-8 h-8" />
+              <img src={`${import.meta.env.BASE_URL}orion.png`} alt="Orion" className="w-8 h-8" />
               <h3 className="text-lg font-bold text-foreground">Orion Language</h3>
             </div>
             <p className="text-sm text-muted-foreground leading-relaxed max-w-xs">

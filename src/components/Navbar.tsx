@@ -52,7 +52,7 @@ const Navbar = () => {
             onClick={() => handleNavLink("hero")}
             className="flex items-center space-x-2 group"
           >
-            <img src="/orion.png" alt="Orion" className="w-12 h-12 md:w-14 md:h-14 group-hover:animate-float" />
+            <img src={`${import.meta.env.BASE_URL}orion.png`} alt="Orion" className="w-12 h-12 md:w-14 md:h-14 group-hover:animate-float" />
             <span className="text-xl font-bold text-gradient">Orion</span>
             <span className="text-[10px] font-semibold uppercase tracking-wider px-1.5 py-0.5 rounded bg-primary/10 text-primary border border-primary/20">
               Beta
