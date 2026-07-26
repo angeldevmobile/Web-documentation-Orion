@@ -1,7 +1,9 @@
 import { useState, useEffect } from "react";
 import { Menu, X, Sun, Moon } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { useNavigate, useLocation } from "react-router-dom";
+import { Link, useNavigate, useLocation } from "react-router-dom";
+
+const GITHUB_URL = "https://github.com/angeldevmobile/Orion";
 
 const Navbar = () => {
   const [isOpen, setIsOpen]       = useState(false);
@@ -78,18 +80,22 @@ const Navbar = () => {
               {isDark ? <Sun className="w-5 h-5" /> : <Moon className="w-5 h-5" />}
             </button>
             <Button
-              onClick={() => { navigate("/playground"); setIsOpen(false); }}
+              asChild
               variant="outline"
               className="border-primary/50 text-primary hover:bg-primary/10"
             >
-              Playground
+              <Link to="/playground" onClick={() => setIsOpen(false)}>
+                Playground
+              </Link>
             </Button>
             <Button
-              onClick={() => window.open("https://github.com/angeldevmobile/Orion", "_blank")}
+              asChild
               variant="default"
               className="bg-primary text-primary-foreground hover:bg-primary/90"
             >
-              GitHub
+              <a href={GITHUB_URL} target="_blank" rel="noopener noreferrer">
+                GitHub
+              </a>
             </Button>
           </div>
 
@@ -124,18 +130,27 @@ const Navbar = () => {
                 {isDark ? "Light mode" : "Dark mode"}
               </button>
               <Button
-                onClick={() => { navigate("/playground"); setIsOpen(false); }}
+                asChild
                 variant="outline"
                 className="border-primary/50 text-primary hover:bg-primary/10 w-full"
               >
-                Playground
+                <Link to="/playground" onClick={() => setIsOpen(false)}>
+                  Playground
+                </Link>
               </Button>
               <Button
-                onClick={() => window.open("https://github.com/angeldevmobile/Orion", "_blank")}
+                asChild
                 variant="default"
                 className="bg-primary text-primary-foreground hover:bg-primary/90 w-full"
               >
-                GitHub
+                <a
+                  href={GITHUB_URL}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  onClick={() => setIsOpen(false)}
+                >
+                  GitHub
+                </a>
               </Button>
             </div>
           </div>

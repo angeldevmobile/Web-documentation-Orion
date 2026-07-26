@@ -1,34 +1,37 @@
 import { Github, BookOpen } from "lucide-react";
 import { Separator } from "@/components/ui/separator";
-import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 const REPO_URL = "https://github.com/angeldevmobile/Orion";
 const AUTHOR_URL = "https://github.com/angeldevmobile";
 const MARKETPLACE_URL =
   "https://marketplace.visualstudio.com/items?itemName=AngelZapata.oriondev";
 
-type FooterLink = { name: string; url?: string; action?: () => void };
+/** Un enlace es externo (`url`, se abre en pestaña nueva) o interno (`to`),
+ *  nunca ambos ni ninguno: así el render no puede quedarse sin destino. */
+type FooterLink = { name: string } & (
+  | { url: string; to?: never }
+  | { to: string; url?: never }
+);
 
 const Footer = () => {
-  const navigate = useNavigate();
-
   const columns: { title: string; links: FooterLink[] }[] = [
     {
       title: "Product",
       links: [
         { name: "VS Code extension", url: MARKETPLACE_URL },
         { name: "Downloads", url: `${REPO_URL}/releases` },
-        { name: "Playground", action: () => navigate("/playground") },
+        { name: "Playground", to: "/playground" },
       ],
     },
     {
       title: "Documentation",
       links: [
-        { name: "Introduction", action: () => navigate("/docs") },
-        { name: "Language guide", action: () => navigate("/docs") },
-        { name: "CLI and tooling", action: () => navigate("/docs") },
-        { name: "Standard library", action: () => navigate("/docs") },
-        { name: "Module reference", action: () => navigate("/modules") },
+        { name: "Introduction", to: "/docs" },
+        { name: "Language guide", to: "/docs" },
+        { name: "CLI and tooling", to: "/docs" },
+        { name: "Standard library", to: "/docs" },
+        { name: "Module reference", to: "/modules" },
       ],
     },
     {
@@ -94,13 +97,13 @@ const Footer = () => {
               >
                 <Github className="w-5 h-5" />
               </a>
-              <button
-                onClick={() => navigate("/docs")}
+              <Link
+                to="/docs"
                 aria-label="Documentation"
                 className="text-muted-foreground hover:text-primary transition-colors"
               >
                 <BookOpen className="w-5 h-5" />
-              </button>
+              </Link>
             </div>
           </div>
 
@@ -121,9 +124,9 @@ const Footer = () => {
                         {link.name}
                       </a>
                     ) : (
-                      <button onClick={link.action} className={linkClass}>
+                      <Link to={link.to} className={linkClass}>
                         {link.name}
-                      </button>
+                      </Link>
                     )}
                   </li>
                 ))}
@@ -146,8 +149,8 @@ const Footer = () => {
             >
               MIT License
             </a>
-            <button
-              onClick={() => navigate("/status")}
+            <Link
+              to="/status"
               className="flex items-center gap-2 hover:text-primary transition-colors"
             >
               <span className="relative flex h-2.5 w-2.5">
@@ -155,7 +158,7 @@ const Footer = () => {
                 <span className="relative inline-flex h-2.5 w-2.5 rounded-full bg-green-500"></span>
               </span>
               System status
-            </button>
+            </Link>
           </div>
         </div>
       </div>

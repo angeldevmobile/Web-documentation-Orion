@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import { Link2 } from "lucide-react";
+import { ArrowLeft, Link2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import {
   ResizablePanelGroup,
@@ -122,6 +122,16 @@ const Playground = () => {
             <span className="text-sm font-bold text-gradient">Orion</span>
           </Link>
           <span className="text-white/20 text-xs">/ Playground</span>
+          {/* Salida explícita: el logo como "volver" es una convención que no
+              todo el mundo conoce, y quien llega por un enlace ?c= compartido
+              no tiene historial al que retroceder. */}
+          <Link
+            to="/docs"
+            className="hidden sm:flex items-center gap-1 text-xs text-white/50 hover:text-white transition-colors"
+          >
+            <ArrowLeft className="w-3.5 h-3.5" />
+            Documentación
+          </Link>
         </div>
 
         <div className="flex items-center gap-2">
