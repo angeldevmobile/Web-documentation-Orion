@@ -12,6 +12,7 @@ import OutputPanel from "@/components/playground/OutputPanel";
 import ExampleSelector from "@/components/playground/ExampleSelector";
 import RunButton from "@/components/playground/RunButton";
 import { EXAMPLES } from "@/components/playground/examples";
+import { useIsMobile } from "@/hooks/use-mobile";
 import { Sparkles } from "lucide-react";
 
 // El puerto por defecto coincide con el de playground-api cuando corre sin PORT.
@@ -49,6 +50,7 @@ const Playground = () => {
   const [ok, setOk] = useState<boolean | null>(null);
   const [isRunning, setIsRunning] = useState(false);
   const [copied, setCopied] = useState(false);
+  const isMobile = useIsMobile();
 
   useEffect(() => {
     const encoded = encodeCode(code);
@@ -113,7 +115,9 @@ const Playground = () => {
   };
 
   return (
-    <div className="h-screen flex flex-col bg-[#1a1a2e] text-foreground overflow-hidden">
+    // dvh y no vh: en móvil 100vh cuenta la barra del navegador, así que el
+    // panel de abajo queda por debajo del área visible.
+    <div className="h-screen supports-[height:100dvh]:h-dvh flex flex-col bg-[#1a1a2e] text-foreground overflow-hidden">
       {/* Top bar */}
       <header className="flex items-center justify-between px-4 py-2 border-b border-white/10 bg-[#12121e] shrink-0">
         <div className="flex items-center gap-3">
@@ -151,14 +155,21 @@ const Playground = () => {
 
       {/* Editor + Output */}
       <div className="flex-1 overflow-hidden">
-        <ResizablePanelGroup direction="horizontal" className="h-full">
-          <ResizablePanel defaultSize={55} minSize={30}>
+        {/* En móvil no cabe un split lado a lado: el editor va arriba y la
+            salida abajo. El key remonta el grupo al girar el teléfono, si no
+            react-resizable-panels conserva los tamaños del eje anterior. */}
+        <ResizablePanelGroup
+          key={isMobile ? "vertical" : "horizontal"}
+          direction={isMobile ? "vertical" : "horizontal"}
+          className="h-full"
+        >
+          <ResizablePanel defaultSize={55} minSize={20}>
             <CodeEditor value={code} onChange={setCode} />
           </ResizablePanel>
 
-          <ResizableHandle className="w-px bg-white/10 hover:bg-primary/60 transition-colors" />
+          <ResizableHandle className="bg-white/10 hover:bg-primary/60 transition-colors" />
 
-          <ResizablePanel defaultSize={45} minSize={25}>
+          <ResizablePanel defaultSize={45} minSize={20}>
             <OutputPanel
               stdout={stdout}
               stderr={stderr}
