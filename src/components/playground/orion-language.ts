@@ -6,16 +6,24 @@ export function registerOrionLanguage(monaco: typeof Monaco) {
   monaco.languages.register({ id: "orion" });
 
   monaco.languages.setMonarchTokensProvider("orion", {
+    // Espejo de la tabla de palabras clave del lexer (orion-vm/src/lexer.rs).
+    // Ojo: no hay `let`, `elsif`, `raise` ni `self` — son `x = 5`, `else if`,
+    // `error` y `me`. Resaltarlas invitaba a escribir código que no compila.
     keywords: [
-      "fn", "shape", "act", "use", "as", "if", "elsif", "else",
-      "while", "for", "in", "match", "attempt", "handle", "raise",
-      "error", "async", "await", "think", "learn", "sense", "using",
-      "is", "on_create", "self", "return", "let",
+      "fn", "shape", "act", "use", "as", "if", "else", "while", "for", "in",
+      "match", "attempt", "handle", "error", "on_error", "async", "await",
+      "spawn", "think", "learn", "sense", "ask", "choices", "serve", "with",
+      "using", "is", "on_create", "me", "super", "return", "const", "break",
+      "continue", "and", "or", "not", "take", "append", "read", "write",
+      "extern", "undefined",
     ],
     literals: ["yes", "no", "null"],
+    types: ["int", "float", "bool", "string", "list", "dict", "any", "auto"],
     builtins: [
-      "show", "len", "str", "int", "float", "bool", "range",
-      "push", "pop", "keys", "values", "type", "assert_eq",
+      "show", "len", "str", "range", "push", "pop", "keys", "values", "type",
+      "assert_eq", "sqrt", "abs", "floor", "ceil", "round", "sin", "cos",
+      "tan", "log", "log10", "log2", "exp", "pow", "max", "min", "clamp",
+      "factorial", "sign", "degrees", "radians", "hypot", "rand", "randint",
     ],
 
     tokenizer: {
@@ -39,6 +47,7 @@ export function registerOrionLanguage(monaco: typeof Monaco) {
             cases: {
               "@keywords": "keyword",
               "@literals": "constant.language",
+              "@types": "type",
               "@builtins": "support.function",
               "@default": "identifier",
             },

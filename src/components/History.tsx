@@ -10,13 +10,13 @@ const History = () => {
     },
     {
       icon: Zap,
-      title: "La velocidad de Go",
-      description: "Rendimiento optimizado para aplicaciones modernas",
+      title: "La base en Rust",
+      description: "El intérprete está escrito en Rust: rendimiento y seguridad de tipos reales",
     },
     {
       icon: Telescope,
-      title: "La modernidad de Rust",
-      description: "Características avanzadas y seguridad de tipos",
+      title: "El objetivo de Orion",
+      description: "Un lenguaje expresivo y moderno, sin pagar el precio en velocidad",
     },
   ];
 
@@ -43,7 +43,7 @@ const History = () => {
                 
                 <p className="text-lg text-foreground/80 leading-relaxed">
                   Creado por <span className="text-primary font-semibold">Gabriel Zapata</span>,
-                  Orion surge como un experimento para combinar lo mejor de tres mundos:
+                  Orion surge como un experimento con una base clara:
                 </p>
 
                 <div className="grid md:grid-cols-3 gap-6 pt-6">

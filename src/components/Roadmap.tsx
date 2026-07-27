@@ -7,7 +7,7 @@ const Roadmap = () => {
       phase: "Fase 1",
       year: "2025",
       title: "Prototipo",
-      status: "current",
+      status: "completed",
       objectives: [
         "Intérprete en Python",
         "Extensión .orx",
@@ -17,9 +17,21 @@ const Roadmap = () => {
     },
     {
       phase: "Fase 2",
-      year: "2025–2026",
+      year: "2026",
+      title: "Migración a Rust",
+      status: "completed",
+      objectives: [
+        "Reescritura del intérprete en Rust",
+        "Rendimiento y seguridad de tipos",
+        "Base estable para el lenguaje",
+      ],
+      result: "Orion deja atrás el prototipo",
+    },
+    {
+      phase: "Fase 3",
+      year: "2026",
       title: "Herramientas",
-      status: "upcoming",
+      status: "current",
       objectives: [
         "CLI completo",
         "Extensión VS Code",
@@ -28,19 +40,18 @@ const Roadmap = () => {
       result: "Orion usable por cualquier desarrollador",
     },
     {
-      phase: "Fase 3",
+      phase: "Fase 4",
       year: "2026–2027",
       title: "Crecimiento",
       status: "future",
       objectives: [
-        "Reescritura en Go/Rust",
         "Sistema de tipos completo",
         "Concurrencia nativa",
       ],
       result: "Orion productivo y veloz",
     },
     {
-      phase: "Fase 4",
+      phase: "Fase 5",
       year: "2027+",
       title: "Comunidad",
       status: "future",
@@ -52,7 +63,7 @@ const Roadmap = () => {
       result: "Ecosistema completo",
     },
     {
-      phase: "Fase 5",
+      phase: "Fase 6",
       year: "Futuro",
       title: "Integración IA",
       status: "vision",
@@ -65,9 +76,10 @@ const Roadmap = () => {
     },
   ];
 
+  // El check es para lo ya hecho; el cohete marca en qué fase estamos ahora.
   const getStatusIcon = (status: string) => {
-    if (status === "current") return <CheckCircle2 className="w-6 h-6 text-primary" />;
-    if (status === "upcoming") return <Rocket className="w-6 h-6 text-accent" />;
+    if (status === "completed") return <CheckCircle2 className="w-6 h-6 text-primary" />;
+    if (status === "current") return <Rocket className="w-6 h-6 text-accent" />;
     return <Circle className="w-6 h-6 text-muted-foreground" />;
   };
 

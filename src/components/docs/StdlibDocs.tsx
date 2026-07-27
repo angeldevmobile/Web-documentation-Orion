@@ -3,8 +3,8 @@ import { CodeBlock, InlineCode, FnTable, Note, SectionHeading, SubHeading } from
 
 const CATEGORIES: { title: string; modules: string; note: string }[] = [
   { title: "Text", modules: "strings, regex, template, validate, formato", note: "String manipulation, pattern matching, and formatting." },
-  { title: "Numbers and data", modules: "math, list, dict, vector, matrix, stat, serie, frame, table", note: "Arithmetic, collections, linear algebra, statistics, and data frames." },
-  { title: "Files and formats", modules: "fs, json, csv, excel, pdf, zip", note: "File system access and common data formats." },
+  { title: "Numbers and data", modules: "math, list, vector, matrix, stat, serie, frame, table", note: "Arithmetic, collections, linear algebra, statistics, and data frames." },
+  { title: "Files and formats", modules: "fs, json, csv, excel, pdf, zip, proto", note: "File system access and common data formats." },
   { title: "System", modules: "env, process, config, log, term, tui, watch", note: "Environment, processes, configuration, and terminal UI." },
   { title: "Date and time", modules: "datetime, timewarp", note: "Dates, times, and time-zone aware operations." },
   { title: "Networking and web", modules: "net, router, ws, sse, session, middleware, mail, s3, ssh, docker, search", note: "HTTP clients and servers, websockets, and cloud services." },
@@ -13,6 +13,7 @@ const CATEGORIES: { title: string; modules: string; note: string }[] = [
   { title: "Concurrency", modules: "chan, tarea", note: "Channels and task orchestration." },
   { title: "AI", modules: "ai, llm, insight, vision", note: "Language models, analysis, and computer vision." },
   { title: "Specialized", modules: "quantum, cosmos, grafo, gui, random", note: "Quantum simulation, graphs, desktop GUI, and randomness." },
+  { title: "Orion packages", modules: "packages/colors, packages/dates, packages/http, packages/list, packages/math, packages/progress, packages/strings, packages/uuid, packages/validate", note: "Written in Orion itself rather than Rust. Imported by path: use \"packages/uuid\"." },
 ];
 
 export default function StdlibDocs() {
@@ -101,21 +102,29 @@ export default function StdlibDocs() {
       <section id="lib-math">
         <SectionHeading id="lib-math">3.3 math</SectionHeading>
         <p className="text-foreground/80 leading-relaxed">
-          Mathematical constants and functions. Some functions such as{" "}
-          <InlineCode>sqrt</InlineCode> and <InlineCode>abs</InlineCode> are also available
-          globally.
+          Mathematical constants and functions. Unlike the native modules, math ships as an
+          Orion package, so it is imported by path. Several of its functions —{" "}
+          <InlineCode>sqrt</InlineCode>, <InlineCode>abs</InlineCode>,{" "}
+          <InlineCode>round</InlineCode>, <InlineCode>floor</InlineCode>,{" "}
+          <InlineCode>ceil</InlineCode>, <InlineCode>min</InlineCode>,{" "}
+          <InlineCode>max</InlineCode> — are also available globally with no import at all.
         </p>
-        <CodeBlock code={`use "math" as m\nshow(m.PI)\nshow(m.sqrt(144))\nshow(m.round(3.7))`} />
+        <CodeBlock code={`use "packages/math" as m\nshow(m.PI)\nshow(m.sqrt(144))\nshow(m.clamp(15, 0, 10))`} />
         <FnTable
           rows={[
             { signature: "m.PI", returns: "float", description: "The constant pi (3.14159...)." },
             { signature: "m.E", returns: "float", description: "The constant e (2.71828...)." },
             { signature: "m.TAU", returns: "float", description: "The constant tau (2 pi)." },
-            { signature: "m.sqrt(x)", returns: "float", description: "Square root." },
+            { signature: "m.PHI", returns: "float", description: "The golden ratio (1.61803...)." },
+            { signature: "m.sqrt(x)", returns: "float", description: "Square root (Newton-Raphson)." },
             { signature: "m.abs(x)", returns: "number", description: "Absolute value." },
             { signature: "m.floor(x)", returns: "int", description: "Rounds down." },
             { signature: "m.ceil(x)", returns: "int", description: "Rounds up." },
-            { signature: "m.round(x)", returns: "int", description: "Rounds to the nearest integer." },
+            { signature: "m.max(a, b)", returns: "number", description: "The larger of two values." },
+            { signature: "m.min(a, b)", returns: "number", description: "The smaller of two values." },
+            { signature: "m.pow(base, exp)", returns: "number", description: "Base raised to an integer exponent." },
+            { signature: "m.factorial(n)", returns: "int", description: "Factorial of n." },
+            { signature: "m.clamp(x, lo, hi)", returns: "number", description: "Constrains x to the range [lo, hi]." },
           ]}
         />
       </section>

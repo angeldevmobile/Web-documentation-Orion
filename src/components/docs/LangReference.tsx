@@ -280,10 +280,18 @@ export default function LangReference() {
         <p className="text-foreground/80 leading-relaxed">
           Orion includes built-in statements that call language models directly:{" "}
           <InlineCode>think</InlineCode>, <InlineCode>learn</InlineCode>, and{" "}
-          <InlineCode>sense</InlineCode>. <InlineCode>think</InlineCode> sends a prompt and
-          returns the model response.
+          <InlineCode>sense</InlineCode>. They are statements, not expressions:{" "}
+          <InlineCode>think</InlineCode> sends a prompt and prints the response, so it
+          cannot be assigned to a variable. To capture the answer instead, use the{" "}
+          <InlineCode>ai</InlineCode> module.
         </p>
-        <CodeBlock code={`answer = think "What is the speed of light?"\nshow(answer)`} />
+        <CodeBlock code={`think "What is the speed of light?"`} />
+        <CodeBlock code={`use "ai" as ai\nanswer = ai.ask("What is the speed of light?")\nshow(answer)`} />
+        <Note type="note">
+          These statements need an API key. Set <InlineCode>ANTHROPIC_API_KEY</InlineCode> in
+          your <InlineCode>.env</InlineCode>; without it the interpreter stops with a message
+          instead of running the call.
+        </Note>
         <Note type="note">
           The AI statements require a model provider to be configured (for example, an API
           key in your environment). Without it, these statements are unavailable at runtime.

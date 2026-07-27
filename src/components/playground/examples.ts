@@ -58,16 +58,16 @@ for i in 0..10 {
     sonido: string = ""
 
     on_create(nombre: string, sonido: string) {
-        self.nombre = nombre
-        self.sonido = sonido
+        me.nombre = nombre
+        me.sonido = sonido
     }
 
     act hablar() {
-        show self.nombre + " dice: " + self.sonido
+        show me.nombre + " dice: " + me.sonido
     }
 
     act presentarse() {
-        show "Soy " + self.nombre
+        show "Soy " + me.nombre
     }
 }
 
@@ -81,21 +81,23 @@ perro.presentarse()
   },
   {
     label: "Match expressions",
-    code: `fn describir_dia(dia: string) -> string {
+    code: `-- match compara por igualdad. No hay comodín "_": para la rama
+-- por defecto se repite la variable, que siempre coincide consigo misma.
+fn describir_dia(dia: string) -> string {
     match dia {
-        "lunes":    { return "Inicio de semana" }
-        "viernes":  { return "¡Por fin viernes!" }
-        "sabado":   { return "Fin de semana" }
-        "domingo":  { return "Descanso" }
-        _:          { return "Día normal" }
+        "lunes"   { return "Inicio de semana" }
+        "viernes" { return "¡Por fin viernes!" }
+        "sabado"  { return "Fin de semana" }
+        "domingo" { return "Descanso" }
+        dia       { return "Día normal" }
     }
 }
 
 fn clasificar(n: int) -> string {
     match n {
-        0:          { return "cero" }
-        1:          { return "uno" }
-        _:          { return "otro" }
+        0 { return "cero" }
+        1 { return "uno" }
+        n { return "otro" }
     }
 }
 
@@ -132,9 +134,9 @@ persona = {
 show persona["nombre"]
 show persona["edad"]
 
--- Iterar dict
-for k, v in persona {
-    show k + " => " + str(v)
+-- Iterar dict: for toma una sola variable, así que se recorren las claves
+for k in keys(persona) {
+    show k + " => " + str(persona[k])
 }
 `,
   },
@@ -176,11 +178,13 @@ show "Programa continúa normalmente"
   },
   {
     label: "think (IA integrada)",
-    code: `-- think ejecuta una pregunta al modelo de IA integrado
--- (requiere configuración del módulo AI en producción)
+    code: `-- think envía una pregunta al modelo de IA integrado.
+-- Necesita ANTHROPIC_API_KEY en tu .env; sin ella el intérprete
+-- avisa y no ejecuta, así que aquí en el playground no responderá.
 
-respuesta = think "¿Qué es un lenguaje de programación en una oración?"
-show respuesta
+-- think es una sentencia, no una expresión: se escribe suelta,
+-- no se asigna a una variable.
+think "¿Qué es un lenguaje de programación en una oración?"
 
 -- También puedes usar el módulo AI directamente
 -- use "ai" as ai
