@@ -6,11 +6,11 @@ const SecurityCodeShowcase = () => {
 			<div className="container mx-auto max-w-6xl">
 				<div className="text-center mb-12 space-y-4">
 					<h2 className="text-4xl md:text-5xl font-bold text-gradient">
-						Seguridad y Cifrado
+						Security and encryption
 					</h2>
 					<p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-						Protege tus datos con las herramientas de cifrado integradas de
-						Orion
+						Hashing, symmetric encryption and signing, built into the standard
+						library
 					</p>
 				</div>
 
@@ -24,12 +24,12 @@ const SecurityCodeShowcase = () => {
 								<div className="w-3 h-3 rounded-full bg-primary/70"></div>
 							</div>
 							<span className="text-sm text-muted-foreground font-mono ml-4">
-								seguridad.orx
+								security.orx
 							</span>
 						</div>
 						<div className="flex items-center gap-2">
 							<div className="w-2 h-2 rounded-full bg-primary animate-glow-pulse"></div>
-							<span className="text-xs text-primary">Orion v1.0</span>
+							<span className="text-xs text-primary">Orion</span>
 						</div>
 					</div>
 
@@ -48,78 +48,89 @@ const SecurityCodeShowcase = () => {
 						<pre className="pl-16 pr-6 py-6 overflow-x-auto bg-transparent">
 							<code className="font-mono text-sm leading-6">
 								<span className="text-primary">use</span>
-								<span className="text-foreground"> code</span>
+								<span className="text-accent"> "crypto"</span>
 								{"\n"}
 								<span className="text-primary">use</span>
-								<span className="text-foreground"> fs</span>
+								<span className="text-accent"> "fs"</span>
 								{"\n"}
 								<span className="text-primary">use</span>
-								<span className="text-foreground"> json</span>
-								{"\n\n"}
-
-								<span className="text-primary">trace_start</span>
-								<span className="text-foreground">(</span>
-								<span className="text-accent">"SEGURIDAD"</span>
-								<span className="text-foreground">)</span>
-								{"\n\n"}
-
-								<span className="text-foreground">datos = [</span>
-								{"\n"}
-								<span className="text-foreground">
-									{" "}
-									{"{"}
-									{'"usuario"'}:{" "}
-								</span>
-								<span className="text-accent">"admin"</span>
-								<span className="text-foreground">, {'"clave"'}: </span>
-								<span className="text-accent">"orion2025"</span>
-								<span className="text-foreground">{"}"}</span>
-								{"\n"}
-								<span className="text-foreground">]</span>
-								{"\n\n"}
-
-								<span className="text-muted-foreground">-- Cifrar</span>
-								{"\n"}
-								<span className="text-foreground">
-									raw = json.encrypt(datos,{" "}
-								</span>
-								<span className="text-accent">42</span>
-								<span className="text-foreground">)</span>
-								{"\n"}
-								<span className="text-foreground">fs.write(</span>
-								<span className="text-accent">"seguro.dat"</span>
-								<span className="text-foreground">, raw)</span>
-								{"\n"}
-								<span className="text-primary">show</span>
-								<span className="text-foreground">(</span>
-								<span className="text-accent">"Datos cifrados guardados"</span>
-								<span className="text-foreground">)</span>
+								<span className="text-accent"> "json"</span>
 								{"\n\n"}
 
 								<span className="text-muted-foreground">
-									-- Leer y descifrar
+									-- Passwords are never stored in plain text
 								</span>
 								{"\n"}
-								<span className="text-foreground">leido = fs.read(</span>
-								<span className="text-accent">"seguro.dat"</span>
-								<span className="text-foreground">)</span>
+								<span className="text-foreground">password = </span>
+								<span className="text-accent">"orion2025"</span>
 								{"\n"}
 								<span className="text-foreground">
-									original = json.decrypt(leido,{" "}
+									hashed = crypto.hash(password)
 								</span>
-								<span className="text-accent">42</span>
+								{"\n"}
+								<span className="text-primary">show</span>
+								<span className="text-foreground">(</span>
+								<span className="text-accent">"Verified:"</span>
+								<span className="text-foreground">
+									, crypto.verify_hash(password, hashed))
+								</span>
+								{"\n\n"}
+
+								<span className="text-muted-foreground">
+									-- Symmetric encryption
+								</span>
+								{"\n"}
+								<span className="text-foreground">
+									data = json.forge({"{"}
+								</span>
+								<span className="text-accent">"user"</span>
+								<span className="text-foreground">: </span>
+								<span className="text-accent">"admin"</span>
+								<span className="text-foreground">
+									{"}"})
+								</span>
+								{"\n"}
+								<span className="text-foreground">
+									encrypted = crypto.encrypt(data)
+								</span>
+								{"\n"}
+								<span className="text-foreground">fs.write(</span>
+								<span className="text-accent">"secure.dat"</span>
+								<span className="text-foreground">, encrypted.cipher)</span>
+								{"\n\n"}
+
+								<span className="text-muted-foreground">
+									-- Read it back and decrypt
+								</span>
+								{"\n"}
+								<span className="text-foreground">raw = fs.read(</span>
+								<span className="text-accent">"secure.dat"</span>
 								<span className="text-foreground">)</span>
 								{"\n"}
 								<span className="text-primary">show</span>
 								<span className="text-foreground">(</span>
-								<span className="text-accent">"Datos originales:"</span>
-								<span className="text-foreground">, original)</span>
+								<span className="text-accent">"Recovered:"</span>
+								<span className="text-foreground">
+									, crypto.decrypt(raw, encrypted.key))
+								</span>
 								{"\n\n"}
 
-								<span className="text-primary">trace_end</span>
-								<span className="text-foreground">(</span>
-								<span className="text-accent">"SEGURIDAD"</span>
+								<span className="text-muted-foreground">
+									-- Signing, to detect tampering
+								</span>
+								{"\n"}
+								<span className="text-foreground">
+									sig = crypto.sign(data,{" "}
+								</span>
+								<span className="text-accent">"server-secret"</span>
 								<span className="text-foreground">)</span>
+								{"\n"}
+								<span className="text-primary">show</span>
+								<span className="text-foreground">(</span>
+								<span className="text-accent">"Signature valid:"</span>
+								<span className="text-foreground">
+									, crypto.verify(data, sig, <span className="text-accent">"server-secret"</span>))
+								</span>
 							</code>
 						</pre>
 
@@ -134,11 +145,11 @@ const SecurityCodeShowcase = () => {
 							<span>•</span>
 							<span>Orion</span>
 							<span>•</span>
-							<span>16 líneas</span>
+							<span>24 lines</span>
 						</div>
 						<div className="flex items-center gap-2">
 							<span className="text-primary">◉</span>
-							<span>Sin errores</span>
+							<span>No errors</span>
 						</div>
 					</div>
 				</Card>

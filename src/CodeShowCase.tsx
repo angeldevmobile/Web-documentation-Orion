@@ -6,10 +6,10 @@ const CodeShowcase = () => {
 			<div className="container mx-auto max-w-6xl">
 				<div className="text-center mb-12 space-y-4">
 					<h2 className="text-4xl md:text-5xl font-bold text-gradient">
-						Código en acción
+						Code in action
 					</h2>
 					<p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-						Descubre la sintaxis futurista y legible de Orion
+						A complete program, exactly as the compiler runs it
 					</p>
 				</div>
 
@@ -23,12 +23,12 @@ const CodeShowcase = () => {
 								<div className="w-3 h-3 rounded-full bg-primary/70"></div>
 							</div>
 							<span className="text-sm text-muted-foreground font-mono ml-4">
-								ejemplo.orx
+								example.orx
 							</span>
 						</div>
 						<div className="flex items-center gap-2">
 							<div className="w-2 h-2 rounded-full bg-primary animate-glow-pulse"></div>
-							<span className="text-xs text-primary">Orion v1.0</span>
+							<span className="text-xs text-primary">Orion</span>
 						</div>
 					</div>
 
@@ -49,12 +49,12 @@ const CodeShowcase = () => {
 								<span className="text-primary">fn</span>
 								<span className="text-foreground">
 									{" "}
-									es_mayor_de_edad(edad) {"{"}
+									is_adult(age) {"{"}
 								</span>
 								{"\n"}
 								<span className="text-foreground"> </span>
 								<span className="text-primary">return</span>
-								<span className="text-foreground"> edad </span>
+								<span className="text-foreground"> age </span>
 								<span className="text-accent">&gt;=</span>
 								<span className="text-foreground"> </span>
 								<span className="text-accent">18</span>
@@ -65,21 +65,21 @@ const CodeShowcase = () => {
 								<span className="text-primary">fn</span>
 								<span className="text-foreground">
 									{" "}
-									procesar_usuario(nombre, edad) {"{"}
+									process_user(name, age) {"{"}
 								</span>
 								{"\n"}
 								<span className="text-foreground"> </span>
 								<span className="text-primary">if</span>
 								<span className="text-foreground">
 									{" "}
-									es_mayor_de_edad(edad) {"{"}
+									is_adult(age) {"{"}
 								</span>
 								{"\n"}
 								<span className="text-foreground"> </span>
 								<span className="text-primary">show</span>
 								<span className="text-foreground">(</span>
 								<span className="text-accent">
-									"Usuario ${"{nombre}"} es mayor de edad (${"{edad}"})"
+									"User ${"{name}"} is an adult (${"{age}"})"
 								</span>
 								<span className="text-foreground">)</span>
 								{"\n"}
@@ -91,7 +91,7 @@ const CodeShowcase = () => {
 								<span className="text-primary">show</span>
 								<span className="text-foreground">(</span>
 								<span className="text-accent">
-									"Usuario ${"{nombre}"} es menor de edad (${"{edad}"})"
+									"User ${"{name}"} is a minor (${"{age}"})"
 								</span>
 								<span className="text-foreground">)</span>
 								{"\n"}
@@ -100,15 +100,15 @@ const CodeShowcase = () => {
 								<span className="text-foreground">{"}"}</span>
 								{"\n\n"}
 
-								<span className="text-foreground">usuarios = [</span>
+								<span className="text-foreground">users = [</span>
 								<span className="text-accent">"Ana"</span>
 								<span className="text-foreground">, </span>
 								<span className="text-accent">"Luis"</span>
 								<span className="text-foreground">, </span>
-								<span className="text-accent">"Sofía"</span>
+								<span className="text-accent">"Sofia"</span>
 								<span className="text-foreground">]</span>
 								{"\n"}
-								<span className="text-foreground">edades = [</span>
+								<span className="text-foreground">ages = [</span>
 								<span className="text-accent">22</span>
 								<span className="text-foreground">, </span>
 								<span className="text-accent">15</span>
@@ -117,40 +117,44 @@ const CodeShowcase = () => {
 								<span className="text-foreground">]</span>
 								{"\n\n"}
 
+								<span className="text-muted-foreground">
+									-- Ranges are half-open: 0..3 covers 0, 1 and 2
+								</span>
+								{"\n"}
 								<span className="text-primary">for</span>
 								<span className="text-foreground"> i </span>
 								<span className="text-primary">in</span>
 								<span className="text-foreground"> </span>
 								<span className="text-accent">0</span>
 								<span className="text-foreground">..</span>
-								<span className="text-accent">2</span>
+								<span className="text-accent">3</span>
 								<span className="text-foreground"> {"{"}</span>
 								{"\n"}
 								<span className="text-foreground">
 									{" "}
-									procesar_usuario(usuarios[i], edades[i])
+									process_user(users[i], ages[i])
 								</span>
 								{"\n"}
 								<span className="text-foreground">{"}"}</span>
 								{"\n\n"}
 
-								<span className="text-foreground">texto = </span>
+								<span className="text-foreground">text = </span>
 								<span className="text-accent">" backend orion "</span>
 								{"\n"}
 								<span className="text-primary">show</span>
 								<span className="text-foreground">(</span>
 								<span className="text-accent">"Trim:"</span>
-								<span className="text-foreground">, strip(texto))</span>
+								<span className="text-foreground">, trim(text))</span>
 								{"\n"}
 								<span className="text-primary">show</span>
 								<span className="text-foreground">(</span>
 								<span className="text-accent">"Upper:"</span>
-								<span className="text-foreground">, upper(texto))</span>
+								<span className="text-foreground">, upper(text))</span>
 								{"\n"}
 								<span className="text-primary">show</span>
 								<span className="text-foreground">(</span>
 								<span className="text-accent">"Reverse:"</span>
-								<span className="text-foreground">, reverse(texto))</span>
+								<span className="text-foreground">, reverse(text))</span>
 							</code>
 						</pre>
 
@@ -165,11 +169,11 @@ const CodeShowcase = () => {
 							<span>•</span>
 							<span>Orion</span>
 							<span>•</span>
-							<span>22 líneas</span>
+							<span>23 lines</span>
 						</div>
 						<div className="flex items-center gap-2">
 							<span className="text-primary">◉</span>
-							<span>Sin errores</span>
+							<span>No errors</span>
 						</div>
 					</div>
 				</Card>
