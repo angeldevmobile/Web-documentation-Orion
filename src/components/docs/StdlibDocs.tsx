@@ -189,8 +189,11 @@ export default function StdlibDocs() {
             { signature: "json.parse(text)", returns: "any", description: "Parses a JSON string into an Orion value." },
             { signature: "json.forge(value)", returns: "string", description: "Serializes a value to JSON (sorted keys)." },
             { signature: "json.forge_pretty(value)", returns: "string", description: "Serializes with indentation." },
-            { signature: "json.sort_keys(dict)", returns: "dict", description: "Returns the dict with sorted keys." },
-            { signature: "json.merge_deep(a, b)", returns: "dict", description: "Deep-merges two dicts." },
+            { signature: "json.absorb(path)", returns: "any", description: "Reads and parses a JSON file." },
+            { signature: "json.emit(path, value)", returns: "bool", description: "Serializes a value and writes it to a file." },
+            { signature: "json.trace(obj, \"user.name\")", returns: "any", description: "Reads a nested value by dotted path." },
+            { signature: "json.fuse(a, b)", returns: "dict", description: "Merges two dicts." },
+            { signature: "json.purify(obj)", returns: "any", description: "Drops null entries." },
             { signature: "json.validate(obj, schema)", returns: "bool", description: "Validates a value against a schema." },
           ]}
         />
