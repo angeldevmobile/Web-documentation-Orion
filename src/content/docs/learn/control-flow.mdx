@@ -1,0 +1,220 @@
+---
+title: "Decisions and Loops"
+description: "if and else, while and for, match, and how to leave a loop early."
+order: 3
+---
+
+## if and else
+
+`if` runs a block when a condition is `yes`. Add `else if` for more cases and
+`else` for everything else. The braces are required.
+
+```orion
+temperature = 28
+
+if temperature > 30 {
+    show "Hot"
+} else if temperature > 20 {
+    show "Warm"
+} else {
+    show "Cold"
+}
+```
+
+<Output>
+
+```text
+Warm
+```
+
+</Output>
+
+<Note>
+It is `else if`, two words. There is no `elif` or `elsif`.
+</Note>
+
+For a short choice between two values, the ternary operator fits on one line.
+
+```orion
+stock = 0
+label = stock > 0 ? "in stock" : "sold out"
+show label
+```
+
+<Output>
+
+```text
+sold out
+```
+
+</Output>
+
+## for loops
+
+`for` walks through a list, one element at a time.
+
+```orion
+for city in ["Lima", "Quito", "Bogota"] {
+    show "Visiting ${city}"
+}
+```
+
+<Output>
+
+```text
+Visiting Lima
+Visiting Quito
+Visiting Bogota
+```
+
+</Output>
+
+A range `a..b` counts from `a` up to, but not including, `b`. That makes
+`1..4` the numbers 1, 2 and 3.
+
+```orion
+total = 0
+for n in 1..5 {
+    total += n
+}
+show total
+```
+
+<Output>
+
+```text
+10
+```
+
+</Output>
+
+To walk through a dict, loop over its keys.
+
+```orion
+stock = {apples: 12, pears: 0, plums: 5}
+for fruit in stock.keys() {
+    show "${fruit}: ${stock[fruit]}"
+}
+```
+
+<Output>
+
+```text
+apples: 12
+pears: 0
+plums: 5
+```
+
+</Output>
+
+## while loops
+
+`while` repeats a block as long as its condition holds.
+
+```orion
+balance = 100
+months = 0
+while balance < 150 {
+    balance = balance * 1.1
+    months += 1
+}
+show "It takes ${months} months"
+```
+
+<Output>
+
+```text
+It takes 5 months
+```
+
+</Output>
+
+## break and continue
+
+`break` leaves the loop; `continue` skips to the next round.
+
+```orion
+for n in 1..20 {
+    if n > 9 { break }
+    if n % 2 == 0 { continue }
+    show n
+}
+```
+
+<Output>
+
+```text
+1
+3
+5
+7
+9
+```
+
+</Output>
+
+## match
+
+`match` compares a value against several patterns and runs the first one that
+fits. `_` catches everything else. Each arm is a pattern followed by a block,
+with no arrow.
+
+```orion
+status = 404
+
+match status {
+    200 { show "OK" }
+    404 { show "Not found" }
+    _ { show "Something else" }
+}
+```
+
+<Output>
+
+```text
+Not found
+```
+
+</Output>
+
+## Try it
+
+Print the numbers from 1 to 15, but print `Fizz` for multiples of 3, `Buzz`
+for multiples of 5, and `FizzBuzz` for multiples of both.
+
+<details>
+<summary>Show a solution</summary>
+
+```orion
+for n in 1..16 {
+    if n % 15 == 0 {
+        show "FizzBuzz"
+    } else if n % 3 == 0 {
+        show "Fizz"
+    } else if n % 5 == 0 {
+        show "Buzz"
+    } else {
+        show n
+    }
+}
+```
+
+```text
+1
+2
+Fizz
+4
+Buzz
+Fizz
+7
+8
+Fizz
+Buzz
+11
+Fizz
+13
+14
+FizzBuzz
+```
+
+</details>

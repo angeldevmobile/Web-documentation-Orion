@@ -1,0 +1,168 @@
+---
+title: "Shapes"
+description: "Group data and behaviour into your own types."
+order: 6
+---
+
+A `shape` is a type you define: it holds fields, and methods called acts that
+work on them. Create one by calling it like a function.
+
+## Fields and acts
+
+Inside an `act`, the fields of the shape can be used directly by name.
+
+```orion
+shape Rectangle {
+    width: float = 0
+    height: float = 0
+
+    act area() {
+        return width * height
+    }
+
+    act describe() {
+        return "${width} x ${height}"
+    }
+}
+
+r = Rectangle(3, 4)
+show r.area()
+show r.describe()
+show r.width
+```
+
+<Output>
+
+```text
+12
+3 x 4
+3
+```
+
+</Output>
+
+Arguments fill the fields in the order they are declared. Fields can have a
+type and a default value.
+
+## A constructor with on_create
+
+When creating an instance needs more than copying arguments into fields,
+define `on_create`. Acts can also change the fields.
+
+```orion
+shape Account {
+    owner: string = ""
+    balance: float = 0
+    history: list = []
+
+    on_create(name, opening) {
+        owner = name
+        balance = opening
+        history = ["opened with ${opening}"]
+    }
+
+    act deposit(amount) {
+        balance = balance + amount
+        history.push("deposit ${amount}")
+    }
+
+    act withdraw(amount) {
+        if amount > balance { error "insufficient funds" }
+        balance = balance - amount
+        history.push("withdraw ${amount}")
+    }
+}
+
+acc = Account("Ana", 100)
+acc.deposit(50)
+attempt { acc.withdraw(500) } handle e { show "Refused: " + e }
+acc.withdraw(30)
+show acc.balance
+show acc.history
+```
+
+<Output>
+
+```text
+Refused: insufficient funds
+120
+[opened with 100, deposit 50, withdraw 30]
+```
+
+</Output>
+
+<Note>
+Inside an act you can also reach the current instance as `me`, as in
+`me.balance`. There is no `self` or `this`.
+</Note>
+
+## Reusing a shape with using
+
+`using` brings the fields and acts of another shape into a new one. `is`
+checks whether a value is an instance of a shape.
+
+```orion
+shape Animal {
+    name: string = ""
+    act speak() {
+        return "${name} makes a sound"
+    }
+}
+
+shape Dog {
+    using Animal
+    breed: string = ""
+
+    on_create(n, b) {
+        name = n
+        breed = b
+    }
+
+    act fetch() {
+        return "${name} the ${breed} fetches the ball"
+    }
+}
+
+d = Dog("Rex", "Labrador")
+show d.speak()
+show d.fetch()
+show d is Dog
+show d is Animal
+```
+
+<Output>
+
+```text
+Rex makes a sound
+Rex the Labrador fetches the ball
+yes
+yes
+```
+
+</Output>
+
+## Try it
+
+Define a shape `Temperature` with a field `celsius` and an act `fahrenheit()`
+that converts it (`celsius * 9 / 5 + 32`). Print the conversion of 25 degrees.
+
+<details>
+<summary>Show a solution</summary>
+
+```orion
+shape Temperature {
+    celsius: float = 0
+    act fahrenheit() {
+        return celsius * 9 / 5 + 32
+    }
+}
+
+t = Temperature(25)
+show t.fahrenheit()
+```
+
+```text
+77
+```
+
+</details>

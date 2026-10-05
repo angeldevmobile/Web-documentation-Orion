@@ -1,0 +1,89 @@
+---
+title: "Going Fast"
+description: "Run with the JIT and build a native executable."
+order: 12
+---
+
+The same program can run in three ways. You choose with a flag; the code does
+not change.
+
+| Command | How it runs | Use it for |
+|---|---|---|
+| `orion app.orx` | Bytecode interpreter | Scripts and everyday work. Starts instantly |
+| `orion --jit app.orx` | Compiled to machine code with Cranelift | Loops and number crunching |
+| `orion --build app.orx` | A standalone native executable | Shipping a program to machines without Orion |
+
+## The JIT
+
+A function full of arithmetic is where the JIT shines. Save this as
+`fib.orx`:
+
+```orion
+fn fib(n) {
+    if n < 2 { return n }
+    return fib(n - 1) + fib(n - 2)
+}
+
+show fib(25)
+```
+
+<Output>
+
+```text
+75025
+```
+
+</Output>
+
+and run it both ways:
+
+```bash
+orion fib.orx
+orion --jit fib.orx
+```
+
+Both print the same result. With `fib(30)` the interpreter takes about 2.2
+seconds and the JIT about 0.07, roughly 30 times faster. In the JIT, numbers
+live inside the value and arithmetic compiles to plain CPU instructions.
+
+| Program | Interpreter | JIT |
+|---|---:|---:|
+| 10 million integer additions | 3.87 s | 0.10 s |
+| `fib(30)`, recursive | 2.20 s | 0.07 s |
+| Fill and sum a 1M-element list | 1.27 s | 0.16 s |
+
+These numbers come from `bench/jit` in the Orion repository, and you can
+reproduce them on your machine.
+
+<Note>
+If a program uses something the JIT cannot compile yet, `--jit` runs it with
+the interpreter instead, and the result is the same. The JIT does not yet free
+strings and lists that are no longer used, which matters for long-running
+processes.
+</Note>
+
+## A native executable
+
+`--build` produces a single file that runs without Orion installed:
+
+```bash
+orion --build fib.orx
+./fib          # fib.exe on Windows
+```
+
+It needs a C linker on the machine that builds it: the MSVC Build Tools on
+Windows, or `gcc` on Linux and macOS.
+
+## Where to go from here
+
+You have seen the whole language and a tour of its standard library. From
+here:
+
+- The [language reference](/docs/language/variables) covers every construct in
+  detail.
+- The [module reference](/modules) lists every function of every module.
+- The [guides](/docs/guides/rest-api) build complete programs step by step.
+
+If something did not work as described, or something you needed was missing,
+[open an issue](https://github.com/angeldevmobile/Orion/issues). That is the
+most useful feedback there is.

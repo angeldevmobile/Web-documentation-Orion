@@ -9,6 +9,7 @@ import metas from "virtual:docs-meta";
  */
 export const SECTIONS = [
   { slug: "getting-started", title: "Getting Started" },
+  { slug: "learn", title: "Learn Orion" },
   { slug: "language", title: "Language Reference" },
   { slug: "stdlib", title: "Standard Library" },
   { slug: "tools", title: "CLI & Editor" },

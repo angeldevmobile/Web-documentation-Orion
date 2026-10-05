@@ -1,0 +1,76 @@
+---
+title: "Your First API"
+description: "Serve JSON over HTTP and store data in a database."
+order: 9
+---
+
+`serve` is part of the language: give it a port and a function, and Orion
+calls that function for every request. The function receives the request as a
+dict and returns a dict with a `status` and a `body`.
+
+## A task list API
+
+This program stores tasks in a SQLite database with the `db` module. A `POST`
+to `/tasks` adds one; a `GET` lists them all.
+
+```orion
+use "db"
+
+db.exec("app.db", "CREATE TABLE IF NOT EXISTS tasks (title TEXT, done INTEGER)")
+
+fn router(req) {
+    if req["path"] != "/tasks" {
+        return { "status": 404, "body": { "error": "not found" } }
+    }
+    if req["method"] == "POST" {
+        db.insert("app.db", "INSERT INTO tasks (title, done) VALUES (?, 0)", [req["body"]])
+        return { "status": 201, "body": { "created": req["body"] } }
+    }
+    tasks = db.query("app.db", "SELECT title, done FROM tasks")
+    return { "status": 200, "body": tasks }
+}
+
+show "Listening on http://localhost:8123"
+serve 8123 router
+```
+
+Run it with `orion api.orx`. It keeps running and logs each request until you
+stop it with Ctrl+C.
+
+## Trying it
+
+From another terminal:
+
+```bash
+curl -X POST -d "Write the docs" http://localhost:8123/tasks
+curl -X POST -d "Ship the release" http://localhost:8123/tasks
+curl http://localhost:8123/tasks
+curl http://localhost:8123/other
+```
+
+```text
+{"created":"Write the docs"}
+{"created":"Ship the release"}
+[{"title":"Write the docs","done":0},{"title":"Ship the release","done":0}]
+{"error":"not found"}
+```
+
+A few things happened without any extra code:
+
+- A `body` that is a dict or a list goes out as JSON, with the
+  `application/json` header. A string goes out as plain text.
+- The `?` in the SQL is filled in safely from the list that follows, so user
+  input never becomes part of the query.
+- Each request is handled on its own thread, and the terminal shows a line for
+  every one of them.
+
+<Note>
+Each request runs separately, so variables do not survive from one request to
+the next. Keep anything that must last in the database or in a file.
+</Note>
+
+## Routes with parameters
+
+For more than a couple of paths, the `router` module matches patterns such as
+`/users/:id`, and `middleware` adds rate limiting, CORS and JWT checks. The
+[REST API guide](/docs/guides/rest-api) goes further.

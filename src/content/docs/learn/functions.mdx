@@ -1,0 +1,181 @@
+---
+title: "Functions"
+description: "Define functions, give parameters defaults, and pass functions around as values."
+order: 4
+---
+
+## Defining a function
+
+`fn` defines a function. `return` sends a value back to the caller.
+
+```orion
+fn area(width, height) {
+    return width * height
+}
+
+show area(3, 4)
+show area(2.5, 2)
+```
+
+<Output>
+
+```text
+12
+5
+```
+
+</Output>
+
+## Default and named arguments
+
+A parameter can have a default value, used when the caller leaves it out.
+Callers can also name the arguments, which makes long calls easier to read.
+
+```orion
+fn greet(name, greeting = "Hello") {
+    return "${greeting}, ${name}!"
+}
+
+show greet("Ana")
+show greet("Luis", "Welcome")
+show greet(name = "Eva", greeting = "Hi")
+```
+
+<Output>
+
+```text
+Hello, Ana!
+Welcome, Luis!
+Hi, Eva!
+```
+
+</Output>
+
+## Optional types
+
+Types are optional. When you add them, `orion check --types` verifies every
+call before the program runs.
+
+```orion
+fn average(a: float, b: float) -> float {
+    return (a + b) / 2
+}
+
+show average(7, 10)
+```
+
+<Output>
+
+```text
+8.5
+```
+
+</Output>
+
+## Variables inside functions
+
+A variable you assign inside a function belongs to that function. Assigning to
+a name that also exists outside creates a new local one and leaves the outer
+one alone. Reading an outer name works as you would expect.
+
+```orion
+counter = 0
+tax_rate = 0.18
+
+fn with_tax(amount) {
+    counter = 99
+    return amount * (1 + tax_rate)
+}
+
+show with_tax(100)
+show counter
+```
+
+<Output>
+
+```text
+118
+0
+```
+
+</Output>
+
+## Functions as values
+
+Small functions can be written inline with `=>`. They can be stored in
+variables and passed to other functions, which is what `map` and `filter`
+expect.
+
+```orion
+double = x => x * 2
+add = (a, b) => a + b
+show double(21)
+show add(2, 3)
+
+fn apply_twice(f, value) {
+    return f(f(value))
+}
+show apply_twice(double, 5)
+```
+
+<Output>
+
+```text
+42
+5
+20
+```
+
+</Output>
+
+For a longer inline function, use the block form `fn(x) { ... }`. A function
+created this way remembers the variables around it, even after the code that
+created it has finished. This is called a closure.
+
+```orion
+fn make_counter() {
+    count = 0
+    return fn() {
+        count = count + 1
+        return count
+    }
+}
+
+next_id = make_counter()
+next_id()
+next_id()
+show next_id()
+```
+
+<Output>
+
+```text
+3
+```
+
+</Output>
+
+## Try it
+
+Write a function `apply_discount(price, percent = 10)` that returns the price
+after the discount, and use it with `map` to discount the list `[100, 250, 40]`
+by 20 percent.
+
+<details>
+<summary>Show a solution</summary>
+
+```orion
+fn apply_discount(price, percent = 10) {
+    return price * (100 - percent) / 100
+}
+
+show apply_discount(100)
+show [100, 250, 40].map(p => apply_discount(p, 20))
+```
+
+```text
+90
+[80, 200, 32]
+```
+
+</details>

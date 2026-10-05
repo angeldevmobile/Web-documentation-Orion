@@ -73,9 +73,20 @@ export function Note({ type = "note", children }: { type?: keyof typeof NOTE_STY
   );
 }
 
+/** Lo que imprime el ejemplo anterior: `<Output>` + un bloque ```text. */
+export function Output({ children }: { children: ReactNode }) {
+  return (
+    <div className="-mt-3 mb-6">
+      <p className="mb-1 text-xs font-semibold uppercase tracking-wider text-muted-foreground">Output</p>
+      <div className="[&_.not-prose]:my-0 [&_pre]:bg-background">{children}</div>
+    </div>
+  );
+}
+
 export const mdxComponents = {
   pre: CodeFrame,
   a: SmartLink,
   table: Table,
   Note,
+  Output,
 };

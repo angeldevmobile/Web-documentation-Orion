@@ -1,0 +1,144 @@
+---
+title: "First Steps"
+description: "Print values, name them with variables and build text with interpolation."
+order: 1
+---
+
+Every Orion program is a plain text file ending in `.orx`. There is no `main`
+function and nothing to import to get started: the file runs from top to
+bottom.
+
+## Printing
+
+`show` prints a value followed by a new line.
+
+```orion
+show "Hello, Orion!"
+show 42
+show 3.5 * 2
+```
+
+<Output>
+
+```text
+Hello, Orion!
+42
+7
+```
+
+</Output>
+
+Lines that start with `--` are comments and are ignored.
+
+## Variables
+
+A variable is created the first time you assign to it. There is no `let` or
+`var`: the name and `=` are enough.
+
+```orion
+language = "Orion"
+year = 2026
+version = 0.1
+
+show language
+show year + 1
+```
+
+<Output>
+
+```text
+Orion
+2027
+```
+
+</Output>
+
+Use `const` for a value that must not change. Assigning to it again is an
+error, which protects you from changing it by accident.
+
+```orion
+const MAX_USERS = 100
+show MAX_USERS
+```
+
+<Output>
+
+```text
+100
+```
+
+</Output>
+
+## Building text
+
+Put any expression inside `${...}` in a string and Orion replaces it with its
+value. This is called interpolation, and it is the usual way to build messages.
+
+```orion
+name = "Ana"
+items = 3
+price = 4.5
+
+show "Hello, ${name}! You have ${items} items."
+show "Total: ${items * price}"
+```
+
+<Output>
+
+```text
+Hello, Ana! You have 3 items.
+Total: 13.5
+```
+
+</Output>
+
+You can also join strings with `+`. To join a string and a number, convert the
+number with `str()`, or use interpolation, which does it for you.
+
+```orion
+count = 7
+show "Count: " + str(count)
+show "Count: ${count}"
+```
+
+<Output>
+
+```text
+Count: 7
+Count: 7
+```
+
+</Output>
+
+## Running it
+
+Save the code in `hello.orx` and run:
+
+```bash
+orion hello.orx
+```
+
+<Note type="tip">
+Booleans in Orion are `yes` and `no`, not `true` and `false`. You will see
+them in the next lesson.
+</Note>
+
+## Try it
+
+Store a city and a temperature in two variables, and print a sentence such as
+`It is 21 degrees in Lima.` using interpolation.
+
+<details>
+<summary>Show a solution</summary>
+
+```orion
+city = "Lima"
+temperature = 21
+show "It is ${temperature} degrees in ${city}."
+```
+
+```text
+It is 21 degrees in Lima.
+```
+
+</details>

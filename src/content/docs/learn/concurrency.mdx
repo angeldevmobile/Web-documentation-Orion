@@ -1,0 +1,108 @@
+---
+title: "Doing Things at Once"
+description: "Run work in parallel with async, await, spawn and channels."
+order: 10
+---
+
+## async and await
+
+Calling an `async fn` starts it in the background and immediately gives you a
+task. `await` waits for the task and returns its result. Starting several
+tasks before awaiting any of them lets them run at the same time.
+
+```orion
+use "tarea"
+
+async fn fetch_price(product) {
+    tarea.sleep(200)          -- pretend this is a slow network call
+    return len(product) * 10
+}
+
+a = fetch_price("laptop")
+b = fetch_price("mouse")
+show await a + await b
+```
+
+<Output>
+
+```text
+110
+```
+
+</Output>
+
+Both calls sleep for 200 ms, but because they run together the program waits
+about 200 ms in total, not 400.
+
+## Errors in tasks
+
+An error inside an async function arrives at the `await`, where `attempt`
+can handle it like any other error.
+
+```orion
+async fn risky(n) {
+    return 100 / n
+}
+
+attempt {
+    show await risky(0)
+} handle err {
+    show "Task failed: " + err
+}
+```
+
+<Output>
+
+```text
+Task failed: División por cero
+```
+
+</Output>
+
+## spawn and channels
+
+`spawn` starts a task you do not wait for. To get results back from it, use a
+channel from the `chan` module: one side sends values, the other receives them,
+and `chan.close` marks the end.
+
+```orion
+use "chan"
+
+async fn producer(out) {
+    for n in 1..6 {
+        chan.send(out, n * n)
+    }
+    chan.close(out)
+    return 0
+}
+
+squares = chan.create()
+spawn producer(squares)
+
+value = chan.recv(squares)
+while value != null {
+    show value
+    value = chan.recv(squares)
+}
+```
+
+<Output>
+
+```text
+1
+4
+9
+16
+25
+```
+
+</Output>
+
+After the channel is closed and empty, `chan.recv` returns `null`, which ends
+the loop.
+
+<Note type="warning">
+If a spawned task fails, its error is printed to the terminal, since nobody is
+waiting for it. A consumer reading from its channel would then wait forever,
+so keep the producer's work inside `attempt` when it can fail.
+</Note>

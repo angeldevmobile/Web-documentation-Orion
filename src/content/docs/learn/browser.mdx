@@ -1,0 +1,77 @@
+---
+title: "Automating a Browser"
+description: "Drive Chrome or Edge from Orion and extract data from a page."
+order: 11
+---
+
+The `browser` module controls the Chrome or Edge already installed on your
+machine through the DevTools protocol. There is no driver to download and no
+separate process to keep in sync.
+
+## Opening a page
+
+`with` opens the browser and guarantees it is closed when the block ends, even
+if something inside fails. `web.page` opens a tab and `web.goto` loads a URL.
+
+The example writes a small catalog page to disk first, so it runs without
+internet access.
+
+```orion
+use "browser" as web
+use "fs"
+
+fs.write("catalog.html", """
+<div class="card"><h3 class="title">Laptop Pro</h3><span class="price">$1,299.00</span><a href="/p/1">view</a></div>
+<div class="card"><h3 class="title">Mouse</h3><span class="price">$24.99</span><a href="/p/2">view</a></div>
+<div class="card"><h3 class="title">Monitor 27"</h3><span class="price">$349.50</span><a href="/p/3">view</a></div>
+""")
+page_url = "file:///" + fs.join(fs.cwd(), "catalog.html")
+
+with b = web.open() {
+    p = web.page(b)
+    web.goto(p, page_url)
+    items = web.extract(p, ".card", {
+        name:  ".title",
+        price: ".price|num",
+        url:   "a@href"
+    })
+
+    cheapest = items[0]
+    for item in items {
+        show "${item.name}: ${item.price}"
+        if item.price < cheapest.price { cheapest = item }
+    }
+    show "Cheapest: ${cheapest.name}"
+}
+```
+
+<Output>
+
+```text
+Laptop Pro: 1299
+Mouse: 24.99
+Monitor 27": 349.5
+Cheapest: Mouse
+```
+
+</Output>
+
+## How extract works
+
+`web.extract(tab, row, schema)` finds every element matching `row` and, for
+each one, reads the fields described in `schema`:
+
+| Spec | Reads |
+|---|---|
+| `".title"` | the text of the first `.title` inside the row |
+| `".price\|num"` | that text converted to a number (`$1,299.00` becomes `1299`) |
+| `"a@href"` | the `href` attribute of the first link |
+
+All the rows are read in a single call inside the page. That is what makes it
+fast: 500 products take a few milliseconds instead of seconds.
+
+<Note type="tip">
+The full module, including clicking, typing, waiting for content, downloads and
+parallel crawling, is described in the
+[browser reference](https://github.com/angeldevmobile/Orion/blob/master/BROWSER.md).
+</Note>

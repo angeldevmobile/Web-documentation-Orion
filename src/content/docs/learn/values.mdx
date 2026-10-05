@@ -1,0 +1,243 @@
+---
+title: "Values and Collections"
+description: "Numbers, text, booleans, lists and dicts, and the methods that come with them."
+order: 2
+---
+
+Every value in Orion has a type. `type()` tells you which one.
+
+```orion
+show type(42)
+show type(3.14)
+show type("text")
+show type(yes)
+show type(null)
+```
+
+<Output>
+
+```text
+int
+float
+string
+bool
+null
+```
+
+</Output>
+
+## Numbers
+
+Integers and decimals mix freely, and `/` always gives the exact result, never
+a truncated one. `**` is a power and `%` the remainder of a division.
+
+```orion
+show 7 / 2
+show 7 % 2
+show 2 ** 10
+show 10 + 2.5
+```
+
+<Output>
+
+```text
+3.5
+1
+1024
+12.5
+```
+
+</Output>
+
+An integer that grows past the 64-bit limit is an error, not a silent
+wrong number.
+
+## Text
+
+Strings have methods, called with a dot. They return a new string and leave the
+original as it was.
+
+```orion
+title = "  Learn Orion  "
+show title.trim()
+show title.trim().upper()
+show "a,b,c".split(",")
+show "hello".replace("l", "L")
+show "orion".starts_with("or")
+show len("orion")
+```
+
+<Output>
+
+```text
+Learn Orion
+LEARN ORION
+[a, b, c]
+heLLo
+yes
+5
+```
+
+</Output>
+
+Convert between text and numbers with `int()`, `float()` and `str()`.
+
+```orion
+show int("42") + 8
+show float("2.5") * 2
+show str(99) + " bottles"
+```
+
+<Output>
+
+```text
+50
+5
+99 bottles
+```
+
+</Output>
+
+## Booleans and null
+
+The two booleans are `yes` and `no`. Comparisons produce them, and `and`, `or`
+and `not` combine them. `null` means "no value".
+
+```orion
+age = 20
+show age >= 18
+show age >= 18 and age < 65
+show not (age > 30)
+missing = null
+show missing == null
+```
+
+<Output>
+
+```text
+yes
+yes
+yes
+yes
+```
+
+</Output>
+
+## Lists
+
+A list holds values in order. Indexes start at `0`, and a negative index counts
+from the end.
+
+```orion
+fruits = ["apple", "banana", "cherry"]
+show fruits[0]
+show fruits[-1]
+show len(fruits)
+
+fruits.push("date")
+show fruits
+show fruits.contains("banana")
+show fruits.join(" | ")
+```
+
+<Output>
+
+```text
+apple
+cherry
+3
+[apple, banana, cherry, date]
+yes
+apple | banana | cherry | date
+```
+
+</Output>
+
+Lists also transform and summarize their contents. `map` builds a new list by
+applying a function to each element, `filter` keeps the ones that pass a test,
+and `sum`, `min` and `max` do what their names say. The `x => x * 2` part is a
+small function; lesson 4 explains it.
+
+```orion
+numbers = [4, 8, 15, 16, 23, 42]
+show numbers.map(x => x * 2)
+show numbers.filter(x => x > 15)
+show numbers.sum()
+```
+
+<Output>
+
+```text
+[8, 16, 30, 32, 46, 84]
+[16, 23, 42]
+108
+```
+
+</Output>
+
+`sort()` orders a list in place.
+
+```orion
+scores = [72, 95, 64, 88]
+scores.sort()
+show scores
+```
+
+<Output>
+
+```text
+[64, 72, 88, 95]
+```
+
+</Output>
+
+## Dicts
+
+A dict maps keys to values. Keys keep the order in which you added them.
+Read a value with `dict["key"]` or with a dot.
+
+```orion
+user = {name: "Ana", age: 30}
+show user["name"]
+show user.age
+
+user["city"] = "Lima"
+show user
+show user.keys()
+show user.has_key("email")
+```
+
+<Output>
+
+```text
+Ana
+30
+{name: Ana, age: 30, city: Lima}
+[name, age, city]
+no
+```
+
+</Output>
+
+## Try it
+
+Given `prices = [12.5, 8, 20, 4.25]`, print how many prices there are, their
+sum, and the list of prices above 10.
+
+<details>
+<summary>Show a solution</summary>
+
+```orion
+prices = [12.5, 8, 20, 4.25]
+show len(prices)
+show prices.sum()
+show prices.filter(p => p > 10)
+```
+
+```text
+4
+44.75
+[12.5, 20]
+```
+
+</details>

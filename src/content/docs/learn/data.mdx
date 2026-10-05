@@ -1,0 +1,143 @@
+---
+title: "Working with Data"
+description: "Load a CSV into a frame, summarize it and export a report."
+order: 8
+---
+
+`frame` is Orion's engine for tables of data. It loads CSV files straight into
+typed columns, computes statistics in native code, and writes results to Excel,
+CSV or JSON. It is built in, so there is no data library to install.
+
+## Loading a file
+
+This example first writes a small CSV, so you can run it as it is.
+
+```orion
+use "fs"
+use "frame"
+
+fs.write("sales.csv", """region,product,amount
+North,CRM,1200
+South,CRM,800
+North,Cloud,950
+South,Cloud,1500
+North,CRM,700""")
+
+f = frame.open("sales.csv")
+frame.peek(f, 3)
+show frame.size(f)
+show frame.schema(f)
+```
+
+<Output>
+
+```text
+┌          ┬          ┬          ┐
+│ region   │ product  │ amount   │
+├          ┼          ┼          ┤
+│ North    │ CRM      │ 1200     │
+│ South    │ CRM      │ 800      │
+│ North    │ Cloud    │ 950      │
+└          ┴          ┴          ┘
+  ... 5 rows in total
+{rows: 5, cols: 3}
+{region: string, product: string, amount: int}
+```
+
+</Output>
+
+`frame.open` detected that `amount` holds integers and the other columns hold
+text, without being told.
+
+## Statistics
+
+`frame.stats` summarizes a numeric column in one call.
+
+```orion
+use "frame"
+
+f = frame.open("sales.csv")
+show frame.stats(f, "amount")
+```
+
+<Output>
+
+```text
+{count: 5, mean: 1030, std: 289.1366458960192, min: 700, p25: 800, median: 950, p75: 1200, max: 1500}
+```
+
+</Output>
+
+## Grouping and sorting
+
+`frame.group` adds up a column for each value of another one; `frame.sort`
+orders the rows. `frame.to_list` turns a frame back into a list of dicts.
+
+```orion
+use "frame"
+
+f = frame.open("sales.csv")
+
+by_region = frame.group(f, "region", "amount", "sum")
+show frame.to_list(by_region)
+
+top = frame.sort(f, "amount", "desc")
+show frame.to_list(frame.head(top, 2))
+```
+
+<Output>
+
+```text
+[{region: North, amount: 2850}, {region: South, amount: 2300}]
+[{region: South, product: Cloud, amount: 1500}, {region: North, product: CRM, amount: 1200}]
+```
+
+</Output>
+
+## Exporting a report
+
+One call writes the result to an Excel file that opens in any spreadsheet.
+
+```orion
+use "fs"
+use "frame"
+
+f = frame.open("sales.csv")
+by_region = frame.group(f, "region", "amount", "sum")
+frame.to_excel(by_region, "by_region.xlsx")
+show fs.exists("by_region.xlsx")
+```
+
+<Output>
+
+```text
+yes
+```
+
+</Output>
+
+<Note type="tip">
+For very large files, `frame.each_chunk` and `frame.scan_stats` process the
+data in blocks without loading it all into memory. See the
+[frame reference](/modules/frame).
+</Note>
+
+## Try it
+
+Using `sales.csv`, print the total amount per product.
+
+<details>
+<summary>Show a solution</summary>
+
+```orion
+use "frame"
+
+f = frame.open("sales.csv")
+show frame.to_list(frame.group(f, "product", "amount", "sum"))
+```
+
+```text
+[{product: CRM, amount: 2700}, {product: Cloud, amount: 2450}]
+```
+
+</details>

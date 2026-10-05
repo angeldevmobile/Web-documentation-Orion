@@ -1,0 +1,121 @@
+---
+title: "The Standard Library"
+description: "Import modules with use: files, JSON and dates."
+order: 7
+---
+
+Orion ships with 61 modules inside the executable. Bring one into a program
+with `use "name"` and call its functions through the module name. There is
+nothing to install.
+
+```orion
+use "fs"
+use "json"
+use "datetime" as dt   -- an alias gives the module a shorter name
+```
+
+## Files with fs
+
+`fs` reads, writes and lists files. Paths are relative to the folder you run
+the program from.
+
+```orion
+use "fs"
+
+fs.write("notes.txt", "first line")
+fs.append("notes.txt", "\nsecond line")
+
+show fs.read("notes.txt")
+show fs.exists("notes.txt")
+show fs.exists("missing.txt")
+```
+
+<Output>
+
+```text
+first line
+second line
+yes
+no
+```
+
+</Output>
+
+## JSON
+
+`json.forge` turns a value into JSON text and `json.parse` reads it back.
+`json.emit` and `json.absorb` do the same directly with a file.
+
+```orion
+use "json"
+
+config = {name: "my-app", port: 8080, debug: no}
+text = json.forge(config)
+show text
+
+again = json.parse(text)
+show again["port"] + 1
+
+json.emit("config.json", config)
+show json.absorb("config.json")["name"]
+```
+
+<Output>
+
+```text
+{"name":"my-app","port":8080,"debug":false}
+8081
+my-app
+```
+
+</Output>
+
+## Dates
+
+`datetime` works with dates written as text in `YYYY-MM-DD` form.
+
+```orion
+use "datetime" as dt
+
+show dt.add_days("2026-01-30", 3)
+show dt.diff_days("2026-01-01", "2026-12-31")
+show dt.weekday("2026-10-04")
+```
+
+<Output>
+
+```text
+2026-02-02T00:00:00
+364
+Sunday
+```
+
+</Output>
+
+## Finding what a module offers
+
+Every module and function is listed in the [module reference](/modules). In
+VS Code, typing the module name and a dot shows its functions with their
+descriptions.
+
+## Try it
+
+Write a list of three tasks to `tasks.json`, read the file back, and print how
+many tasks it contains.
+
+<details>
+<summary>Show a solution</summary>
+
+```orion
+use "json"
+
+json.emit("tasks.json", ["write the report", "review the code", "ship it"])
+tasks = json.absorb("tasks.json")
+show "${len(tasks)} tasks"
+```
+
+```text
+3 tasks
+```
+
+</details>

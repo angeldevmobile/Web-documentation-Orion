@@ -1,0 +1,126 @@
+---
+title: "When Things Go Wrong"
+description: "Recover from errors with attempt and handle, and raise your own with error."
+order: 5
+---
+
+Some operations can fail: dividing by zero, reading a missing file, converting
+`"abc"` to a number. When that happens and nothing handles it, the program
+stops and Orion shows the line that failed and the code around it.
+
+## attempt and handle
+
+Wrap code that may fail in `attempt`. If anything inside fails, Orion jumps to
+the `handle` block, which receives the error message, and the program carries
+on.
+
+```orion
+attempt {
+    value = int("abc")
+    show "This line never runs"
+} handle err {
+    show "Could not convert: " + err
+}
+
+show "The program continues"
+```
+
+<Output>
+
+```text
+Could not convert: Cannot convert 'abc' to int
+The program continues
+```
+
+</Output>
+
+The error does not have to happen directly inside `attempt`. An error in a
+function called from it, however deep, arrives at the same `handle`.
+
+## Raising your own errors
+
+`error "message"` stops the current operation with your own message. Use it
+when the input does not make sense.
+
+```orion
+fn withdraw(balance, amount) {
+    if amount > balance {
+        error "insufficient funds: balance is ${balance}"
+    }
+    return balance - amount
+}
+
+attempt {
+    show withdraw(100, 30)
+    show withdraw(100, 500)
+} handle err {
+    show "Error: " + err
+}
+```
+
+<Output>
+
+```text
+70
+Error: insufficient funds: balance is 100
+```
+
+</Output>
+
+## Errors you will meet
+
+The message tells you what went wrong. A few common ones:
+
+```orion
+attempt { x = 10 / 0 } handle e { show e }
+attempt { x = [1, 2, 3][10] } handle e { show e }
+attempt { x = {a: 1}["b"] } handle e { show e }
+attempt { x = "text" - 1 } handle e { show e }
+```
+
+<Output>
+
+```text
+División por cero
+Index 10 out of range
+Key 'b' not found
+Cannot subtract string - int
+```
+
+</Output>
+
+<Note type="tip">
+Calling a function that does not exist is caught before the program even
+starts: `orion` checks every call against the standard library first, so a
+typo such as `json.stringify` is reported with its line before anything runs.
+</Note>
+
+## Try it
+
+Write `safe_divide(a, b)` that returns `a / b`, or `0` with a message when
+`b` is zero, using `attempt` and `handle`.
+
+<details>
+<summary>Show a solution</summary>
+
+```orion
+fn safe_divide(a, b) {
+    attempt {
+        return a / b
+    } handle err {
+        show "Warning: " + err
+        return 0
+    }
+}
+
+show safe_divide(10, 4)
+show safe_divide(10, 0)
+```
+
+```text
+2.5
+Warning: División por cero
+0
+```
+
+</details>
