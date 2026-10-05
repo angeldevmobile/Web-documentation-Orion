@@ -40,6 +40,7 @@ const Navbar = () => {
   const navLinks: { name: string; id?: string; to?: string }[] = [
     { name: "Use cases",   id: "use-cases" },
     { name: "Performance", id: "performance" },
+    { name: "Learn",       to: "/docs/learn/first-steps" },
     { name: "Docs",        to: "/docs" },
     { name: "Get started", id: "get-started" },
   ];
