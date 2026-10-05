@@ -1,0 +1,69 @@
+---
+title: "frame"
+description: "Orion's columnar data engine for tabular data."
+order: 9
+---
+
+`frame` is Orion's columnar data engine for tabular data, similar to a data
+frame. It is implemented natively in Rust, stores data in a compact binary
+format (`.odf`), and can stream large files with near-constant memory.
+
+The point is having a fast data engine built into the language, with nothing to
+install. It is the option for scripts and automation where you would otherwise
+reach for plain Python and lose speed, or add a heavy dependency to gain it.
+
+```orion
+use "frame" as f
+
+rows = [
+  { "name": "Ana", "age": 30 },
+  { "name": "Luis", "age": 25 }
+]
+
+d = f.from_list(rows)
+show(f.size(d))     -- { rows: 2, cols: 2 }
+show(f.schema(d))   -- { name: string, age: int }
+```
+
+| Signature | Returns | Description |
+| --------- | ------- | ----------- |
+| `f.from_list(rows)` | `frame` | Builds a frame from a list of dicts. |
+| `f.from_txt(path)` | `frame` | Loads a frame from a text or CSV file. |
+| `f.open(path)` | `frame` | Opens a frame from a file, auto-detecting the format. |
+| `f.size(frame)` | `dict` | Row and column counts. |
+| `f.schema(frame)` | `dict` | Column names and their types. |
+| `f.peek(frame)` | `null` | Prints a preview of the frame. |
+| `f.col(frame, name)` | `list` | Returns a column as a list. |
+| `f.keep(frame, cols)` | `frame` | Keeps only the given columns. |
+| `f.drop(frame, cols)` | `frame` | Removes the given columns. |
+| `f.where_(frame, field, op, value)` | `frame` | Filters rows by a condition. |
+| `f.to_excel(frame, path)` | `null` | Exports the frame to an Excel file. |
+| `f.to_list(frame)` | `list` | Converts the frame to a list of dicts. |
+
+## Performance
+
+The same task in Orion and Python: load 500,000 rows and compute a sum and a
+mean. Python uses its standard library `csv` module, not pandas. Measured on a
+warm run; all three pipelines produce identical results.
+
+| Pipeline | Time | Peak memory |
+| -------- | ---- | ----------- |
+| Python 3.13 (stdlib csv) | 1034 ms | 104 MB |
+| Orion `frame.open` (CSV) | 421 ms | 104 MB |
+| **Orion `frame.open` (.odf)** | **132 ms** | **69 MB** |
+
+With the binary `.odf` format the same job runs about **7.8x faster than the
+Python baseline above** and uses roughly **a third less memory**.
+
+<Note>
+This compares against Python's standard library, which is the fair equivalent of
+`frame.open`. It is not a comparison against pandas or polars, which are
+specialized C and Rust libraries. The goal of `frame` is dependency-free
+performance built into the language, not to replace a dedicated analytics stack.
+</Note>
+
+<Note type="tip">
+The binary `.odf` format is much smaller than CSV, and the streaming functions
+keep memory nearly flat when converting very large files. See the full API in
+the [frame module reference](/modules/frame).
+</Note>

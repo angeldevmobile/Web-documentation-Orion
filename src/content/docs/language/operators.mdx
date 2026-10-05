@@ -1,0 +1,45 @@
+---
+title: "Operators"
+description: "Arithmetic, comparison, logic, compound assignment and strings."
+order: 2
+---
+
+## Arithmetic
+
+`+`, `-`, `*`, `/`, and `%` (modulo).
+
+```orion
+show(10 + 3)
+show(10 % 3)
+```
+
+## Comparison
+
+`==`, `!=`, `<`, `>`, `<=`, `>=`.
+
+## Logical
+
+Logical operators are the words `and`, `or`, and `not`.
+
+```orion
+if x > 0 and not done {
+  show("keep going")
+}
+```
+
+## Compound assignment
+
+```orion
+x = 5
+x += 3
+x *= 2
+show(x)
+```
+
+## String concatenation and interpolation
+
+```orion
+greeting = "Hello, " + "World"
+name = "Orion"
+show("Welcome to ${name}")
+```

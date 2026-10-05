@@ -1,0 +1,26 @@
+---
+title: "json"
+description: "Parse and serialize JSON."
+order: 6
+---
+
+Parse and serialize JSON, and work with structured data.
+
+```orion
+use "json"
+data = json.parse("{\"name\": \"Ana\"}")
+show(data["name"])
+show(json.forge({ "ok": yes }))
+```
+
+| Signature | Returns | Description |
+| --------- | ------- | ----------- |
+| `json.parse(text)` | `any` | Parses a JSON string into an Orion value. |
+| `json.forge(value)` | `string` | Serializes a value to JSON (sorted keys). |
+| `json.forge_pretty(value)` | `string` | Serializes with indentation. |
+| `json.absorb(path)` | `any` | Reads and parses a JSON file. |
+| `json.emit(path, value)` | `bool` | Serializes a value and writes it to a file. |
+| `json.trace(obj, "user.name")` | `any` | Reads a nested value by dotted path. |
+| `json.fuse(a, b)` | `dict` | Merges two dicts. |
+| `json.purify(obj)` | `any` | Drops null entries. |
+| `json.validate(obj, schema)` | `bool` | Validates a value against a schema. |

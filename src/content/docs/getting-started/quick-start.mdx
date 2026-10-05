@@ -1,0 +1,59 @@
+---
+title: "Quick Start"
+description: "Write and run your first Orion program."
+order: 3
+---
+
+Orion source files use the `.orx` extension.
+
+## Hello, World
+
+Create a file named `hello.orx`:
+
+```orion
+show("Hello, World!")
+```
+
+Run it:
+
+```bash
+orion run hello.orx
+```
+
+Running `orion hello.orx` without a subcommand does the same thing.
+
+## Variables and interpolation
+
+Variables are declared by assignment, with no keyword. Strings support `${...}`
+interpolation.
+
+```orion
+name = "Orion"
+version = 1
+show("Language: ${name} v${version}")
+```
+
+<Note>
+Orion has no `let` or `var` keyword. Writing `let x = 5` is an error; use `x = 5`.
+</Note>
+
+## Functions
+
+```orion
+fn double(x) {
+  return x * 2
+}
+
+show(double(21))
+```
+
+## Create a project
+
+```bash
+orion new my-project
+cd my-project
+orion run main.orx
+```
+
+`orion new` generates a project scaffold with a main `.orx` file and an
+`orion.json` manifest.

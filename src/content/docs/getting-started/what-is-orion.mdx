@@ -1,0 +1,32 @@
+---
+title: "What is Orion"
+description: "A general-purpose language implemented in Rust, with a bytecode VM, a JIT and native compilation."
+order: 1
+---
+
+Orion is a general-purpose programming language implemented in Rust. Code runs
+on a stack-based virtual machine with a Cranelift JIT backend for native-speed
+execution, and it can also be compiled ahead of time into a standalone native
+executable.
+
+The language favors a clean, readable syntax with optional static typing,
+object-oriented programming through `shape` definitions, native async
+concurrency, a broad standard library, and built-in AI statements (`think`,
+`learn`, `sense`).
+
+<Note>
+Orion is in active development (Beta). It is stable enough to build with, and new
+features, tests, and improvements land regularly. Feedback and contributions are
+welcome.
+</Note>
+
+## Key characteristics
+
+- Bytecode compilation executed by a stack-based virtual machine.
+- Native-speed execution through a Cranelift JIT backend.
+- Ahead-of-time compilation to native executables with `orion build`.
+- Optional static type checking with a built-in type checker.
+- Object-oriented programming with `shape` definitions.
+- Native async and await, tasks, and channels.
+- Standard library for files, JSON, networking, cryptography, and data.
+- Interactive REPL and a VS Code extension with language server support.

@@ -1,0 +1,20 @@
+---
+title: "Type System"
+description: "Optional annotations checked by the built-in type checker."
+order: 9
+---
+
+Types are optional. When you add annotations, the built-in checker verifies them
+and reports mismatches, unused assignments, and undefined variables.
+
+```orion
+fn area(w: int, h: int) -> int {
+  return w * h
+}
+```
+
+Run the checker explicitly with:
+
+```bash
+orion check --types program.orx
+```

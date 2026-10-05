@@ -1,0 +1,34 @@
+---
+title: "Running and Building"
+description: "Run, compile and check programs from the command line."
+order: 1
+---
+
+The CLI is invoked as `orion <command> [options]`. Passing a file directly is a
+shortcut for `orion run`.
+
+| Command | Description |
+| ------- | ----------- |
+| `orion run file.orx` | Compiles and runs a file. Add `--no-typecheck` to skip type checking. |
+| `orion file.orx` | Shortcut for `orion run`. |
+| `orion jit file.orx` | Runs with the Cranelift JIT backend. |
+| `orion build file.orx` | Compiles to a native executable. Use `-o` to name the output. |
+| `orion compile file.orx` | Compiles to `.orbc` bytecode. |
+| `orion check file.orx` | Checks syntax and types. Add `--types` for full type checking. |
+| `orion new project` | Creates a new project scaffold. |
+| `orion test [folder]` | Runs tests (files named `test_*.orx`). |
+| `orion repl` | Starts the interactive REPL. |
+| `orion doctor` | Checks your environment. |
+
+## Examples
+
+```bash
+orion run app.orx
+orion build app.orx -o app.exe    # native executable
+orion check --types app.orx
+```
+
+<Note type="warning">
+`build` produces a native executable; `compile` produces `.orbc` bytecode. They
+are different commands.
+</Note>

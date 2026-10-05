@@ -1,0 +1,26 @@
+---
+title: "fs"
+description: "Read and write files and directories."
+order: 5
+---
+
+Read and write files and directories.
+
+```orion
+use "fs"
+fs.write("notes.txt", "Hello")
+if fs.exists("notes.txt") {
+  show(fs.read("notes.txt"))
+}
+```
+
+| Signature | Returns | Description |
+| --------- | ------- | ----------- |
+| `fs.read(path)` | `string` | Reads an entire text file. |
+| `fs.write(path, text)` | `null` | Writes (overwrites) a file. |
+| `fs.append(path, text)` | `null` | Appends to the end of a file. |
+| `fs.exists(path)` | `bool` | Whether the file or folder exists. |
+| `fs.ls(path)` | `list` | Lists the contents of a folder. |
+| `fs.mkdir(path)` | `null` | Creates a folder and its parents. |
+| `fs.delete(path)` | `null` | Deletes a file or folder. |
+| `fs.is_dir(path)` | `bool` | Whether the path is a folder. |

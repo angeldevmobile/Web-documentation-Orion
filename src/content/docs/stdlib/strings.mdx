@@ -1,0 +1,26 @@
+---
+title: "strings"
+description: "Text utilities, as methods on strings and through the strings module."
+order: 2
+---
+
+Text utilities. These are available both as methods on string values and
+through the `strings` module.
+
+```orion
+title = "  orion language  "
+show(title.strip().upper())
+show("a,b,c".split(","))
+```
+
+| Signature | Returns | Description |
+| --------- | ------- | ----------- |
+| `s.upper()` | `string` | Uppercase copy of the string. |
+| `s.lower()` | `string` | Lowercase copy of the string. |
+| `s.strip()` | `string` | Removes leading and trailing whitespace. |
+| `s.reverse()` | `string` | Reverses the characters. |
+| `s.title()` | `string` | Capitalizes the first letter of each word. |
+| `s.split(sep)` | `list` | Splits into a list on the separator. |
+| `s.replace(a, b)` | `string` | Replaces occurrences of a with b. |
+| `s.contains(sub)` | `bool` | Whether the string contains a substring. |
+| `s.length()` | `int` | Number of characters. |

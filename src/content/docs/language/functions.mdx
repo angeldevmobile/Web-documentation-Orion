@@ -1,0 +1,46 @@
+---
+title: "Functions"
+description: "Definitions, default parameters and lambdas."
+order: 4
+---
+
+## Definition
+
+```orion
+fn add(a, b) {
+  return a + b
+}
+
+show(add(2, 3))
+```
+
+## Default parameters
+
+```orion
+fn greet(name = "World") {
+  show("Hi " + name)
+}
+
+greet()
+greet("Orion")
+```
+
+## Lambdas
+
+Functions are values and can be assigned to variables. Lambdas capture the
+surrounding scope. There is a block form and a concise arrow form.
+
+```orion
+-- block form
+double = fn(x) { return x * 2 }
+
+-- arrow form: params => expression
+triple = x => x * 3
+add = (a, b) => a + b
+
+show(double(21))
+show(add(2, 3))
+```
+
+The arrow form is convenient for inline callbacks, for example
+`nums.map(x => x * 2)`.

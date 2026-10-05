@@ -1,0 +1,11 @@
+```orion
+use "frame"
+
+f = frame.open("sales.csv")      -- typed columns, no pandas
+frame.peek(f, 5)
+show frame.stats(f, "sale")      -- mean, std, median...
+
+by_region = frame.group(f, "region", "sale", "sum")
+top       = frame.sort(f, "sale", "desc")
+frame.to_excel(by_region, "by_region.xlsx")
+```

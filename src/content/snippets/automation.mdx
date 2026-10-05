@@ -1,0 +1,15 @@
+```orion
+use "fs"
+use "zip"
+use "ssh"
+
+-- Bundle today's reports and ship them to a server
+zip.compress("reports/", "reports.zip")
+show "${len(fs.ls("reports/"))} reports packed"
+
+key = "/home/me/.ssh/id_rsa"
+s = ssh.connect_key("server.com", 22, "deploy", key)
+ssh.upload(s, "reports.zip", "/srv/reports/reports.zip")
+show ssh.exec(s, "ls -lh /srv/reports").out
+ssh.close(s)
+```

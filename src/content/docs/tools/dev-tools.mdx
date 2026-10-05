@@ -1,0 +1,18 @@
+---
+title: "Development Tools"
+description: "Format, watch, benchmark, debug and document your code."
+order: 2
+---
+
+| Command | Description |
+| ------- | ----------- |
+| `orion fmt file.orx` | Formats source code. Use `--write` to apply, `--check` for CI. |
+| `orion watch file.orx` | Re-runs the file automatically on every save. |
+| `orion bench file.orx` | Benchmarks a program. Use `--runs=N` to set the number of runs. |
+| `orion debug file.orx` | Interactive debugger with breakpoints, step, and watch. |
+| `orion docs file` | Generates Markdown documentation. Use `--output=dir`. |
+
+```bash
+orion fmt app.orx --write
+orion watch server.orx
+```

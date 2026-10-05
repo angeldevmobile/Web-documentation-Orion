@@ -134,6 +134,12 @@ All colors MUST be HSL.
   pre {
     @apply font-mono text-sm bg-card p-4 rounded-lg overflow-x-auto border border-border;
   }
+
+  /* Dentro de un bloque, el <code> no lleva el fondo del código en línea. */
+  pre code {
+    @apply bg-transparent p-0 rounded-none;
+    font-size: inherit;
+  }
 }
 
 /* Docs content: override small text sizes for better readability */
@@ -175,4 +181,15 @@ All colors MUST be HSL.
   display: inline-block;
   opacity: 0;
   animation: orion-letter 0.5s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+/* Código coloreado por Shiki con dos temas: cada token trae --shiki-light y
+   --shiki-dark, y aquí se elige según la clase `dark` de <html>. */
+.shiki,
+.shiki span {
+  color: var(--shiki-light);
+}
+html.dark .shiki,
+html.dark .shiki span {
+  color: var(--shiki-dark);
 }

@@ -26,10 +26,10 @@ const Footer = () => {
     {
       title: "Documentation",
       links: [
-        { name: "Introduction", to: "/docs" },
-        { name: "Language guide", to: "/docs" },
-        { name: "CLI and tooling", to: "/docs" },
-        { name: "Standard library", to: "/docs" },
+        { name: "Introduction", to: "/docs/getting-started/what-is-orion" },
+        { name: "Language guide", to: "/docs/language/variables" },
+        { name: "CLI and tooling", to: "/docs/tools/running" },
+        { name: "Standard library", to: "/docs/stdlib/overview" },
         { name: "Module reference", to: "/modules" },
       ],
     },
@@ -82,8 +82,8 @@ const Footer = () => {
               <h3 className="text-lg font-bold text-foreground">Orion Language</h3>
             </div>
             <p className="text-sm text-muted-foreground leading-relaxed max-w-xs">
-              A modern programming language with native compilation, a complete standard
-              library, and integrated development tools.
+              One language for backend, scripts and data: a single executable with 61
+              built-in modules and a JIT to native code.
             </p>
             <div className="flex gap-4 pt-1">
               <a

@@ -1,0 +1,26 @@
+---
+title: "Interactive REPL"
+description: "Try expressions and definitions interactively."
+order: 4
+---
+
+The `orion repl` command starts an interactive read-eval-print loop, useful for
+trying out expressions and definitions.
+
+```text
+orion repl
+
+orion> 2 + 3
+5
+orion> fn double(x) { return x * 2 }
+orion> double(21)
+42
+orion> name = "World"
+orion> show("Hello, ${name}!")
+Hello, World!
+```
+
+<Note type="tip">
+Definitions such as functions and shapes persist across prompts within the same
+session.
+</Note>

@@ -1,0 +1,54 @@
+---
+title: "Shapes (OOP)"
+description: "Object types with fields, a constructor and methods."
+order: 7
+---
+
+A `shape` defines an object type with fields and methods. The constructor is
+`on_create`, methods are declared with `act`, and the current instance is `me`.
+
+## Defining a shape
+
+```orion
+shape Point {
+  x
+  y
+  on_create(a, b) {
+    me.x = a
+    me.y = b
+  }
+  act sum() {
+    return me.x + me.y
+  }
+}
+
+p = Point(3, 4)
+show(p.sum())
+```
+
+<Note type="warning">
+The instance reference is `me`, not `self` or `this`.
+</Note>
+
+## Composition with using
+
+A shape can reuse other shapes with `using [ ... ]`.
+
+```orion
+shape Base {
+  act hello() { show("hello from base") }
+}
+
+shape Child using [Base] {
+}
+
+c = Child()
+c.hello()
+```
+
+## Type checks with is
+
+```orion
+a = Point(1, 2)
+show(a is Point)
+```

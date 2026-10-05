@@ -1,0 +1,25 @@
+---
+title: "AI Primitives"
+description: "The think, learn and sense statements."
+order: 10
+---
+
+Orion includes built-in statements that call language models directly: `think`,
+`learn`, and `sense`. They are statements, not expressions: `think` sends a
+prompt and prints the response, so it cannot be assigned to a variable. To
+capture the answer instead, use the `ai` module.
+
+```orion
+think "What is the speed of light?"
+```
+
+```orion
+use "ai" as ai
+answer = ai.ask("What is the speed of light?")
+show(answer)
+```
+
+<Note>
+These statements need an API key. Set `ANTHROPIC_API_KEY` in your `.env`;
+without it the interpreter stops with a message instead of running the call.
+</Note>

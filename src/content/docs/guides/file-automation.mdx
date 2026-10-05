@@ -1,0 +1,46 @@
+---
+title: "Automate File Processing"
+description: "Read a set of files, process them and write a summary."
+order: 2
+---
+
+A common automation task: read a set of files, process them, and write a
+summary. This uses the `fs` and `json` modules.
+
+```orion
+use fs
+use json
+
+-- Create some input files
+fs.mkdir("work")
+fs.write("work/a.txt", "hello world")
+fs.write("work/b.txt", "orion automation engine")
+fs.write("work/c.txt", "beta")
+
+-- Process every file and build a report
+files = fs.ls("work")
+report = {}
+total = 0
+for path in files {
+  content = fs.read(path)
+  report[path] = len(content)
+  total = total + len(content)
+}
+
+-- Write the result
+fs.write("work/report.json", json.forge(report))
+show("Files processed: " + str(len(files)))
+show("Total characters: " + str(total))
+```
+
+Output:
+
+```text
+Files processed: 3
+Total characters: 38
+```
+
+<Note type="tip">
+`fs.ls` returns full relative paths (for example `work/a.txt`), so you can pass
+each entry straight to `fs.read`.
+</Note>

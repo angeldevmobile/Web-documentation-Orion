@@ -1,0 +1,52 @@
+---
+title: "Variables and Types"
+description: "Assignment, constants, primitive types, collections and annotations."
+order: 1
+---
+
+Variables are declared by assignment. There is no `let` or `var` keyword. Type
+annotations are optional and, when present, are checked with
+`orion check --types`.
+
+## Declaration and constants
+
+```orion
+name = "Orion"
+version = 1
+const PI = 3.14159
+```
+
+<Note>
+Orion has no `let` keyword. Writing `let x = 5` is an error; use `x = 5`. Use
+`const` for values that must not change.
+</Note>
+
+## Primitive types
+
+| Type     | Example      | Notes                                   |
+| -------- | ------------ | --------------------------------------- |
+| `int`    | `42`, `-7`   | 64-bit signed integer                   |
+| `float`  | `3.14`, `-0.5` | 64-bit floating point                 |
+| `string` | `"hello"`    | UTF-8, supports `${...}` interpolation  |
+| `bool`   | `yes`, `no`  | Boolean literals are `yes` and `no`     |
+| `null`   | `null`       | Absence of a value                      |
+
+<Note type="warning">
+Booleans are `yes` and `no`, not `true` and `false`.
+</Note>
+
+## Collections
+
+```orion
+numbers = [1, 2, 3]
+user = { "name": "Ana", "age": 30 }
+show(numbers[0])
+show(user["name"])
+```
+
+## Type annotations
+
+```orion
+name: string = "Orion"
+age: int = 25
+```

@@ -1,0 +1,29 @@
+```orion
+use "router"
+use "middleware"
+
+limiter = middleware.rate_limit(100, 60)   -- 100 per minute
+
+fn guard(req) {
+    if not middleware.check_rate(limiter, req["path"]) {
+        return { "status": 429, "body": "Too many requests" }
+    }
+    return null                -- go on to the handler
+}
+
+fn view_user(req) {
+    id = req["params"]["id"]
+    return { "status": 200, "body": { "id": id } }
+}
+
+fn fallback(req) {
+    return { "status": 404, "body": "not found" }
+}
+
+r = router.new()
+router.use_middleware(r, "guard")
+router.get(r, "/users/:id", "view_user")
+router.attach(r)
+
+serve 8080 fallback
+```

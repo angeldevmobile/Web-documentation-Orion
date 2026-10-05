@@ -1,0 +1,14 @@
+```orion
+use "llm"
+use "embed"
+
+-- Any provider: OpenAI, Anthropic, Gemini or Ollama
+summary = llm.query("auto", "Summarize in 3 points: " + report)
+show summary
+
+-- Semantic search over your documents, no vector DB
+hits = embed.search("When does it expire?", documents, 3)
+for h in hits {
+    show "${h.score}  ${h.text}"
+}
+```

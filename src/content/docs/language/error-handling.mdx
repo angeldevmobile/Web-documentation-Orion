@@ -1,0 +1,16 @@
+---
+title: "Error Handling"
+description: "Recover from errors with attempt and handle."
+order: 5
+---
+
+Wrap code that may fail in an `attempt` block and recover in the matching
+`handle` block, which receives the error.
+
+```orion
+attempt {
+  result = 10 / 0
+} handle err {
+  show("Something went wrong")
+}
+```

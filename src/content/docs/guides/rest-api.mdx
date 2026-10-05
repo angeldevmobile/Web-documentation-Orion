@@ -1,0 +1,60 @@
+---
+title: "Build a REST API"
+description: "A JSON API with the built-in HTTP server."
+order: 1
+---
+
+Orion has a built-in HTTP server. The `serve` statement takes a port and a router
+function; the router receives each request as a dict and returns a response. The
+server is multi-threaded.
+
+## The server
+
+```orion
+use json
+
+fn json_response(status, body) {
+  return { "status": status, "body": json.forge(body), "content_type": "application/json" }
+}
+
+fn router(req) {
+  path = req["path"]
+  method = req["method"]
+
+  if path == "/" {
+    return json_response(200, { "message": "Orion backend is running" })
+  }
+
+  if path == "/api/users" {
+    return json_response(200, { "users": ["Ana", "Luis", "Sofia"], "count": 3 })
+  }
+
+  if path == "/echo" and method == "POST" {
+    return json_response(200, { "you_sent": req["body"] })
+  }
+
+  return json_response(404, { "error": "not found", "path": path })
+}
+
+serve 8123 router
+```
+
+## Run and test it
+
+```bash
+orion run api.orx
+```
+
+Then, from another terminal:
+
+```bash
+curl http://localhost:8123/
+curl http://localhost:8123/api/users
+curl -X POST -d 'hello' http://localhost:8123/echo
+```
+
+<Note>
+Each request runs in its own frame, so in-memory variables do not persist
+between requests. For state that must survive, use a file or a database (for
+example the `fs`, `json`, or `db` modules).
+</Note>

@@ -1,0 +1,33 @@
+---
+title: "math"
+description: "Mathematical constants and functions."
+order: 3
+---
+
+Mathematical constants and functions. Unlike the native modules, math ships as
+an Orion package, so it is imported by path. Several of its functions (`sqrt`,
+`abs`, `round`, `floor`, `ceil`, `min`, `max`) are also available globally with
+no import at all.
+
+```orion
+use "packages/math" as m
+show(m.PI)
+show(m.sqrt(144))
+show(m.clamp(15, 0, 10))
+```
+
+| Signature | Returns | Description |
+| --------- | ------- | ----------- |
+| `m.PI` | `float` | The constant pi (3.14159...). |
+| `m.E` | `float` | The constant e (2.71828...). |
+| `m.TAU` | `float` | The constant tau (2 pi). |
+| `m.PHI` | `float` | The golden ratio (1.61803...). |
+| `m.sqrt(x)` | `float` | Square root (Newton-Raphson). |
+| `m.abs(x)` | `number` | Absolute value. |
+| `m.floor(x)` | `int` | Rounds down. |
+| `m.ceil(x)` | `int` | Rounds up. |
+| `m.max(a, b)` | `number` | The larger of two values. |
+| `m.min(a, b)` | `number` | The smaller of two values. |
+| `m.pow(base, exp)` | `number` | Base raised to an integer exponent. |
+| `m.factorial(n)` | `int` | Factorial of n. |
+| `m.clamp(x, lo, hi)` | `number` | Constrains x to the range [lo, hi]. |

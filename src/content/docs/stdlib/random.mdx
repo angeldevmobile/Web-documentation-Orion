@@ -1,0 +1,23 @@
+---
+title: "random"
+description: "Random numbers, choices and identifiers."
+order: 8
+---
+
+Random numbers, choices, and identifiers.
+
+```orion
+use "random" as rnd
+show(rnd.int(1, 6))
+show(rnd.choice(["red", "green", "blue"]))
+```
+
+| Signature | Returns | Description |
+| --------- | ------- | ----------- |
+| `rnd.int(a, b)` | `int` | Random integer in the range [a, b]. |
+| `rnd.float()` | `float` | Random float in [0, 1). |
+| `rnd.between(a, b)` | `float` | Random float in [a, b). |
+| `rnd.choice(list)` | `any` | A random element from a list. |
+| `rnd.shuffle(list)` | `list` | A shuffled copy of the list. |
+| `rnd.sample(list, n)` | `list` | n distinct random elements. |
+| `rnd.uuidv4()` | `string` | A random UUID v4 string. |

@@ -1,0 +1,71 @@
+---
+title: "Control Flow"
+description: "Conditionals, loops, match, break and continue."
+order: 3
+---
+
+## if / else if / else
+
+```orion
+score = 82
+if score >= 90 {
+  show("A")
+} else if score >= 80 {
+  show("B")
+} else {
+  show("C")
+}
+```
+
+<Note>
+The keyword is `else if` (two words). There is no `elsif`.
+</Note>
+
+## while
+
+```orion
+i = 0
+while i < 3 {
+  show(i)
+  i += 1
+}
+```
+
+## for ... in
+
+```orion
+for item in ["a", "b", "c"] {
+  show(item)
+}
+
+for i in range(3) {
+  show(i)
+}
+```
+
+## match
+
+Each arm is a pattern followed by a block. Use `_` as the default arm.
+
+```orion
+match status {
+  1 { show("one") }
+  2 { show("two") }
+  _ { show("other") }
+}
+```
+
+<Note type="warning">
+Match arms do not use an arrow. The pattern is followed directly by a `{ ... }`
+block.
+</Note>
+
+## break and continue
+
+```orion
+for i in range(10) {
+  if i == 5 { break }
+  if i % 2 == 0 { continue }
+  show(i)
+}
+```

@@ -1,0 +1,48 @@
+---
+title: "Installation"
+description: "Install Orion with the VS Code extension or as a standalone CLI."
+order: 2
+---
+
+There are two ways to install Orion. The recommended path is the VS Code
+extension, which downloads the compiler for you. You can also install the CLI on
+its own.
+
+## With the VS Code extension (recommended)
+
+Search for `Orion Language` in the Extensions panel, or install it from a
+terminal:
+
+```bash
+code --install-extension AngelZapata.oriondev
+```
+
+The compiler is downloaded automatically the first time you open a `.orx` file,
+so there is nothing else to configure.
+
+## Standalone CLI
+
+Download the binary for your platform from the
+[Releases page on GitHub](https://github.com/angeldevmobile/Orion/releases).
+No installer is required.
+
+- Windows: `orion-win32-x64.exe`
+- Linux: `orion-linux-x64`
+- macOS (Apple Silicon): `orion-darwin-arm64`
+
+## Add to PATH (optional)
+
+To run `orion` from any directory, move the executable to a folder that is
+already in your `PATH`, or add its folder to the system `PATH`.
+
+## Verify the installation
+
+```bash
+orion --version
+orion doctor
+```
+
+<Note type="tip">
+`orion doctor` checks your environment and reports any missing pieces. No Rust
+or Cargo installation is needed; the binary is fully standalone.
+</Note>

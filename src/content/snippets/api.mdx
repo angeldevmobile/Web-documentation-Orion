@@ -1,0 +1,20 @@
+```orion
+use "db"
+
+db.exec("app.db", "CREATE TABLE IF NOT EXISTS users (name)")
+
+fn router(req) {
+    if req["path"] != "/users" {
+        return { "status": 404, "body": "not found" }
+    }
+    if req["method"] == "POST" {
+        add = "INSERT INTO users (name) VALUES (?)"
+        db.insert("app.db", add, [req["body"]])
+        return { "status": 201, "body": { "ok": yes } }
+    }
+    users = db.query("app.db", "SELECT * FROM users")
+    return { "status": 200, "body": users }
+}
+
+serve 8080 router
+```

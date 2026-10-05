@@ -1,0 +1,31 @@
+---
+title: "Modules and Imports"
+description: "Built-in functions, use, and packages."
+order: 6
+---
+
+## Built-in functions
+
+Common functions such as `len`, `range`, and `sqrt` are available globally,
+with no import.
+
+```orion
+show(len([1, 2, 3]))
+show(sqrt(16))
+show(range(3))
+```
+
+## use
+
+Import a module and bind it to a name with `use ... as`, then call its functions
+through that name.
+
+```orion
+use "math" as m
+show(m.sqrt(25))
+```
+
+## Packages
+
+Install community packages with `orion add <package>` and publish your own with
+`orion publish`. See the [package manager](/docs/tools/packages) for details.

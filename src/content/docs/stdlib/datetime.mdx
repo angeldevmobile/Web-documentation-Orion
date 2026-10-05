@@ -1,0 +1,23 @@
+---
+title: "datetime"
+description: "Dates and times: current time, formatting, parsing and arithmetic."
+order: 7
+---
+
+Current date and time, formatting, parsing, and arithmetic.
+
+```orion
+use "datetime" as dt
+show(dt.today())
+show(dt.add_days(dt.today(), 7))
+```
+
+| Signature | Returns | Description |
+| --------- | ------- | ----------- |
+| `dt.now()` | `string` | Current date and time. |
+| `dt.today()` | `string` | Today's date. |
+| `dt.timestamp()` | `int` | Seconds since the Unix epoch. |
+| `dt.format(value, fmt)` | `string` | Formats a date with a pattern. |
+| `dt.parse(text)` | `string` | Parses a date string. |
+| `dt.add_days(value, n)` | `string` | Adds n days. |
+| `dt.add_hours(value, n)` | `string` | Adds n hours. |

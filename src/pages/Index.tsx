@@ -2,10 +2,13 @@ import { useEffect } from "react";
 import { useLocation } from "react-router-dom";
 import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
-import Features from "@/components/Features";
+import UseCases from "@/components/home/UseCases";
+import Performance from "@/components/home/Performance";
+import StdlibGrid from "@/components/home/StdlibGrid";
+import Tooling from "@/components/home/Tooling";
 import GetStarted from "@/components/GetStarted";
+import Community from "@/components/home/Community";
 import Footer from "@/components/Footer";
-import CodeShowCase from "@/CodeShowCase";
 
 const Index = () => {
   const location = useLocation();
@@ -25,9 +28,12 @@ const Index = () => {
       <Navbar />
       <main>
         <Hero />
-        <Features />
-        <CodeShowCase />
+        <UseCases />
+        <Performance />
+        <StdlibGrid />
+        <Tooling />
         <GetStarted />
+        <Community />
       </main>
       <Footer />
     </div>

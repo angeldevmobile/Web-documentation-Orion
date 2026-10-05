@@ -1,96 +1,112 @@
+import { useState } from "react";
+import { Link } from "react-router-dom";
+import { ArrowRight, Check, Copy, Github, Play } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { Sparkles, Github, BookOpen } from "lucide-react";
+import Snippet from "@/components/home/Snippet";
+import ApiSnippet from "@/content/snippets/api.mdx";
+import {
+  INSTALL_COMMAND,
+  LATEST_RELEASE_URL,
+  MODULE_COUNT,
+  ORION_VERSION,
+  REPO_URL,
+} from "@/lib/site";
 
-const Hero = () => {
+function InstallCommand() {
+  const [copied, setCopied] = useState(false);
+  const copy = async () => {
+    try {
+      await navigator.clipboard.writeText(INSTALL_COMMAND);
+      setCopied(true);
+      setTimeout(() => setCopied(false), 1500);
+    } catch {
+      /* portapapeles no disponible */
+    }
+  };
   return (
-    <section id="hero" className="flex items-center justify-center pt-28 pb-16 px-4">
-      <div className="container mx-auto max-w-5xl">
-        <div className="text-center space-y-6 animate-fade-in-up">
-          {/* Badge */}
-          <div className="inline-flex items-center gap-2 glass-effect px-4 py-2 rounded-full border border-border">
-            <Sparkles className="w-4 h-4 text-primary" />
-            <span className="text-sm text-foreground/80">A language for the next generation</span>
-          </div>
+    <button
+      onClick={copy}
+      className="group flex w-full max-w-lg items-center justify-between gap-3 rounded-lg border border-border bg-muted/40 px-4 py-3 text-left font-mono text-[13px] transition-colors hover:border-primary/50"
+      aria-label="Copy install command"
+    >
+      <span className="truncate">
+        <span className="select-none text-muted-foreground">$ </span>
+        {INSTALL_COMMAND}
+      </span>
+      {copied ? (
+        <Check className="h-4 w-4 flex-shrink-0 text-green-500" />
+      ) : (
+        <Copy className="h-4 w-4 flex-shrink-0 text-muted-foreground group-hover:text-foreground" />
+      )}
+    </button>
+  );
+}
 
-          {/* Main Heading */}
-          <h1 className="text-5xl md:text-7xl font-bold leading-tight">
-            <span className="inline-flex">
-              {"Orion".split("").map((ch, i) => (
-                <span
-                  key={i}
-                  className="text-gradient animate-letter"
-                  style={{ animationDelay: `${i * 0.09}s` }}
-                >
-                  {ch}
-                </span>
-              ))}
-            </span>
-            <br />
-            <span className="text-foreground">Code that thinks with you</span>
-          </h1>
+const Hero = () => (
+  <section id="hero" className="px-4 pb-20 pt-32 md:pt-36">
+    <div className="container mx-auto grid max-w-6xl grid-cols-1 items-center gap-12 lg:grid-cols-[1fr_1.1fr]">
+      <div className="min-w-0 space-y-7 animate-fade-in-up">
+        <a
+          href={LATEST_RELEASE_URL}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="inline-flex max-w-full items-center gap-2 rounded-full border border-border bg-muted/40 px-3 py-1 text-sm text-foreground/80 transition-colors hover:border-primary/50"
+        >
+          <span className="rounded-full bg-primary px-2 py-0.5 text-xs font-semibold text-primary-foreground">
+            v{ORION_VERSION}
+          </span>
+          <span className="truncate">JIT up to 10× faster, with 50× less memory</span>
+          <ArrowRight className="h-3.5 w-3.5 flex-shrink-0" />
+        </a>
 
-          {/* Subtitle */}
-          <p className="text-xl md:text-2xl text-muted-foreground max-w-4xl mx-auto">
-            Clear syntax, native compilation, and a complete standard library.
+        <h1 className="text-4xl font-bold leading-[1.1] tracking-tight md:text-6xl">
+          One language for your <span className="text-gradient">backend, scripts and data</span>
+        </h1>
+
+        <p className="max-w-xl text-lg leading-relaxed text-muted-foreground">
+          Orion is a single executable with {MODULE_COUNT} built-in modules: an HTTP server,
+          databases, browser automation, dataframes, Excel and PDF, AI. Write it like a
+          script; run it on a Rust VM, or compile the hot paths to native code with the JIT.
+        </p>
+
+        <div className="flex flex-wrap items-center gap-3">
+          <Button asChild size="lg" className="bg-primary px-6 text-primary-foreground hover:bg-primary/90">
+            <Link to="/docs/getting-started/installation">
+              Get started <ArrowRight className="ml-2 h-4 w-4" />
+            </Link>
+          </Button>
+          <Button asChild size="lg" variant="outline" className="border-border px-6">
+            <Link to="/playground">
+              <Play className="mr-2 h-4 w-4" /> Try it online
+            </Link>
+          </Button>
+          <Button asChild size="lg" variant="ghost" className="px-4">
+            <a href={REPO_URL} target="_blank" rel="noopener noreferrer">
+              <Github className="mr-2 h-4 w-4" /> GitHub
+            </a>
+          </Button>
+        </div>
+
+        <div className="space-y-2">
+          <InstallCommand />
+          <p className="text-sm text-muted-foreground">
+            The VS Code extension downloads the compiler for you. Or grab the{" "}
+            <a href={LATEST_RELEASE_URL} target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">
+              standalone binary
+            </a>{" "}
+            for Windows, Linux or macOS.
           </p>
-
-          <p className="text-lg text-foreground/70 max-w-3xl mx-auto">
-            Orion pairs a readable syntax with efficient execution through a Rust VM and a
-            Cranelift JIT. It includes optional typing, concurrency, built-in AI, and
-            development tools ready to use.
-          </p>
-
-          {/* CTA Buttons */}
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-4 pt-4">
-            <Button
-              size="lg"
-              className="bg-primary text-primary-foreground hover:bg-primary/90 text-lg px-8 py-6"
-              onClick={() =>
-                document
-                  .getElementById("get-started")
-                  ?.scrollIntoView({ behavior: "smooth" })
-              }
-            >
-              <BookOpen className="w-5 h-5 mr-2" />
-              Get started
-            </Button>
-            <Button
-              size="lg"
-              variant="outline"
-              className="border-primary/50 text-foreground hover:bg-primary/10 text-lg px-8 py-6"
-              onClick={() => window.open("https://github.com/angeldevmobile/Orion", "_blank")}
-            >
-              <Github className="w-5 h-5 mr-2" />
-              View source
-            </Button>
-          </div>
-
-          {/* Code Example */}
-          <div className="mt-8 max-w-3xl mx-auto animate-scale-in">
-            <div className="glass-effect rounded-xl p-6 border border-border">
-              <div className="flex items-center justify-between mb-4">
-                <span className="text-sm text-muted-foreground font-mono">hello.orx</span>
-                <div className="flex gap-2">
-                  <div className="w-3 h-3 rounded-full bg-accent/50"></div>
-                  <div className="w-3 h-3 rounded-full bg-primary/50"></div>
-                  <div className="w-3 h-3 rounded-full bg-muted-foreground/50"></div>
-                </div>
-              </div>
-              <pre className="text-left bg-transparent border-0 p-0">
-                <code className="font-mono text-sm md:text-base text-foreground">
-                  <span className="text-muted-foreground">-- Hello world in Orion</span>{"\n"}
-                  <span className="text-primary">show</span>
-                  <span className="text-foreground">(</span>
-                  <span className="text-accent">"Hello, world from Orion"</span>
-                  <span className="text-foreground">)</span>
-                </code>
-              </pre>
-            </div>
-          </div>
         </div>
       </div>
-    </section>
-  );
-};
+
+      <div className="min-w-0 animate-scale-in">
+        <Snippet file="api.orx" code={ApiSnippet} />
+        <p className="mt-3 text-center text-sm text-muted-foreground">
+          A JSON API with a database. No framework, no dependencies: <code>orion api.orx</code>
+        </p>
+      </div>
+    </div>
+  </section>
+);
 
 export default Hero;

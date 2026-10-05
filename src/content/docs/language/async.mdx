@@ -1,0 +1,22 @@
+---
+title: "Async and Await"
+description: "Asynchronous functions, await and spawn."
+order: 8
+---
+
+Declare asynchronous functions with `async fn` and wait for a result with
+`await`. Use `spawn` to start concurrent tasks.
+
+```orion
+async fn work() {
+  return 42
+}
+
+result = await work()
+show(result)
+```
+
+<Note>
+Orion also provides native channels for communication between tasks. See the
+standard library for the concurrency modules.
+</Note>

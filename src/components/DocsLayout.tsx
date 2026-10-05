@@ -1,297 +1,154 @@
-'use client';
-import { useState, useEffect, useRef, useCallback } from "react";
-import { Menu, X, ChevronDown, ChevronLeft, ChevronRight } from "lucide-react";
+import { lazy, Suspense, useEffect, useRef, useState, type ComponentType } from "react";
+import { Link, useLocation } from "react-router-dom";
+import { MDXProvider } from "@mdx-js/react";
+import { ChevronLeft, ChevronRight, PencilLine } from "lucide-react";
+import { DOCS, SECTIONS, loadDoc, type DocMeta } from "@/content/docs";
+import { mdxComponents } from "@/components/docs/mdx";
+import DocsShell from "@/components/docs/DocsShell";
 
-const NAV = [
-  {
-    group: "Getting Started",
-    items: [
-      { id: "what-is-orion",  label: "What is Orion" },
-      { id: "installation",   label: "Installation" },
-      { id: "quickstart",     label: "Quick Start" },
-      { id: "repl",           label: "Interactive REPL" },
-    ],
-  },
-  {
-    group: "Language Reference",
-    items: [
-      { id: "variables",      label: "Variables & Types" },
-      { id: "operators",      label: "Operators" },
-      { id: "control-flow",   label: "Control Flow" },
-      { id: "functions",      label: "Functions" },
-      { id: "error-handling", label: "Error Handling" },
-      { id: "modules",        label: "Module System" },
-      { id: "shapes",         label: "Shapes (OOP)" },
-      { id: "async",          label: "Async / Await" },
-      { id: "type-system",    label: "Type System" },
-      { id: "ai-primitives",  label: "AI Primitives" },
-    ],
-  },
-  {
-    group: "Standard Library",
-    items: [
-      { id: "stdlib-overview", label: "Overview" },
-      { id: "lib-strings",     label: "strings" },
-      { id: "lib-math",        label: "math" },
-      { id: "lib-list",        label: "Lists" },
-      { id: "lib-fs",          label: "fs" },
-      { id: "lib-json",        label: "json" },
-      { id: "lib-datetime",    label: "datetime" },
-      { id: "lib-random",      label: "random" },
-      { id: "lib-frame",       label: "frame" },
-    ],
-  },
-  {
-    group: "CLI Reference",
-    items: [
-      { id: "cli-run",        label: "Running Programs" },
-      { id: "cli-tools",      label: "Development Tools" },
-      { id: "cli-packages",   label: "Package Manager" },
-    ],
-  },
-  {
-    group: "Editor Support",
-    items: [
-      { id: "vscode-setup",   label: "VS Code Extension" },
-    ],
-  },
-  {
-    group: "Guides",
-    items: [
-      { id: "guide-api",        label: "Build a REST API" },
-      { id: "guide-automation", label: "Automate file processing" },
-    ],
-  },
-];
+const EDIT_BASE =
+  "https://github.com/angeldevmobile/Web-documentation-Orion/edit/master/src/content/docs";
 
-// Both CLI Reference and Editor Support share the same page (index 3)
-const GROUP_TO_PAGE: Record<string, number> = {
-  "Getting Started":    0,
-  "Language Reference": 1,
-  "Standard Library":   2,
-  "CLI Reference":      3,
-  "Editor Support":     3,
-  "Guides":             4,
-};
-
-export interface DocPage {
-  group: string;
-  content: React.ReactNode;
+// Un componente lazy por página, creado una sola vez: si se recreara en cada
+// render, React volvería a montar la página y perdería el scroll.
+const lazyPages = new Map<string, ComponentType>();
+function pageComponent(doc: DocMeta): ComponentType {
+  let c = lazyPages.get(doc.path);
+  if (!c) {
+    c = lazy(loadDoc(doc));
+    lazyPages.set(doc.path, c);
+  }
+  return c;
 }
 
-interface DocsLayoutProps {
-  pages: DocPage[];
+interface Heading {
+  id: string;
+  text: string;
+  level: 2 | 3;
 }
 
-export default function DocsLayout({ pages }: DocsLayoutProps) {
-  const [activePage, setActivePage]     = useState(0);
-  const [activeItem, setActiveItem]     = useState(NAV[0].items[0].id);
-  const [mobileOpen, setMobileOpen]     = useState(false);
-  const [pendingScroll, setPendingScroll] = useState<string | null>(null);
-  const [openGroups, setOpenGroups]     = useState<Record<string, boolean>>(() =>
-    Object.fromEntries(NAV.map((g, i) => [g.group, i === 0]))
-  );
-  const observerRef = useRef<IntersectionObserver | null>(null);
-
-  // Re-attach IntersectionObserver whenever the rendered page changes
-  useEffect(() => {
-    observerRef.current?.disconnect();
-    const timer = setTimeout(() => {
-      observerRef.current = new IntersectionObserver(
-        (entries) => {
-          for (const entry of entries) {
-            if (entry.isIntersecting) {
-              setActiveItem(entry.target.id);
-              break;
-            }
-          }
-        },
-        { rootMargin: "-15% 0% -75% 0%", threshold: 0 }
-      );
-      document.querySelectorAll("section[id]").forEach((el) =>
-        observerRef.current?.observe(el)
-      );
-    }, 80);
-    return () => {
-      clearTimeout(timer);
-      observerRef.current?.disconnect();
-    };
-  }, [activePage]);
-
-  // Scroll to a section after a page change has rendered
-  useEffect(() => {
-    if (!pendingScroll) return;
-    const timer = setTimeout(() => {
-      document.getElementById(pendingScroll)?.scrollIntoView({ behavior: "smooth", block: "start" });
-      setPendingScroll(null);
-    }, 120);
-    return () => clearTimeout(timer);
-  }, [activePage, pendingScroll]);
-
-  const goToPage = useCallback((index: number, scrollId?: string) => {
-    if (index < 0 || index >= pages.length) return;
-    window.scrollTo({ top: 0 });
-    setActivePage(index);
-    // open the first NAV group that maps to this page
-    const firstGroup = NAV.find((g) => GROUP_TO_PAGE[g.group] === index);
-    if (firstGroup) {
-      setOpenGroups((prev) => ({ ...prev, [firstGroup.group]: true }));
-      setActiveItem(scrollId ?? firstGroup.items[0].id);
-    }
-    if (scrollId) setPendingScroll(scrollId);
-  }, [pages.length]);
-
-  const goToItem = useCallback((itemId: string) => {
-    const navGroup = NAV.find((g) => g.items.some((i) => i.id === itemId));
-    if (!navGroup) return;
-    const pageIndex = GROUP_TO_PAGE[navGroup.group];
-    setOpenGroups((prev) => ({ ...prev, [navGroup.group]: true }));
-    setActiveItem(itemId);
-    setMobileOpen(false);
-    if (pageIndex === activePage) {
-      document.getElementById(itemId)?.scrollIntoView({ behavior: "smooth", block: "start" });
-    } else {
-      goToPage(pageIndex, itemId);
-    }
-  }, [activePage, goToPage]);
-
-  const toggleGroup = (group: string) => {
-    setOpenGroups((prev) => ({ ...prev, [group]: !prev[group] }));
-  };
-
-  const prevPage = activePage > 0 ? pages[activePage - 1] : null;
-  const nextPage = activePage < pages.length - 1 ? pages[activePage + 1] : null;
-
-  const renderSidebar = () => (
-    <nav className="px-3 py-6 space-y-1">
-      {NAV.map((group, gi) => {
-        const pageIndex  = GROUP_TO_PAGE[group.group];
-        const onThisPage = pageIndex === activePage;
-        const isOpen     = openGroups[group.group];
-
-        return (
-          <div key={group.group}>
-            {/* Group header */}
-            <button
-              onClick={() => {
-                toggleGroup(group.group);
-                if (!onThisPage) goToPage(pageIndex);
-              }}
-              className={`w-full flex items-center justify-between px-3 py-2.5 rounded-lg text-[15px] font-semibold transition-all duration-200 ${
-                onThisPage
-                  ? "text-primary bg-primary/10"
-                  : "text-foreground/80 hover:text-foreground hover:bg-muted/40"
-              }`}
-            >
-              <span>
-                <span className="text-muted-foreground mr-1.5 tabular-nums">{gi + 1}.</span>
-                {group.group}
-              </span>
-              <ChevronDown
-                className={`w-4 h-4 flex-shrink-0 transition-transform duration-300 ${
-                  isOpen ? "rotate-0" : "-rotate-90"
-                } ${onThisPage ? "text-primary" : "text-muted-foreground"}`}
-              />
-            </button>
-
-            {/* Items */}
-            <div
-              className={`overflow-hidden transition-all duration-300 ease-in-out ${
-                isOpen ? "max-h-[700px] opacity-100" : "max-h-0 opacity-0"
-              }`}
-            >
-              <ul className="mt-1 mb-2 ml-2 space-y-0.5 border-l-2 border-border/40 pl-3">
-                {group.items.map((item, ii) => {
-                  const isActive = activeItem === item.id && onThisPage;
-                  return (
-                    <li key={item.id}>
-                      <button
-                        onClick={() => goToItem(item.id)}
-                        className={`w-full text-left text-[14px] px-2.5 py-2 rounded-md transition-colors ${
-                          isActive
-                            ? "text-primary font-semibold bg-primary/10"
-                            : "text-muted-foreground hover:text-foreground hover:bg-muted/40"
-                        }`}
-                      >
-                        <span className="text-muted-foreground mr-1.5 tabular-nums">
-                          {gi + 1}.{ii + 1}
-                        </span>
-                        {item.label}
-                      </button>
-                    </li>
-                  );
-                })}
-              </ul>
-            </div>
-          </div>
-        );
-      })}
+export function OnThisPage({ headings, active, title = "On this page" }: { headings: Heading[]; active: string; title?: string }) {
+  if (headings.length < 2) return null;
+  return (
+    <nav className="max-h-[calc(100vh-8rem)] space-y-2 overflow-y-auto text-[13px]" aria-label={title}>
+      <p className="mb-3 font-semibold text-foreground">{title}</p>
+      {headings.map((h) => (
+        <a
+          key={h.id}
+          href={`#${h.id}`}
+          className={`block transition-colors ${h.level === 3 ? "pl-3" : ""} ${
+            active === h.id ? "font-medium text-primary" : "text-muted-foreground hover:text-foreground"
+          }`}
+        >
+          {h.text}
+        </a>
+      ))}
     </nav>
   );
+}
+
+/** Resalta en el índice el título que está a la vista. */
+export function useActiveHeading(ids: string[]): string {
+  const [active, setActive] = useState("");
+  useEffect(() => {
+    if (ids.length === 0) return;
+    const io = new IntersectionObserver(
+      (entries) => {
+        const visible = entries.filter((e) => e.isIntersecting);
+        if (visible.length) setActive(visible[0].target.id);
+      },
+      { rootMargin: "-80px 0px -70% 0px" },
+    );
+    ids.forEach((id) => {
+      const el = document.getElementById(id);
+      if (el) io.observe(el);
+    });
+    return () => io.disconnect();
+  }, [ids]);
+  return active;
+}
+
+export default function DocsLayout({ doc }: { doc: DocMeta }) {
+  const location = useLocation();
+  const articleRef = useRef<HTMLElement>(null);
+  const [headings, setHeadings] = useState<Heading[]>([]);
+  const active = useActiveHeading(headings.map((h) => h.id));
+
+  const Page = pageComponent(doc);
+  const section = SECTIONS.find((s) => s.slug === doc.section);
+  const index = DOCS.findIndex((d) => d.path === doc.path);
+  const prev = index > 0 ? DOCS[index - 1] : undefined;
+  const next = index < DOCS.length - 1 ? DOCS[index + 1] : undefined;
+
+  // Al cargar la página: leer sus títulos para el índice, y llevar el scroll
+  // arriba o al ancla de la URL.
+  useEffect(() => {
+    const article = articleRef.current;
+    if (!article) return;
+    const collect = () => {
+      const found = Array.from(article.querySelectorAll<HTMLHeadingElement>("h2[id], h3[id]")).map(
+        (h) => ({ id: h.id, text: h.textContent ?? "", level: (h.tagName === "H2" ? 2 : 3) as 2 | 3 }),
+      );
+      if (found.length === 0) return false;
+      setHeadings(found);
+      const target = location.hash ? document.getElementById(decodeURIComponent(location.hash.slice(1))) : null;
+      if (target) target.scrollIntoView();
+      else window.scrollTo({ top: 0 });
+      return true;
+    };
+    setHeadings([]);
+    if (collect()) return;
+    // La página llega por lazy: esperar a que el contenido aparezca.
+    const mo = new MutationObserver(() => collect() && mo.disconnect());
+    mo.observe(article, { childList: true, subtree: true });
+    return () => mo.disconnect();
+  }, [doc.path, location.hash]);
 
   return (
-    <div className="flex min-h-screen pt-16">
-      {/* Desktop sidebar */}
-      <aside className="hidden lg:flex flex-col fixed top-16 left-0 bottom-0 w-64 border-r border-border/60 bg-card/40 backdrop-blur-sm overflow-y-auto">
-        {renderSidebar()}
-      </aside>
-
-      {/* Mobile toggle button */}
-      <button
-        className="lg:hidden fixed bottom-6 right-6 z-50 bg-primary text-primary-foreground rounded-full p-3 shadow-lg"
-        onClick={() => setMobileOpen((v) => !v)}
+    <DocsShell aside={<OnThisPage headings={headings} active={active} />}>
+      <p className="mb-2 text-sm font-medium text-primary">{section?.title}</p>
+      <article
+        ref={articleRef}
+        className="prose prose-slate max-w-none dark:prose-invert prose-headings:scroll-mt-24 prose-h1:mb-4 prose-h1:text-4xl prose-h1:font-bold prose-h2:mt-12 prose-h2:border-b prose-h2:border-border prose-h2:pb-2 prose-a:text-primary prose-a:no-underline hover:prose-a:underline prose-code:rounded prose-code:bg-muted prose-code:px-1.5 prose-code:py-0.5 prose-code:font-normal prose-code:text-primary prose-code:before:content-none prose-code:after:content-none prose-th:text-left"
       >
-        {mobileOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
-      </button>
+        <h1>{doc.title}</h1>
+        {doc.description && <p className="lead text-muted-foreground">{doc.description}</p>}
+        <MDXProvider components={mdxComponents}>
+          <Suspense fallback={<p className="text-muted-foreground">Loading…</p>}>
+            <Page />
+          </Suspense>
+        </MDXProvider>
+      </article>
 
-      {/* Mobile overlay */}
-      {mobileOpen && (
-        <div className="lg:hidden fixed inset-0 z-40 bg-background/95 overflow-y-auto pt-16">
-          {renderSidebar()}
-        </div>
-      )}
+      <a
+        href={`${EDIT_BASE}/${doc.section}/${doc.slug}.mdx`}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="mt-12 inline-flex items-center gap-1.5 text-sm text-muted-foreground hover:text-primary"
+      >
+        <PencilLine className="h-4 w-4" /> Edit this page on GitHub
+      </a>
 
-      {/* Main content */}
-      <main className="w-full lg:pl-64">
-        <div className="docs-content max-w-3xl mx-auto px-6 md:px-10 py-12">
-
-          {/* Page content */}
-          {pages[activePage]?.content}
-
-          {/* Prev / Next navigation */}
-          <div className="mt-16 pt-8 border-t border-border/50 flex items-stretch justify-between gap-4">
-            {prevPage ? (
-              <button
-                onClick={() => goToPage(activePage - 1)}
-                className="flex items-center gap-3 px-5 py-4 rounded-xl border border-border/60 bg-card/40 hover:bg-muted/30 hover:border-primary/50 transition-all group text-left"
-              >
-                <ChevronLeft className="w-5 h-5 text-muted-foreground group-hover:text-primary transition-colors flex-shrink-0" />
-                <div>
-                  <p className="text-xs text-muted-foreground mb-0.5">Anterior</p>
-                  <p className="text-sm font-semibold text-foreground group-hover:text-primary transition-colors">
-                    {prevPage.group}
-                  </p>
-                </div>
-              </button>
-            ) : <div />}
-
-            {nextPage ? (
-              <button
-                onClick={() => goToPage(activePage + 1)}
-                className="flex items-center gap-3 px-5 py-4 rounded-xl border border-border/60 bg-card/40 hover:bg-muted/30 hover:border-primary/50 transition-all group text-right ml-auto"
-              >
-                <div>
-                  <p className="text-xs text-muted-foreground mb-0.5">Siguiente</p>
-                  <p className="text-sm font-semibold text-foreground group-hover:text-primary transition-colors">
-                    {nextPage.group}
-                  </p>
-                </div>
-                <ChevronRight className="w-5 h-5 text-muted-foreground group-hover:text-primary transition-colors flex-shrink-0" />
-              </button>
-            ) : <div />}
-          </div>
-        </div>
-      </main>
-    </div>
+      <div className="mt-8 grid gap-4 border-t border-border/50 pt-8 sm:grid-cols-2">
+        {prev ? (
+          <Link to={prev.path} className="group rounded-xl border border-border/60 p-4 transition-colors hover:border-primary/50">
+            <p className="flex items-center gap-1 text-xs text-muted-foreground">
+              <ChevronLeft className="h-3.5 w-3.5" /> Previous
+            </p>
+            <p className="mt-1 font-semibold group-hover:text-primary">{prev.title}</p>
+          </Link>
+        ) : (
+          <div />
+        )}
+        {next && (
+          <Link to={next.path} className="group rounded-xl border border-border/60 p-4 text-right transition-colors hover:border-primary/50">
+            <p className="flex items-center justify-end gap-1 text-xs text-muted-foreground">
+              Next <ChevronRight className="h-3.5 w-3.5" />
+            </p>
+            <p className="mt-1 font-semibold group-hover:text-primary">{next.title}</p>
+          </Link>
+        )}
+      </div>
+    </DocsShell>
   );
 }

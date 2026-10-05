@@ -1,0 +1,66 @@
+---
+title: "Overview"
+description: "How to reach the standard library: global functions, methods and modules."
+order: 1
+---
+
+Orion ships with a broad standard library covering text, data, files,
+networking, security, concurrency, and AI. Functionality is reached in three
+ways.
+
+## Global functions
+
+A few common functions are always available, with no import.
+
+```orion
+show(len([1, 2, 3]))
+show(sqrt(16))
+show(range(3))
+```
+
+## Methods on values
+
+Values such as lists and strings have methods, called with a dot.
+
+```orion
+nums = [1, 2, 3]
+show(nums.map(x => x * 2))
+show("orion".upper())
+```
+
+## Modules with use
+
+Most modules are imported with `use`. An alias is optional.
+
+```orion
+use "math" as m
+show(m.sqrt(25))
+
+use "json"
+show(json.forge({ "ok": yes }))
+```
+
+## Available modules
+
+| Area | Modules |
+| ---- | ------- |
+| Text | `strings`, `regex`, `template`, `validate`, `formato` |
+| Numbers and data | `math`, `list`, `vector`, `matrix`, `stat`, `serie`, `frame`, `table` |
+| Files and formats | `fs`, `json`, `csv`, `excel`, `pdf`, `zip`, `proto` |
+| System | `env`, `process`, `config`, `log`, `term`, `tui`, `watch` |
+| Date and time | `datetime`, `timewarp` |
+| Networking and web | `net`, `router`, `ws`, `sse`, `session`, `middleware`, `mail`, `s3`, `ssh`, `docker`, `search` |
+| Data and storage | `db`, `cache`, `cola`, `state`, `stream`, `embed` |
+| Security | `crypto`, `crypto2`, `auth`, `secret` |
+| Concurrency | `chan`, `tarea` |
+| AI | `ai`, `llm`, `insight`, `vision` |
+| Specialized | `quantum`, `cosmos`, `grafo`, `gui`, `random` |
+| Orion packages | `packages/colors`, `packages/dates`, `packages/http`, `packages/list`, `packages/math`, `packages/progress`, `packages/strings`, `packages/uuid`, `packages/validate` |
+
+Packages written in Orion itself rather than Rust are imported by path:
+`use "packages/uuid"`.
+
+The pages in this section cover the most common modules. For every module and
+function, see the [module reference](/modules). Every module follows the same
+pattern: import it with `use "name"` and call its functions through the module
+name.

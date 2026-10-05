@@ -1,0 +1,14 @@
+```orion
+use "browser" as web
+
+with b = web.open() {           -- your Chrome or Edge
+    p = web.page(b)
+    web.goto(p, "https://shop.example.com/catalog")
+    items = web.extract(p, ".card", {
+        name:  ".title",
+        price: ".price|num",
+        url:   "a@href"
+    })
+    show "${len(items)} products"
+}
+```

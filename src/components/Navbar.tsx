@@ -36,11 +36,22 @@ const Navbar = () => {
     }
   };
 
-  const navLinks = [
-    { name: "Home",        id: "hero" },
-    { name: "Features",    id: "features" },
+  // `id`: sección de la portada; `to`: otra página.
+  const navLinks: { name: string; id?: string; to?: string }[] = [
+    { name: "Use cases",   id: "use-cases" },
+    { name: "Performance", id: "performance" },
+    { name: "Docs",        to: "/docs" },
     { name: "Get started", id: "get-started" },
   ];
+
+  const goTo = (link: { id?: string; to?: string }) => {
+    if (link.to) {
+      setIsOpen(false);
+      navigate(link.to);
+    } else if (link.id) {
+      handleNavLink(link.id);
+    }
+  };
 
   return (
     <nav
@@ -65,8 +76,8 @@ const Navbar = () => {
           <div className="hidden md:flex items-center space-x-8">
             {navLinks.map((link) => (
               <button
-                key={link.id}
-                onClick={() => handleNavLink(link.id)}
+                key={link.name}
+                onClick={() => goTo(link)}
                 className="text-foreground/80 hover:text-primary transition-colors duration-200 font-medium"
               >
                 {link.name}
@@ -74,7 +85,7 @@ const Navbar = () => {
             ))}
             <button
               onClick={toggleTheme}
-              aria-label="Cambiar tema"
+              aria-label="Toggle theme"
               className="p-2 rounded-md text-foreground/70 hover:text-foreground hover:bg-muted/60 transition-colors"
             >
               {isDark ? <Sun className="w-5 h-5" /> : <Moon className="w-5 h-5" />}
@@ -114,8 +125,8 @@ const Navbar = () => {
             <div className="flex flex-col space-y-4">
               {navLinks.map((link) => (
                 <button
-                  key={link.id}
-                  onClick={() => handleNavLink(link.id)}
+                  key={link.name}
+                  onClick={() => goTo(link)}
                   className="text-foreground/80 hover:text-primary transition-colors duration-200 font-medium text-left"
                 >
                   {link.name}
@@ -123,7 +134,7 @@ const Navbar = () => {
               ))}
               <button
                 onClick={toggleTheme}
-                aria-label="Cambiar tema"
+                aria-label="Toggle theme"
                 className="flex items-center gap-2 text-foreground/80 hover:text-foreground transition-colors font-medium text-left"
               >
                 {isDark ? <Sun className="w-5 h-5" /> : <Moon className="w-5 h-5" />}

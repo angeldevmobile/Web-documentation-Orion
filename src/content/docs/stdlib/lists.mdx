@@ -1,0 +1,32 @@
+---
+title: "Lists"
+description: "List methods for iteration, transformation and mutation."
+order: 4
+---
+
+Lists have methods for iteration, transformation, and mutation. Methods such as
+`push` modify the list in place.
+
+```orion
+nums = [3, 1, 2]
+nums.push(4)
+show(nums.map(x => x * 10))
+show(nums.contains(2))
+```
+
+| Signature | Returns | Description |
+| --------- | ------- | ----------- |
+| `list.push(item)` | `list` | Appends an item (mutates in place). |
+| `list.len()` | `int` | Number of elements. |
+| `list.is_empty()` | `bool` | Whether the list has no elements. |
+| `list.first()` | `any` | First element, or null. |
+| `list.last()` | `any` | Last element, or null. |
+| `list.reverse()` | `list` | Reverses in place. |
+| `list.contains(item)` | `bool` | Whether the list contains the item. |
+| `list.join(sep)` | `string` | Joins the elements into a string. |
+| `list.map(fn)` | `list` | New list applying fn to each element. |
+
+<Note>
+Lists also provide `filter`, `reduce`, and sorting. Explore them in the REPL or
+the editor autocomplete.
+</Note>

@@ -103,7 +103,7 @@ const GetStarted = () => {
           </Button>
           <button
             onClick={() => navigate("/docs")}
-            className="inline-flex items-center gap-1 text-primary hover:underline font-medium"
+            className="inline-flex items-center gap-1 whitespace-nowrap text-primary hover:underline font-medium"
           >
             Read the documentation
             <ArrowRight className="w-4 h-4" />

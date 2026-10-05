@@ -1,0 +1,22 @@
+---
+title: "Package Manager"
+description: "Install, update and publish packages."
+order: 3
+---
+
+Packages are described by an `orion.json` manifest and resolved from the
+registry.
+
+| Command | Description |
+| ------- | ----------- |
+| `orion add pkg` | Installs a package (alias: `install`; `--force` to reinstall). |
+| `orion remove pkg` | Uninstalls a package (alias: `uninstall`). |
+| `orion list` | Lists available packages. |
+| `orion search query` | Searches for packages. |
+| `orion update [pkg]` | Updates one package or all of them. |
+| `orion publish` | Publishes a package (requires `orion.json`). |
+
+```bash
+orion search json
+orion add http
+```
