@@ -1,5 +1,5 @@
 /** Datos del proyecto que aparecen en varias partes de la web: cambiar aquí. */
-export const ORION_VERSION = "0.1.10";
+export const ORION_VERSION = "0.1.11";
 export const MODULE_COUNT = 61;
 
 export const REPO_URL = "https://github.com/angeldevmobile/Orion";
